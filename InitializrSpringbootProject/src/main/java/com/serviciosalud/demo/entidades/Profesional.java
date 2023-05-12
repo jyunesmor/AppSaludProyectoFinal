@@ -3,6 +3,8 @@ package com.serviciosalud.demo.entidades;
 import com.serviciosalud.demo.enumeraciones.Especialidad;
 import com.serviciosalud.demo.enumeraciones.Modalidad;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import lombok.Data;
 
 @Entity
@@ -10,9 +12,22 @@ import lombok.Data;
 public class Profesional extends Usuario{
         
     private Long matricula;
+    
+    @Enumerated(EnumType.STRING)
     private Especialidad especialidad;
+    
+    @Enumerated(EnumType.STRING)
     private Modalidad modalidad;
+    
     private Double precio;
     private Double calificacion;
     private String localidad;
+    private String obraSocial;
+    private Long telefonoLaboral;
+    private String descripcion;
+    
+    /*falta crear las fecha y turno horarios*/
+    
+    
+    
 }
