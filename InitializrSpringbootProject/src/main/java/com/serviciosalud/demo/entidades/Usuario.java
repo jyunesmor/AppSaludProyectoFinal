@@ -32,7 +32,7 @@ public class Usuario {
     private Date fechaDeNacimiento;
     
     @OneToOne
-    private Image img;
+    private Imagen img;
     
     @Enumerated(EnumType.STRING)
     private Roles rol;
