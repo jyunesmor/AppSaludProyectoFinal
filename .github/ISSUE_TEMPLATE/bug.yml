@@ -1,0 +1,48 @@
+---
+name: "🐛🐛 reporte de error"
+description: Error en alguna funcionalidad de la plataforma
+title: "(titulo ejemplo)"
+labels: [bug]
+assignees: []
+
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Describa el error
+      description: cuál es el error? dar una descripción detallada
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Resultado esperado
+      description: |
+        Qué se espera que pase?
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Resultado Actual
+      description: |
+        Qué es lo que sucede actualmente?
+
+        Incluir logs relevantes, fotos, o cualquier otro dato relevante del error.
+    validations:
+      required: true
+
+- type: textarea
+    id: reproduction
+    attributes:
+      label: Pasos para reproducir
+      description: |
+        Aportar todos los detalles para llegar al mismo ámbito del error.
+        Sean:
+         - credenciales
+         - branch
+         - vista
+    validations:
+      required: true
