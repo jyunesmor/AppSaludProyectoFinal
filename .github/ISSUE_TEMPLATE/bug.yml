@@ -1,5 +1,5 @@
 ---
-name: "🐛🐛 reporte de error"
+name: 🐛 reporte de error
 description: Error en alguna funcionalidad de la plataforma
 title: "(titulo ejemplo)"
 labels: [bug]
@@ -10,7 +10,7 @@ body:
     id: description
     attributes:
       label: Describa el error
-      description: cuál es el error? dar una descripción detallada
+      description: ¿cuál es el error? dar una descripción detallada
     validations:
       required: true
 
@@ -19,7 +19,7 @@ body:
     attributes:
       label: Resultado esperado
       description: |
-        Qué se espera que pase?
+        ¿Qué se espera que pase?
     validations:
       required: true
 
@@ -28,7 +28,7 @@ body:
     attributes:
       label: Resultado Actual
       description: |
-        Qué es lo que sucede actualmente?
+        ¿Qué es lo que sucede actualmente?
 
         Incluir logs relevantes, fotos, o cualquier otro dato relevante del error.
     validations:
