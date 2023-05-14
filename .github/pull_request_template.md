@@ -31,4 +31,4 @@ Describa las pruebas que ejecutó para verificar los cambios. Proporcione instru
 - [ ] Mis cambios no generan nuevas advertencias
 
 
-(doc related)[https://whatthediff.ai/posts/a-step-by-step-guide-on-creating-a-pull-request-template-on-github]
+[doc related](https://whatthediff.ai/posts/a-step-by-step-guide-on-creating-a-pull-request-template-on-github)
