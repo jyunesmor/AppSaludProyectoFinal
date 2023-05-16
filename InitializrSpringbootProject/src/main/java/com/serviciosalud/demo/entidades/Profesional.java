@@ -26,6 +26,8 @@ public class Profesional extends Usuario{
     private Long telefonoLaboral;
     private String descripcion;
     
+    private Boolean activo;
+    
     /*falta crear las fecha y turno horarios*/
     
     
