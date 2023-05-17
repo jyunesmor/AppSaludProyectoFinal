@@ -1,8 +1,13 @@
 
 package com.serviciosalud.demo.repositorios;
 
+import com.serviciosalud.demo.entidades.Paciente;
+import com.serviciosalud.demo.entidades.Profesional;
 import com.serviciosalud.demo.entidades.Usuario;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -12,7 +17,19 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UsuarioRepositorio extends JpaRepository<Usuario, String> {
     
+    @Query("SELECT u FROM Usuario u WHERE u.id= :id")
+    public Paciente buscarUsuarioPorId(@Param("id") String id);
+
+    @Query("SELECT u FROM Usuario u WHERE u.dni= :dni")
+    public Paciente buscarUsuarioPorDni(@Param("dni") Integer dni);
+
+    @Query("SELECT u FROM Usuario u WHERE u.email = :email")
+    public Paciente buscarUsuarioPorEmail(@Param("email") String email);
     
-   
+    @Query("SELECT u FROM Usuario u WHERE u.matricula= :matricula")
+    public Profesional buscarUsuarioPorMatricula(@Param("matricula") Long matricula);
+    
+    @Query("SELECT u FROM Usuario u WHERE u.especialidad= :especialidad")
+    public List<Profesional> buscarPorEspecialidad (@Param("especialidad") String especialidad);
    
 }

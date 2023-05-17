@@ -9,7 +9,7 @@ public class AppSaludProyectoFinalApplication {
 
     public static void main(String[] args) {
 
-        /*PacienteServicio pacienteServicio = new PacienteServicio();
+     /*   PacienteServicio pacienteServicio = new PacienteServicio();
             pacienteServicio.crearUsuariolisto();*/
         SpringApplication.run(AppSaludProyectoFinalApplication.class, args);
 

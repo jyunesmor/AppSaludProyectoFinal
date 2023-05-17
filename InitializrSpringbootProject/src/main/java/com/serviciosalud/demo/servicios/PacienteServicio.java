@@ -3,6 +3,7 @@ package com.serviciosalud.demo.servicios;
 import com.serviciosalud.demo.MiExcepcion.MiExcepcion;
 import com.serviciosalud.demo.entidades.Imagen;
 import com.serviciosalud.demo.entidades.Paciente;
+import com.serviciosalud.demo.entidades.Usuario;
 import com.serviciosalud.demo.enumeraciones.Roles;
 import com.serviciosalud.demo.repositorios.PacienteRepositorio;
 import com.serviciosalud.demo.repositorios.UsuarioRepositorio;
@@ -62,7 +63,7 @@ public class PacienteServicio /*implements UserDetailsService*/ {
 
  /*  Imagen imagen = imagenServicio.guardar(archivo);
         paciente.setImg(imagen);*/
-        pacienteRepositorio.save(paciente);
+        usuarioRepositorio.save(paciente);
 
     }
 
@@ -108,32 +109,33 @@ public class PacienteServicio /*implements UserDetailsService*/ {
     @Transactional
     public void crearUsuariolisto() {
 
+       /* Usuario paciente = new Usuario();*/
         Paciente paciente = new Paciente();
-        paciente.setNombre("nombre");
-        paciente.setApellido("apellido");
+        paciente.setNombre("Diego");
+        paciente.setApellido("Maradona");
         paciente.setDni(12345678);
-        paciente.setEmail("email");
+        paciente.setEmail("Dios@10");
         /* paciente.setNombreUsuario(nombreUsuario);*/
         paciente.setTelefono(87654321);
         /*paciente.setActivo(activo);*/
-        paciente.setSexo("sexo");
+        paciente.setSexo("M");
 
         /*  paciente.setPassword(new BCryptPasswordEncoder().encode(password));*/
-        paciente.setPassword("password");
-
-        paciente.setObraSocialPaciente("obraSocialPaciente");
-        paciente.setNumeroDeAfiliado(11111111);
-        paciente.setMotivoDeConsulta("motivoConsulta");
+        paciente.setPassword("1234567");
 
         paciente.setRol(Roles.PACIENTE);
 
+       
+        paciente.setObraSocialPaciente("Eterno");
+        paciente.setNumeroDeAfiliado(10101010);
+        paciente.setMotivoDeConsulta("la mano de Dios");
         /*Date fecha = new Date();
         paciente.setFechaDeNacimiento(fecha);*/
-
  /*  Imagen imagen = imagenServicio.guardar(archivo);
         paciente.setImg(imagen);*/
-        usuarioRepositorio.save(pacienteRepositorio.save(paciente));
 
+       /* usuarioRepositorio.save(paciente);*/
+        pacienteRepositorio.save(paciente);
     }
 
     /* aqui termina la prueba  */
@@ -149,12 +151,12 @@ public class PacienteServicio /*implements UserDetailsService*/ {
 
     @Transactional(readOnly = true)
     public Paciente buscarPorDni(Integer dni) {
-        return pacienteRepositorio.buscarPacientePorDni(dni);
+        return usuarioRepositorio.buscarUsuarioPorDni(dni);
     }
 
     @Transactional(readOnly = true)
     public Paciente buscarPorEmail(String email) {
-        return pacienteRepositorio.buscarPacientePorEmail(email);
+        return usuarioRepositorio.buscarUsuarioPorEmail(email);
     }
 
     @Transactional
