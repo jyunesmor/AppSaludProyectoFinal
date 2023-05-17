@@ -2,6 +2,7 @@ package com.serviciosalud.demo.entidades;
 
 import com.serviciosalud.demo.enumeraciones.Roles;
 import java.util.Date;
+import javax.persistence.Entity;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -15,31 +16,32 @@ import org.hibernate.annotations.GenericGenerator;
 import lombok.Data;
 
 @Data
-@MappedSuperclass
+/*@MappedSuperclass*/
+@Entity
 public class Usuario {
 
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
-    private Integer dni;
-    private String nombre;
-    private String apellido;
+    protected String id;
+    protected Integer dni;
+    protected String nombre;
+    protected String apellido;
     /* private String nombreUsuario; parece que no sirve*/
-    private Integer telefono;
-    private String email;
-    private String password;
+    protected Integer telefono;
+    protected String email;
+    protected String password;
 
     @Temporal(TemporalType.DATE)
-    private Date fechaDeNacimiento;
+    protected Date fechaDeNacimiento;
 
     @OneToOne
-    private Imagen img;
+    protected Imagen img;
 
     @Enumerated(EnumType.STRING)
-    private Roles rol;
+    protected Roles rol;
 
     /* private Boolean activo;/*mejor no ponerlo*/
-    private String sexo;
+    protected String sexo;
 
 }
