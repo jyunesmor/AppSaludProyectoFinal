@@ -3,39 +3,45 @@ package com.serviciosalud.demo.entidades;
 import com.serviciosalud.demo.enumeraciones.Roles;
 import java.util.Date;
 import javax.persistence.Entity;
+
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 import lombok.Data;
 
-@Entity
 @Data
+/*@MappedSuperclass*/
+@Entity
 public class Usuario {
+
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
-    private Long dni;
-    private String nombre;
-    private String apellido;
-    private String nombreUsuario;
-    private Long telefono;
-    private String email;
-    private String password;
-    
+    protected String id;
+    protected Integer dni;
+    protected String nombre;
+    protected String apellido;
+    /* private String nombreUsuario; parece que no sirve*/
+    protected Integer telefono;
+    protected String email;
+    protected String password;
+
     @Temporal(TemporalType.DATE)
-    private Date fechaDeNacimiento;
-    
+    protected Date fechaDeNacimiento;
+
     @OneToOne
-    private Imagen img;
-    
+    protected Imagen img;
+
     @Enumerated(EnumType.STRING)
-    private Roles rol;
-    private Boolean activo;
+    protected Roles rol;
+
+    /* private Boolean activo;/*mejor no ponerlo*/
+    protected String sexo;
 
 }

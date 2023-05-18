@@ -25,6 +25,9 @@ public class Profesional extends Usuario{
     private String obraSocial;
     private Long telefonoLaboral;
     private String descripcion;
+    private String nombreEstablecimiento;
+    
+    private Boolean activo;
     
     /*falta crear las fecha y turno horarios*/
     

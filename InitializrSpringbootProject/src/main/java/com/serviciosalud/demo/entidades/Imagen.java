@@ -1,6 +1,7 @@
 package com.serviciosalud.demo.entidades;
 
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -23,5 +24,7 @@ public class Imagen {
     private String nombre;
     
     @Lob @Basic(fetch = FetchType.LAZY)
+    @Column(name = "contenido", columnDefinition = "LONGBLOB")
     private byte[] contenido;
 }
+    
