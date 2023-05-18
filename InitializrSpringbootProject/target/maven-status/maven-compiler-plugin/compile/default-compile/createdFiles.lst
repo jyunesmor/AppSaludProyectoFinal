@@ -4,6 +4,7 @@ com\serviciosalud\demo\enumeraciones\Especialidad.class
 com\serviciosalud\demo\entidades\Imagen.class
 com\serviciosalud\demo\repositorios\ProfesionalRepositorio.class
 com\serviciosalud\demo\repositorios\PacienteRepositorio.class
+com\serviciosalud\demo\servicios\ProfesionalServicio.class
 com\serviciosalud\demo\MiExcepcion\MiExcepcion.class
 com\serviciosalud\demo\enumeraciones\Modalidad.class
 com\serviciosalud\demo\controladores\PacienteResControler.class

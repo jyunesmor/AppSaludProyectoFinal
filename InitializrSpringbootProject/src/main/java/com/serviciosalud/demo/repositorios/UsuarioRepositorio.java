@@ -1,4 +1,3 @@
-
 package com.serviciosalud.demo.repositorios;
 
 import com.serviciosalud.demo.entidades.Paciente;
@@ -16,7 +15,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UsuarioRepositorio extends JpaRepository<Usuario, String> {
-    
+
     @Query("SELECT u FROM Usuario u WHERE u.id= :id")
     public Paciente buscarUsuarioPorId(@Param("id") String id);
 
@@ -25,11 +24,17 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, String> {
 
     @Query("SELECT u FROM Usuario u WHERE u.email = :email")
     public Paciente buscarUsuarioPorEmail(@Param("email") String email);
-    
+
     @Query("SELECT u FROM Usuario u WHERE u.matricula= :matricula")
     public Profesional buscarUsuarioPorMatricula(@Param("matricula") Long matricula);
-    
+
     @Query("SELECT u FROM Usuario u WHERE u.especialidad= :especialidad")
-    public List<Profesional> buscarPorEspecialidad (@Param("especialidad") String especialidad);
-   
+    public List<Profesional> buscarPorEspecialidad(@Param("especialidad") String especialidad);
+
+    @Query("SELECT u FROM Usuario u WHERE u.nombreEstablecimiento= :nombreEstablecimiento")
+    public Profesional buscarUsuarioPorEstablecimiento(@Param("nombreEstablecimiento") String nombreEstablecimiento);
+
+    @Query("SELECT u FROM Usuario u WHERE u.email = :email")
+    public Profesional buscarProfesionalPorEmail(@Param("email") String email);
+
 }

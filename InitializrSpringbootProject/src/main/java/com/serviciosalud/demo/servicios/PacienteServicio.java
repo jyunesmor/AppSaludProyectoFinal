@@ -82,12 +82,20 @@ public class PacienteServicio /*implements UserDetailsService*/ {
             Paciente paciente = respuesta.get();
 
             paciente.setNombre(nombre);
+            paciente.setApellido(apellido);
+            paciente.setDni(dni);
             paciente.setEmail(email);
+            paciente.setTelefono(telefono);
+            paciente.setSexo(sexo);
 
             /* usuario.setPassword(new BCryptPasswordEncoder().encode(password));*/
             paciente.setPassword(password);
 
             paciente.setRol(Roles.PACIENTE);
+
+            paciente.setObraSocialPaciente(obraSocialPaciente);
+            paciente.setNumeroDeAfiliado(numeroDeAfiliado);
+            paciente.setMotivoDeConsulta(motivoConsulta);
 
             String idImagen = null;
 
@@ -109,7 +117,7 @@ public class PacienteServicio /*implements UserDetailsService*/ {
     @Transactional
     public void crearUsuariolisto() {
 
-       /* Usuario paciente = new Usuario();*/
+        /* Usuario paciente = new Usuario();*/
         Paciente paciente = new Paciente();
         paciente.setNombre("Diego");
         paciente.setApellido("Maradona");
@@ -125,7 +133,6 @@ public class PacienteServicio /*implements UserDetailsService*/ {
 
         paciente.setRol(Roles.PACIENTE);
 
-       
         paciente.setObraSocialPaciente("Eterno");
         paciente.setNumeroDeAfiliado(10101010);
         paciente.setMotivoDeConsulta("la mano de Dios");
@@ -134,7 +141,7 @@ public class PacienteServicio /*implements UserDetailsService*/ {
  /*  Imagen imagen = imagenServicio.guardar(archivo);
         paciente.setImg(imagen);*/
 
-       /* usuarioRepositorio.save(paciente);*/
+ /* usuarioRepositorio.save(paciente);*/
         pacienteRepositorio.save(paciente);
     }
 
