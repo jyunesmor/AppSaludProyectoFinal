@@ -7,12 +7,22 @@ import com.serviciosalud.demo.entidades.Usuario;
 import com.serviciosalud.demo.enumeraciones.Roles;
 import com.serviciosalud.demo.repositorios.PacienteRepositorio;
 import com.serviciosalud.demo.repositorios.UsuarioRepositorio;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -20,7 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @author Samu Noah
  */
 @Service
-public class PacienteServicio /*implements UserDetailsService*/ {
+public class PacienteServicio implements UserDetailsService {
 
     @Autowired
     private PacienteRepositorio pacienteRepositorio;
@@ -49,8 +59,8 @@ public class PacienteServicio /*implements UserDetailsService*/ {
         /*paciente.setActivo(activo);*/
         paciente.setSexo(sexo);
 
-        /*  paciente.setPassword(new BCryptPasswordEncoder().encode(password));*/
-        paciente.setPassword(password);
+        paciente.setPassword(new BCryptPasswordEncoder().encode(password));
+        /*paciente.setPassword(password);*/
 
         paciente.setObraSocialPaciente(obraSocialPaciente);
         paciente.setNumeroDeAfiliado(numeroDeAfiliado);
@@ -128,8 +138,8 @@ public class PacienteServicio /*implements UserDetailsService*/ {
         /*paciente.setActivo(activo);*/
         paciente.setSexo("M");
 
-        /*  paciente.setPassword(new BCryptPasswordEncoder().encode(password));*/
-        paciente.setPassword("1234567");
+        paciente.setPassword(new BCryptPasswordEncoder().encode("1234567"));
+        /*paciente.setPassword("1234567");*/
 
         paciente.setRol(Roles.PACIENTE);
 
@@ -212,5 +222,27 @@ public class PacienteServicio /*implements UserDetailsService*/ {
         if (!password2.equals(password)) {
             throw new MiExcepcion("los passwords ingresados deben ser iguales");
         }
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        
+        Usuario paciente = usuarioRepositorio.buscarUsuarioPorEmail(email);
+
+        if (paciente != null) {
+            List<GrantedAuthority> permisos = new ArrayList<>();
+
+            GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + paciente.getRol().toString());
+
+            permisos.add(p);
+
+            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+
+            return new User(paciente.getEmail(), paciente.getPassword(), permisos);
+
+        } else {
+            return null;
+        }
+
     }
 }

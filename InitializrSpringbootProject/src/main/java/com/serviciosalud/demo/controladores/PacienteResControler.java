@@ -25,7 +25,6 @@ public class PacienteResControler {
     public ResponseEntity<List<Paciente>> listarPacientes() {
         return ResponseEntity.ok(pacienteServicio.listaPacientes());
     }
-    
   
     @GetMapping("/pacientes2")
     public String listaPacientes() {
