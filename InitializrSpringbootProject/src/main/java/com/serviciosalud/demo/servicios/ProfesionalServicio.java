@@ -3,22 +3,33 @@ package com.serviciosalud.demo.servicios;
 import com.serviciosalud.demo.MiExcepcion.MiExcepcion;
 import com.serviciosalud.demo.entidades.Imagen;
 import com.serviciosalud.demo.entidades.Profesional;
+import com.serviciosalud.demo.entidades.Usuario;
 import com.serviciosalud.demo.enumeraciones.Roles;
 import com.serviciosalud.demo.repositorios.ProfesionalRepositorio;
 import com.serviciosalud.demo.repositorios.UsuarioRepositorio;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
-public class ProfesionalServicio {
+public class ProfesionalServicio implements UserDetailsService {
 
     @Autowired
     private ProfesionalRepositorio profesionalRepositorio;
-    
+
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
 
@@ -42,8 +53,8 @@ public class ProfesionalServicio {
         profesional.setEmail(email);
         profesional.setTelefono(telefono);
         profesional.setSexo(sexo);
-        /*  profesional.setPassword(new BCryptPasswordEncoder().encode(password));*/
-        profesional.setPassword(password);
+        profesional.setPassword(new BCryptPasswordEncoder().encode(password));
+        /* profesional.setPassword(password);*/
 
         profesional.setRol(Roles.PROFESIONAL);
 
@@ -67,7 +78,7 @@ public class ProfesionalServicio {
     }
 
     @Transactional
-    public void actualizarProfesional (MultipartFile archivo, String idProfesional, String nombre, String apellido, Integer dni, String email, Integer telefono,
+    public void actualizarProfesional(MultipartFile archivo, String idProfesional, String nombre, String apellido, Integer dni, String email, Integer telefono,
             String sexo, String password, String password2, Long matricula, Double precio, Double calificacion, String localidad,
             String obraSocial, Long telefonoLaboral, String descripcion, String nombreEstablecimiento, Boolean activo) throws MiExcepcion {
 
@@ -117,12 +128,12 @@ public class ProfesionalServicio {
 
         }
     }
-    
-     @Transactional
+
+    @Transactional
     public void borrarPorId(String id) {
         profesionalRepositorio.deleteById(id);
     }
-    
+
     @Transactional(readOnly = true)
     public Profesional getOne(String id) {
         return profesionalRepositorio.getOne(id);
@@ -148,12 +159,12 @@ public class ProfesionalServicio {
     public Profesional buscarPorEmail(String email) {
         return usuarioRepositorio.buscarProfesionalPorEmail(email);
     }
-    
+
     @Transactional(readOnly = true)
     public Profesional buscarPorNombreEstablecimiento(String nombreEstablecimiento) {
         return usuarioRepositorio.buscarUsuarioPorEstablecimiento(nombreEstablecimiento);
     }
-     
+
 
     /*metodo de validacion*/
     private void validar(String nombre, String apellido, Integer dni, String email,
@@ -209,4 +220,26 @@ public class ProfesionalServicio {
             throw new MiExcepcion("los passwords ingresados deben ser iguales");
         }
     }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+
+        Usuario profesional = usuarioRepositorio.buscarProfesionalPorEmail(email);
+
+        if (profesional != null) {
+            List<GrantedAuthority> permisos = new ArrayList<>();
+
+            GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + profesional.getRol().toString());
+
+            permisos.add(p);
+
+            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+
+            return new User(profesional.getEmail(), profesional.getPassword(), permisos);
+
+        } else {
+            return null;
+        }
+    }
+
 }
