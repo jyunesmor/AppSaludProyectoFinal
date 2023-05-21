@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -238,10 +237,6 @@ public class PacienteServicio implements UserDetailsService {
             permisos.add(p);
 
             ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-            
-            HttpSession session = attr.getRequest().getSession(true);
-
-            session.setAttribute("usuariosession", paciente);
 
             return new User(paciente.getEmail(), paciente.getPassword(), permisos);
 
