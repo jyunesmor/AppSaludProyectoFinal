@@ -41,6 +41,7 @@ public class PacienteServicio implements UserDetailsService {
     @Autowired
     private ImagenServicio imagenServicio;
 
+    
     /*metodo para registrar usuario*/
     @Transactional
     public void registrar(String nombre, String apellido, Integer dni, String email, Integer telefono,
