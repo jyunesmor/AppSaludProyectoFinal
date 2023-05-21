@@ -14,8 +14,10 @@
         <h1 th:if="${session.usuariosession != null}" th:text=" 'Bienvenido '+ ${session.usuariosession.nombre} " >  </h1>
 
 
-        <button type="submit" class="btn-dark" ><a th:href="@{/profesional/modificar/__${session.usuariosession.id}__}" sec:authorize="hasRole('PROFESIONAL')">
-                ACTUALIZAR PERFIL </a>
+        <button type="submit" class="btn-dark" sec:authorize="hasRole('PROFESIONAL')">
+            <a th:href="@{/profesional/modificar/__${session.usuariosession.id}__}" >
+                ACTUALIZAR PERFIL 
+            </a>
         </button>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
