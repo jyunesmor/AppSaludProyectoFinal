@@ -20,7 +20,7 @@
             </li>                            
 
             <li class="nav-item">
-                <a class="nav-link"  th:if="${session.usuariosession != null}" href="#" sec:authorize="hasAnyRole('PROFESIONAL', 'ROLE_ADMIN')">Profesionales</a>
+                <a class="nav-link"  th:if="${session.usuariosession != null}" href="#" sec:authorize="hasAnyRole('PACIENTE', 'ROLE_ADMIN')">Profesionales</a>
             </li>
 
             <li class="nav-item">
