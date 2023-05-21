@@ -1,3 +1,5 @@
+com\serviciosalud\demo\controladores\AdminControlador.class
+com\serviciosalud\demo\controladores\PortalControlador.class
 com\serviciosalud\demo\repositorios\PacienteRepositorio.class
 com\serviciosalud\demo\servicios\ProfesionalServicio.class
 com\serviciosalud\demo\MiExcepcion\MiExcepcion.class
@@ -13,5 +15,6 @@ com\serviciosalud\demo\repositorios\ProfesionalRepositorio.class
 com\serviciosalud\demo\controladores\PacienteResControler.class
 com\serviciosalud\demo\entidades\Profesional.class
 com\serviciosalud\demo\entidades\Usuario.class
+com\serviciosalud\demo\SeguridadWeb.class
 com\serviciosalud\demo\repositorios\ImagenRepositorio.class
 com\serviciosalud\demo\entidades\Paciente.class
