@@ -23,7 +23,7 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, String> {
     public Paciente buscarUsuarioPorDni(@Param("dni") Integer dni);
 
     @Query("SELECT u FROM Usuario u WHERE u.email = :email")
-    public Paciente buscarUsuarioPorEmail(@Param("email") String email);
+    public Usuario buscarUsuarioPorEmail(@Param("email") String email);
 
     @Query("SELECT u FROM Usuario u WHERE u.matricula= :matricula")
     public Profesional buscarUsuarioPorMatricula(@Param("matricula") Long matricula);

@@ -10,6 +10,7 @@ import com.serviciosalud.demo.repositorios.UsuarioRepositorio;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -38,14 +39,14 @@ public class ProfesionalServicio implements UserDetailsService {
 
     /*metodo para registrar profesional*/
     @Transactional
-    public void registrar(String nombre, String apellido, Integer dni, String email, Integer telefono,
-            String sexo, String password, String password2, Long matricula, Double precio, Double calificacion, String localidad,
+    public void registrar(String nombre, String apellido, Integer dni, String email, Integer telefono, String sexo, 
+            String password, String password2, Long matricula, Double precio, Double calificacion, String localidad,
             String obraSocial, Long telefonoLaboral, String descripcion, String nombreEstablecimiento) throws MiExcepcion {
 
         validar(nombre, apellido, dni, email, telefono,
                 sexo, password, password2, matricula, precio, calificacion, localidad,
                 obraSocial, telefonoLaboral, descripcion, nombreEstablecimiento);
-
+        System.out.println("profSer"+email);
         Profesional profesional = new Profesional();
         profesional.setNombre(nombre);
         profesional.setApellido(apellido);
@@ -74,7 +75,7 @@ public class ProfesionalServicio implements UserDetailsService {
  /*  Imagen imagen = imagenServicio.guardar(archivo);
         profesional.setImg(imagen);*/
         profesionalRepositorio.save(profesional);
-
+        System.out.println("save"+profesional.getEmail());
     }
 
     @Transactional
@@ -85,7 +86,7 @@ public class ProfesionalServicio implements UserDetailsService {
         validar(nombre, apellido, dni, email, telefono,
                 sexo, password, password2, matricula, precio, calificacion, localidad,
                 obraSocial, telefonoLaboral, descripcion, nombreEstablecimiento);
-
+        
         Optional<Profesional> respuesta = profesionalRepositorio.findById(idProfesional);
 
         if (respuesta.isPresent()) {
@@ -99,7 +100,7 @@ public class ProfesionalServicio implements UserDetailsService {
             profesional.setTelefono(telefono);
             profesional.setSexo(sexo);
             /* usuario.setPassword(new BCryptPasswordEncoder().encode(password));*/
-            profesional.setPassword(password);
+            profesional.setPassword(new BCryptPasswordEncoder().encode(password));
 
             profesional.setRol(Roles.PROFESIONAL);
 
@@ -119,11 +120,11 @@ public class ProfesionalServicio implements UserDetailsService {
 
                 idImagen = profesional.getImg().getId();
             }
-
+/*
             Imagen imagen = imagenServicio.actualizar(archivo, idImagen);
 
             profesional.setImg(imagen);
-
+*/
             profesionalRepositorio.save(profesional);
 
         }
@@ -223,8 +224,11 @@ public class ProfesionalServicio implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        System.out.println("1"+ email);
 
-        Usuario profesional = usuarioRepositorio.buscarProfesionalPorEmail(email);
+        Usuario profesional = usuarioRepositorio.buscarUsuarioPorEmail(email);
+        
+        System.out.println("4."+profesional.getEmail());
 
         if (profesional != null) {
             List<GrantedAuthority> permisos = new ArrayList<>();
@@ -234,6 +238,10 @@ public class ProfesionalServicio implements UserDetailsService {
             permisos.add(p);
 
             ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+            
+            HttpSession session = attr.getRequest().getSession(true);
+
+            session.setAttribute("usuariosession", profesional);
 
             return new User(profesional.getEmail(), profesional.getPassword(), permisos);
 

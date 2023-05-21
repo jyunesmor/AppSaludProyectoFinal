@@ -25,42 +25,42 @@ public class PacienteResControler {
     PacienteServicio pacienteServicio;
 
     @GetMapping("/registro")
-    public String registrar(){
+    public String registrar() {
+        
         return "/registro.html";
     }
-    
-    @PostMapping("/registrar")
-    public String registrarUsuario(@RequestParam String nombre, @RequestParam String apellido,@RequestParam (required = false) Integer dni, @RequestParam String email, @RequestParam (required = false)Integer telefono,
-           @RequestParam String sexo,@RequestParam String password, @RequestParam String password2,@RequestParam String obraSocialPaciente, @RequestParam Integer numeroDeAfiliado, @RequestParam String motivoConsulta, ModelMap modelo) throws MiExcepcion{
 
-       try{
-        pacienteServicio.registrar(nombre, apellido, dni, email, telefono, sexo, password, password2, obraSocialPaciente, numeroDeAfiliado, motivoConsulta);
-        
-        modelo.put("exito", "Usted se ha registrado correctamete");
-        
-       } catch (MiExcepcion ex){
-       
-        modelo.put("error", ex.getMessage());
-           return "registro.html";
-          
-     }
-       return "index.html";
+    @PostMapping("/registrar")
+    public String registrarUsuario(@RequestParam String nombre, @RequestParam String apellido,
+            @RequestParam(required = false) Integer dni, @RequestParam String email, @RequestParam(required = false) Integer telefono,
+            @RequestParam String sexo, @RequestParam String password, @RequestParam String password2,
+            @RequestParam String obraSocialPaciente, @RequestParam Integer numeroDeAfiliado, @RequestParam String motivoConsulta,
+            ModelMap modelo) throws MiExcepcion {
+
+        try {
+            pacienteServicio.registrar(nombre, apellido, dni, email, telefono, sexo, password, password2, obraSocialPaciente,
+                    numeroDeAfiliado, motivoConsulta);
+
+            modelo.put("exito", "Usted se ha registrado correctamete");
+
+        } catch (MiExcepcion ex) {
+
+            modelo.put("error", ex.getMessage());
+            return "registro.html";
+
+        }
+        return "index.html";
     }
 
-              
-   
-    
     @GetMapping("/pacientes")
     public ResponseEntity<List<Paciente>> listarPacientes() {
         return ResponseEntity.ok(pacienteServicio.listaPacientes());
     }
-  
+
     @GetMapping("/pacientes2")
     public String listaPacientes() {
         pacienteServicio.crearUsuariolisto();
         return "index.html";
     }
-
-
 
 }
