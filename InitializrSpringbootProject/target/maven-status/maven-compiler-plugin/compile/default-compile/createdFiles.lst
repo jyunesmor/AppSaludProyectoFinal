@@ -12,6 +12,7 @@ com\serviciosalud\demo\servicios\PacienteServicio.class
 com\serviciosalud\demo\enumeraciones\Especialidad.class
 com\serviciosalud\demo\entidades\Imagen.class
 com\serviciosalud\demo\repositorios\ProfesionalRepositorio.class
+com\serviciosalud\demo\controladores\ProfesionalControlador.class
 com\serviciosalud\demo\controladores\PacienteResControler.class
 com\serviciosalud\demo\entidades\Profesional.class
 com\serviciosalud\demo\entidades\Usuario.class

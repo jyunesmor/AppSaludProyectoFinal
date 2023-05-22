@@ -12,23 +12,23 @@
         <ul class="navbar-nav d-flex justify-content-end align-items-center">
 
             <li class="nav-item">
-                <a class="nav-link"  th:if="${session.usuariosession != null}" aria-current="page" href="/inicio">Inicio</a>
+                <a class="nav-link"  th:if="${session.usuariosession != null}" aria-current="page" th:href="@{/inicio}">Inicio</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link"  th:if="${session.usuariosession != null}" href="#" sec:authorize="hasAnyRole('PROFESIONAL', 'ROLE_ADMIN')">Pacientes</a>
+                <a class="nav-link"  th:if="${session.usuariosession != null}" th:href="@{#}" sec:authorize="hasAnyRole('PROFESIONAL', 'ROLE_ADMIN')">Pacientes</a>
             </li>                            
 
             <li class="nav-item">
-                <a class="nav-link"  th:if="${session.usuariosession != null}" href="#" sec:authorize="hasAnyRole('PROFESIONAL', 'ROLE_ADMIN')">Profesionales</a>
+                <a class="nav-link"  th:if="${session.usuariosession != null}" th:href="@{#}" sec:authorize="hasAnyRole('PACIENTE', 'ROLE_ADMIN')">Profesionales</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link"  th:if="${session.usuariosession != null}"  href="#">Turnos</a>
+                <a class="nav-link"  th:if="${session.usuariosession != null}"  th:href="@{#}">Turnos</a>
             </li>
 
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" th:if="${session.usuariosession != null}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <a class="nav-link dropdown-toggle" th:if="${session.usuariosession != null}" th:href="@{#}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     Más
                 </a>
 
@@ -40,18 +40,18 @@
             </li>
 
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" th:if="${session.usuariosession != null}" href="#" sec:authorize="hasRole('ADMIN')" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" th:if="${session.usuariosession != null}" th:href="@{#}" sec:authorize="hasRole('ADMIN')" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     ADMIN
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/admin/registrar-profesional">Crear Profesional</a>
-                    <a class="dropdown-item" href="#" >Eliminar Profesional</a>
+                    <a class="dropdown-item" th:href="@{/admin/registrar-profesional}">Crear Profesional</a>
+                    <a class="dropdown-item" th:href="@{#}" >Eliminar Profesional</a>
                 </div>
             </li>
 
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" th:if="${session.usuariosession != null}" href="#"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" th:if="${session.usuariosession != null}" th:href="@{#}"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Perfil
                 </a>
 
@@ -62,13 +62,13 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link " th:if="${session.usuariosession == null}"  href="/paciente/registro" id="navbarDropdown" role="button" aria-expanded="false">
+                <a class="nav-link " th:if="${session.usuariosession == null}"  th:href="@{/paciente/registro}" id="navbarDropdown" role="button" aria-expanded="false">
                     Registrarse
                 </a>
 
             </li>
             <li class="nav-item">
-                <a class="nav-link " th:if="${session.usuariosession == null}" href="/login" id="navbarDropdown" role="button" aria-expanded="false">
+                <a class="nav-link " th:if="${session.usuariosession == null}" th:href="@{/login}" id="navbarDropdown" role="button" aria-expanded="false">
                     Ingresar
                 </a>
 
