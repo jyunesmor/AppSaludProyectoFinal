@@ -4,6 +4,7 @@ import com.serviciosalud.demo.MiExcepcion.MiExcepcion;
 import com.serviciosalud.demo.entidades.Imagen;
 import com.serviciosalud.demo.entidades.Profesional;
 import com.serviciosalud.demo.entidades.Usuario;
+import com.serviciosalud.demo.enumeraciones.Especialidad;
 import com.serviciosalud.demo.enumeraciones.Roles;
 import com.serviciosalud.demo.repositorios.ProfesionalRepositorio;
 import com.serviciosalud.demo.repositorios.UsuarioRepositorio;
@@ -39,14 +40,14 @@ public class ProfesionalServicio implements UserDetailsService {
 
     /*metodo para registrar profesional*/
     @Transactional
-    public void registrar(String nombre, String apellido, Integer dni, String email, Integer telefono, String sexo, 
-            String password, String password2, Long matricula, Double precio, Double calificacion, String localidad,
+    public void registrar(String nombre, String apellido, Integer dni, String email, Integer telefono, String sexo,
+            String password, String password2, Long matricula, String especialidad, Double precio, Double calificacion, String localidad,
             String obraSocial, Long telefonoLaboral, String descripcion, String nombreEstablecimiento) throws MiExcepcion {
 
         validar(nombre, apellido, dni, email, telefono,
-                sexo, password, password2, matricula, precio, calificacion, localidad,
+                sexo, password, password2, matricula, especialidad, precio, calificacion, localidad,
                 obraSocial, telefonoLaboral, descripcion, nombreEstablecimiento);
-        System.out.println("profSer"+email);
+        System.out.println("profSer" + email);
         Profesional profesional = new Profesional();
         profesional.setNombre(nombre);
         profesional.setApellido(apellido);
@@ -61,6 +62,12 @@ public class ProfesionalServicio implements UserDetailsService {
 
         profesional.setActivo(true);
         profesional.setMatricula(matricula);
+
+        for (Especialidad x : Especialidad.values()) {
+            if (especialidad.equals(x.toString())) {
+                profesional.setEspecialidad(x);
+            }
+        }
         profesional.setPrecio(precio);
         profesional.setCalificacion(calificacion);
         profesional.setLocalidad(localidad);
@@ -75,18 +82,18 @@ public class ProfesionalServicio implements UserDetailsService {
  /*  Imagen imagen = imagenServicio.guardar(archivo);
         profesional.setImg(imagen);*/
         profesionalRepositorio.save(profesional);
-        System.out.println("save"+profesional.getEmail());
+        System.out.println("save" + profesional.getEmail());
     }
 
     @Transactional
     public void actualizarProfesional(MultipartFile archivo, String idProfesional, String nombre, String apellido, Integer dni, String email, Integer telefono,
-            String sexo, String password, String password2, Long matricula, Double precio, Double calificacion, String localidad,
+            String sexo, String password, String password2, Long matricula, String especialidad, Double precio, Double calificacion, String localidad,
             String obraSocial, Long telefonoLaboral, String descripcion, String nombreEstablecimiento, Boolean activo) throws MiExcepcion {
 
         validar(nombre, apellido, dni, email, telefono,
-                sexo, password, password2, matricula, precio, calificacion, localidad,
+                sexo, password, password2, matricula, especialidad, precio, calificacion, localidad,
                 obraSocial, telefonoLaboral, descripcion, nombreEstablecimiento);
-        
+
         Optional<Profesional> respuesta = profesionalRepositorio.findById(idProfesional);
 
         if (respuesta.isPresent()) {
@@ -106,6 +113,12 @@ public class ProfesionalServicio implements UserDetailsService {
 
             profesional.setActivo(activo);
             profesional.setMatricula(matricula);
+
+            for (Especialidad x : Especialidad.values()) {
+                if (especialidad.equals(x.toString())) {
+                    profesional.setEspecialidad(x);
+                }
+            }
             profesional.setPrecio(precio);
             profesional.setCalificacion(calificacion);
             profesional.setLocalidad(localidad);
@@ -120,11 +133,11 @@ public class ProfesionalServicio implements UserDetailsService {
 
                 idImagen = profesional.getImg().getId();
             }
-/*
+            /*
             Imagen imagen = imagenServicio.actualizar(archivo, idImagen);
 
             profesional.setImg(imagen);
-*/
+             */
             profesionalRepositorio.save(profesional);
 
         }
@@ -169,7 +182,7 @@ public class ProfesionalServicio implements UserDetailsService {
 
     /*metodo de validacion*/
     private void validar(String nombre, String apellido, Integer dni, String email,
-            Integer telefono, String sexo, String password, String password2, Long matricula, Double precio, Double calificacion, String localidad,
+            Integer telefono, String sexo, String password, String password2, Long matricula, String especialidad, Double precio, Double calificacion, String localidad,
             String obraSocial, Long telefonoLaboral, String descripcion, String nombreEstablecimiento) throws MiExcepcion {
 
         if (nombre == null || nombre.isEmpty()) {
@@ -224,11 +237,11 @@ public class ProfesionalServicio implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        System.out.println("1"+ email);
+        System.out.println("1" + email);
 
         Usuario profesional = usuarioRepositorio.buscarUsuarioPorEmail(email);
-        
-        System.out.println("4."+profesional.getEmail());
+
+        System.out.println("4." + profesional.getEmail());
 
         if (profesional != null) {
             List<GrantedAuthority> permisos = new ArrayList<>();
@@ -238,7 +251,7 @@ public class ProfesionalServicio implements UserDetailsService {
             permisos.add(p);
 
             ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-            
+
             HttpSession session = attr.getRequest().getSession(true);
 
             session.setAttribute("usuariosession", profesional);

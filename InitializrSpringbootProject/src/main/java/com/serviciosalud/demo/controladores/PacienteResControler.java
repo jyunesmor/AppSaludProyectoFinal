@@ -51,6 +51,25 @@ public class PacienteResControler {
         }
         return "index.html";
     }
+    
+    
+    @GetMapping("/listar")
+    public String listar(ModelMap modelo){
+        List<Paciente> pacientes = pacienteServicio.listaPacientes();
+        
+        modelo.addAttribute("pacientes", pacientes);
+        
+        return "listar_pacientes.html";
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     @GetMapping("/pacientes")
     public ResponseEntity<List<Paciente>> listarPacientes() {
