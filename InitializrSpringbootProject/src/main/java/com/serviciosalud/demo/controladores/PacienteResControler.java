@@ -54,7 +54,11 @@ public class PacienteResControler {
     
     
     @GetMapping("/listar")
-    public String listar(){
+    public String listar(ModelMap modelo){
+        List<Paciente> pacientes = pacienteServicio.listaPacientes();
+        
+        modelo.addAttribute("pacientes", pacientes);
+        
         return "listar_pacientes.html";
     }
     
