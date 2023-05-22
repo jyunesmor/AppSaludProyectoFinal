@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -41,10 +42,11 @@ public class PacienteServicio implements UserDetailsService {
     @Autowired
     private ImagenServicio imagenServicio;
 
+    
     /*metodo para registrar usuario*/
     @Transactional
-    public void registrar(String nombre, String apellido, Integer dni, String email, Integer telefono,
-            String sexo, String password, String password2, String obraSocialPaciente, Integer numeroDeAfiliado, String motivoConsulta) throws MiExcepcion {
+    public void registrar(String nombre, String apellido, Integer dni, String email, Integer telefono,String sexo, 
+            String password, String password2, String obraSocialPaciente, Integer numeroDeAfiliado, String motivoConsulta) throws MiExcepcion {
 
         validar(nombre, apellido, dni, email, telefono,
                 sexo, password, password2, obraSocialPaciente, numeroDeAfiliado, motivoConsulta);
@@ -172,7 +174,7 @@ public class PacienteServicio implements UserDetailsService {
     }
 
     @Transactional(readOnly = true)
-    public Paciente buscarPorEmail(String email) {
+    public Usuario buscarPorEmail(String email) {
         return usuarioRepositorio.buscarUsuarioPorEmail(email);
     }
 
@@ -226,8 +228,11 @@ public class PacienteServicio implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        System.out.println("2. "+email);
         
         Usuario paciente = usuarioRepositorio.buscarUsuarioPorEmail(email);
+        
+        System.out.println("3. "+ paciente.getEmail());
 
         if (paciente != null) {
             List<GrantedAuthority> permisos = new ArrayList<>();
@@ -237,6 +242,11 @@ public class PacienteServicio implements UserDetailsService {
             permisos.add(p);
 
             ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+            
+            HttpSession session = attr.getRequest().getSession(true);
+
+            session.setAttribute("usuariosession", paciente);
+
 
             return new User(paciente.getEmail(), paciente.getPassword(), permisos);
 

@@ -1,5 +1,6 @@
 package com.serviciosalud.demo.controladores;
 
+import com.serviciosalud.demo.entidades.Usuario;
 import javax.servlet.http.HttpSession;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -27,12 +28,15 @@ public class PortalControlador {
         return "login.html";
     }
     
-    @PreAuthorize("hasAnyRole('ROLE_PACIENTE', 'ROLE_PROFESIONAL', 'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('PACIENTE', 'ROLE_PROFESIONAL', 'ROLE_ADMIN')")
     @GetMapping("/inicio")
-    public String inicio(){
+    public String inicio(HttpSession session){
+        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
         
+        if(logueado.getRol().toString().equals("ADMIN")){
+            return "redirect:/admin/dashboard";
+        } 
         
-        
-        return "inicio.html";
+        return  "inicio.html";
     }
 }

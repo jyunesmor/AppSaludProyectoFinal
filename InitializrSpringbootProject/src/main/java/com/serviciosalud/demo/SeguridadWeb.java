@@ -22,6 +22,7 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
     @Autowired
     public ProfesionalServicio profesionalServicio;
     
+    
     @Autowired
     public void configureGlobalPaciente(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(pacienteServicio)

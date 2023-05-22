@@ -1,11 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
-<html>
     <head>
-        <title>TODO supply a title</title>
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="style-index.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,500;0,600;1,200&display=swap"
+              rel="stylesheet">
+        <title>Index</title>
+
     </head>
+
     <body>
-        <h1> INDEX </h1>
-    </body>
+        <div class="container hero">
+            <header class="header header--bg">
+
+                <div class="collapse" id="navbarToggleExternalContent">
+                    <div class="bg-dark p-4">
+                        <h5 class="text-white h4">Collapsed content</h5>
+                        <span class="text-body-secondary">Toggleable via the navbar brand.</span>
+                    </div>
+                </div>
+                <section>
+                    <nav th:replace= "/fragments/navbar :: nav" </nav>
+                </section>
+
+
+            </header>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <img class="img-responsive" src="../statics/imagen/fondoIndex-remove.png" alt="">
+
+                </div>
+                <div class="col-lg-6 header__content">
+                    <h1 class="title">¡Bienvenidos a nuestra plataforma de servicios de salud! <span class="title-style"></span>
+                    </h1>
+                    <p>¡Regístrate ahora mismo y comienza a disfrutar de los beneficios de nuestra plataforma
+                        de servicios de salud! Estamos aquí para brindarte una atención médica de calidad y facilitar
+                        tu camino hacia una vida más saludable.</p>
+
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <a type="button" class="header_button btn btn-primary btn-lg" th:href="@{/login}">Ingreso Paciente</a>   
+                    </div>
+                    <br>
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <a type="button" class="header_button btn btn-primary btn-lg" th:href="@{/login}">Ingreso Profesional</a>   
+                    </div>
+                </div>
+
+            </div>
+            <!--  <table class="table table-striped table-bordered"  id="mostrar-tabla">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Dni</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>NombreUsuario</th>
+                        <th>Fecha de nacimiento</th>
+                        <th>Telefono</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="usuario : ${usuarios}">
+                        <td th:text="${usuario.dni}">ID</td>
+                        <td th:text="${usuario.nombre}">ID</td>
+                        <td th:text="${usuario.apellido}">ID</td>
+                        <td th:text="${usuario.nombreUsuario}">ID</td>
+                        <td th:text="${usuario.fechaDeNacimiento}">ID</td>
+                        <td th:text="${usuario.telefono}">ID</td>
+                        <td th:text="${usuario.email}">ID</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>-->
+            <br>
+            </body>
+            <div class="container">
+                <footer class="py-3 my-4">
+                    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                        <li class="nav-item"><a href="home.html" name="home" class="nav-link px-2 text-body-secondary">Principal</a></li>
+                        <li class="nav-item"><a href="contactenos.html" name="features"class="nav-link px-2 text-body-secondary">Contactenos</a></li>
+                        <li class="nav-item"><a href="acercade.html" name="about" class="nav-link px-2 text-body-secondary">Acerca De</a></li>
+                        <li class="nav-item"><a href="preguntasfrecuentes.html" name="preguntasfrecuentes" class="nav-link px-2 text-body-secondary">Preguntas Frecuentes</a></li>
+                        <li class="nav-item"><a href="terminosycondiciones.html" name="terminosycondiciones" class="nav-link px-2 text-body-secondary">Terminos y Condiciones</a></li>
+                    </ul>
+                    <p class="text-center text-body-secondary">&copy; 2023 Company, Inc</p>
+                </footer>
+            </div>
+
 </html>
