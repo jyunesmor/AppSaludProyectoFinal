@@ -51,6 +51,21 @@ public class PacienteResControler {
         }
         return "index.html";
     }
+    
+    
+    @GetMapping("/listar")
+    public String listar(){
+        return "listar_pacientes.html";
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     @GetMapping("/pacientes")
     public ResponseEntity<List<Paciente>> listarPacientes() {

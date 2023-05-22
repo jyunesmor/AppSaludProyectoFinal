@@ -1,10 +1,11 @@
 <nav class="navbar navbar-expand-md navbar-light">
-    <!--<div class="container-fluid">
+    <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <img src="../../statics/imagen/logo.png" width="30" height="24" alt="Logo de la pagina">
+            <!-- <img src="../../statics/imagen/logo.png" width="30" height="24" alt="Logo de la pagina">-->
+            <img class="img-responsive" th:src="@{/imagen/logo-salud.png}" width="70" height="55" alt="logo nav">
         </a>
     </div>
-    -->
+
     <div class="collapse navbar-collapse  d-flex justify-content-end align-items-center" id="navbarNav">
 
 
@@ -16,17 +17,17 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link"  th:if="${session.usuariosession != null}" th:href="@{#}" sec:authorize="hasAnyRole('PROFESIONAL', 'ROLE_ADMIN')">Pacientes</a>
+                <a class="nav-link"  th:if="${session.usuariosession != null}" th:href="@{/paciente/listar}" sec:authorize="hasAnyRole('PROFESIONAL', 'ROLE_ADMIN')">Pacientes</a>
             </li>                            
 
             <li class="nav-item">
-                <a class="nav-link"  th:if="${session.usuariosession != null}" th:href="@{#}" sec:authorize="hasAnyRole('PACIENTE', 'ROLE_ADMIN')">Profesionales</a>
+                <a class="nav-link"  th:if="${session.usuariosession != null}" th:href="@{/profesional/listar}" sec:authorize="hasAnyRole('PACIENTE', 'ROLE_ADMIN')">Profesionales</a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link"  th:if="${session.usuariosession != null}"  th:href="@{#}">Turnos</a>
             </li>
-
+<!--
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" th:if="${session.usuariosession != null}" th:href="@{#}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     Más
@@ -38,7 +39,7 @@
                     <a class="dropdown-item" >Preguntas frecuentes</a>
                 </div>
             </li>
-
+-->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" th:if="${session.usuariosession != null}" th:href="@{#}" sec:authorize="hasRole('ADMIN')" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     ADMIN

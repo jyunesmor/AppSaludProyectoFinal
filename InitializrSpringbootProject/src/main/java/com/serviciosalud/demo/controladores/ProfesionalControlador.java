@@ -51,5 +51,10 @@ public class ProfesionalControlador {
             return "modificar_profesional.html";
         }
     }
+    
+    @GetMapping("/listar")
+    public String listar(){
+        return "listar_profesionales.html";
+    }
 
 }
