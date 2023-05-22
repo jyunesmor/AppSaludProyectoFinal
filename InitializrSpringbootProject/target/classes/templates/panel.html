@@ -1,15 +1,16 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
     <head>
         <title>Inicio Admin</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="shortcut icon" th:href="@{https://cdn3.iconfinder.com/data/icons/diversity-avatars/64/hipster-man-asian-512.png}">
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
         
         <section>
-            <nav th:replace= "/fragments/navbar :: nav" </nav>
+            <nav th:replace= "/fragments/navbar :: nav"></nav>
         </section>
         
         <h1 th:if="${session.usuariosession != null}" th:text=" '¡ Bienvenido '+ ${session.usuariosession.nombre} + ' !'" class="text-center">  </h1>
