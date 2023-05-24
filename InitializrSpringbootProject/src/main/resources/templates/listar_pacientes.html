@@ -9,7 +9,7 @@
 
     </head>
     <body>
-
+<!--th:text="${paciente.motivoDeConsulta}"-->
         <div class="container hero">
 
             <section>
@@ -28,7 +28,7 @@
                             <th scope="col">Nombre</th>
                             <th scope="col">Apellido</th>
                             <th scope="col">Obra Social</th>
-                            <th scope="col">Motivo de Consulta</th>
+                            <th scope="col">Imagen de Perfil</th>
                             <th scope="col" sec:authorize="hasAnyRole('ADMIN', 'PROFESIONAL')">Acciones</th>
                         </tr>
                     </thead>
@@ -42,7 +42,7 @@
                             <td th:text="${paciente.nombre}"></td>
                             <td th:text="${paciente.apellido}"></td>
                             <td th:text="${paciente.obraSocialPaciente}"></td>
-                            <td th:text="${paciente.motivoDeConsulta}"></td>
+                            <td > <img th:src="@{/imagen/perfil/__${session.usuariosession.id}__}"  class="card-img-top"></td>
                             <td class="d-flex flex-column justify-content-center m-auto">
                                 <button class="mb-2 btn btn-primary" sec:authorize="hasRole('ADMIN')">
                                     <a th:href="@{#}" class="text-white">Modificar</a>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/admin")
@@ -30,7 +31,7 @@ public class AdminControlador {
     }
 
     @PostMapping("/registro-profesional")
-    public String registroProfesional(@RequestParam String nombre, @RequestParam String apellido,
+    public String registroProfesional(MultipartFile archivo,@RequestParam String nombre, @RequestParam String apellido,
             @RequestParam(required = false) Integer dni, @RequestParam String email, @RequestParam(required = false) Integer telefono,
             @RequestParam String sexo, @RequestParam String password, @RequestParam String password2, @RequestParam Long matricula,
             @RequestParam String especialidad, @RequestParam Double precio, @RequestParam Double calificacion, @RequestParam String localidad, 
@@ -39,7 +40,7 @@ public class AdminControlador {
 
         
         try {
-            profesionalServicio.registrar(nombre, apellido, dni, email, telefono, sexo, password, password2,
+            profesionalServicio.registrar(archivo,nombre, apellido, dni, email, telefono, sexo, password, password2,
                     matricula, especialidad, precio, calificacion, localidad, obraSocial, telefonoLaboral, descripcion,
                     nombreEstablecimiento);
 
