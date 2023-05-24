@@ -2,8 +2,10 @@ package com.serviciosalud.demo.controladores;
 
 import com.serviciosalud.demo.MiExcepcion.MiExcepcion;
 import com.serviciosalud.demo.entidades.Paciente;
+import com.serviciosalud.demo.entidades.Usuario;
 import com.serviciosalud.demo.servicios.PacienteServicio;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -31,14 +34,14 @@ public class PacienteResControler {
     }
 
     @PostMapping("/registrar")
-    public String registrarUsuario(@RequestParam String nombre, @RequestParam String apellido,
+    public String registrarUsuario(MultipartFile archivo,@RequestParam String nombre, @RequestParam String apellido,
             @RequestParam(required = false) Integer dni, @RequestParam String email, @RequestParam(required = false) Integer telefono,
             @RequestParam String sexo, @RequestParam String password, @RequestParam String password2,
             @RequestParam String obraSocialPaciente, @RequestParam Integer numeroDeAfiliado, @RequestParam String motivoConsulta,
             ModelMap modelo) throws MiExcepcion {
 
         try {
-            pacienteServicio.registrar(nombre, apellido, dni, email, telefono, sexo, password, password2, obraSocialPaciente,
+            pacienteServicio.registrar(archivo,nombre, apellido, dni, email, telefono, sexo, password, password2, obraSocialPaciente,
                     numeroDeAfiliado, motivoConsulta);
 
             modelo.put("exito", "Usted se ha registrado correctamete");
@@ -54,10 +57,17 @@ public class PacienteResControler {
     
     
     @GetMapping("/listar")
-    public String listar(ModelMap modelo){
+    public String listar(ModelMap modelo, HttpSession session){
+        
+        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+
+        modelo.put("usuario", usuario);
+        
+        
         List<Paciente> pacientes = pacienteServicio.listaPacientes();
         
-        modelo.addAttribute("pacientes", pacientes);
+       /* modelo.addAttribute("pacientes", pacientes);*/
+        modelo.put("pacientes", pacientes);
         
         return "listar_pacientes.html";
     }

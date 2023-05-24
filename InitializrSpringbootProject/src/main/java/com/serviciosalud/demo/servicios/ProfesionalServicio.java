@@ -40,14 +40,13 @@ public class ProfesionalServicio implements UserDetailsService {
 
     /*metodo para registrar profesional*/
     @Transactional
-    public void registrar(String nombre, String apellido, Integer dni, String email, Integer telefono, String sexo,
+    public void registrar(MultipartFile archivo, String nombre, String apellido, Integer dni, String email, Integer telefono, String sexo,
             String password, String password2, Long matricula, String especialidad, Double precio, Double calificacion, String localidad,
             String obraSocial, Long telefonoLaboral, String descripcion, String nombreEstablecimiento) throws MiExcepcion {
 
         validar(nombre, apellido, dni, email, telefono,
                 sexo, password, password2, matricula, especialidad, precio, calificacion, localidad,
                 obraSocial, telefonoLaboral, descripcion, nombreEstablecimiento);
-        System.out.println("profSer" + email);
         Profesional profesional = new Profesional();
         profesional.setNombre(nombre);
         profesional.setApellido(apellido);
@@ -78,9 +77,8 @@ public class ProfesionalServicio implements UserDetailsService {
 
         /*  Date fecha = new Date();
         profesional.setFechaDeNacimiento(fecha);*/
-
- /*  Imagen imagen = imagenServicio.guardar(archivo);
-        profesional.setImg(imagen);*/
+        Imagen imagen = imagenServicio.guardar(archivo);
+        profesional.setImg(imagen);
         profesionalRepositorio.save(profesional);
         System.out.println("save" + profesional.getEmail());
     }
@@ -128,16 +126,12 @@ public class ProfesionalServicio implements UserDetailsService {
             profesional.setNombreEstablecimiento(nombreEstablecimiento);
 
             String idImagen = null;
-
             if (profesional.getImg() != null) {
-
                 idImagen = profesional.getImg().getId();
             }
-            /*
             Imagen imagen = imagenServicio.actualizar(archivo, idImagen);
-
             profesional.setImg(imagen);
-             */
+             
             profesionalRepositorio.save(profesional);
 
         }

@@ -27,7 +27,6 @@ public class Usuario {
     protected Integer dni;
     protected String nombre;
     protected String apellido;
-    /* private String nombreUsuario; parece que no sirve*/
     protected Integer telefono;
     protected String email;
     protected String password;
@@ -41,7 +40,6 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     protected Roles rol;
 
-    /* private Boolean activo;/*mejor no ponerlo*/
     protected String sexo;
 
 }

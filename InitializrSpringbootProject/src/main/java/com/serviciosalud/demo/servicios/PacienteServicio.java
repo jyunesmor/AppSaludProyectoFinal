@@ -42,10 +42,9 @@ public class PacienteServicio implements UserDetailsService {
     @Autowired
     private ImagenServicio imagenServicio;
 
-    
     /*metodo para registrar usuario*/
     @Transactional
-    public void registrar(String nombre, String apellido, Integer dni, String email, Integer telefono,String sexo, 
+    public void registrar(MultipartFile archivo, String nombre, String apellido, Integer dni, String email, Integer telefono, String sexo,
             String password, String password2, String obraSocialPaciente, Integer numeroDeAfiliado, String motivoConsulta) throws MiExcepcion {
 
         validar(nombre, apellido, dni, email, telefono,
@@ -56,9 +55,7 @@ public class PacienteServicio implements UserDetailsService {
         paciente.setApellido(apellido);
         paciente.setDni(dni);
         paciente.setEmail(email);
-        /* paciente.setNombreUsuario(nombreUsuario);*/
         paciente.setTelefono(telefono);
-        /*paciente.setActivo(activo);*/
         paciente.setSexo(sexo);
 
         paciente.setPassword(new BCryptPasswordEncoder().encode(password));
@@ -72,9 +69,8 @@ public class PacienteServicio implements UserDetailsService {
 
         /*  Date fecha = new Date();
         paciente.setFechaDeNacimiento(fecha);*/
-
- /*  Imagen imagen = imagenServicio.guardar(archivo);
-        paciente.setImg(imagen);*/
+        Imagen imagen = imagenServicio.guardar(archivo);
+        paciente.setImg(imagen);
         usuarioRepositorio.save(paciente);
 
     }
@@ -200,9 +196,6 @@ public class PacienteServicio implements UserDetailsService {
         if (email == null || email.isEmpty()) {
             throw new MiExcepcion("el email no puede ser nulo ni estar vacío");
         }
-        /*if (nombreUsuario == null || nombreUsuario.isEmpty()) {
-            throw new MiExcepcion("el nombre del nombre de usuario no puede ser nulo ni estar vacío");
-        }*/
         if (obraSocialPaciente == null || obraSocialPaciente.isEmpty()) {
             throw new MiExcepcion("la obra social no puede ser nulo ni estar vacío");
         }
@@ -228,11 +221,11 @@ public class PacienteServicio implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        System.out.println("2. "+email);
-        
+        System.out.println("2. " + email);
+
         Usuario paciente = usuarioRepositorio.buscarUsuarioPorEmail(email);
-        
-        System.out.println("3. "+ paciente.getEmail());
+
+        System.out.println("3. " + paciente.getEmail());
 
         if (paciente != null) {
             List<GrantedAuthority> permisos = new ArrayList<>();
@@ -242,11 +235,10 @@ public class PacienteServicio implements UserDetailsService {
             permisos.add(p);
 
             ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-            
+
             HttpSession session = attr.getRequest().getSession(true);
 
             session.setAttribute("usuariosession", paciente);
-
 
             return new User(paciente.getEmail(), paciente.getPassword(), permisos);
 
