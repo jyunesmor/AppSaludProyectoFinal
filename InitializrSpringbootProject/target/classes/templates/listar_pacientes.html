@@ -42,7 +42,7 @@
                             <td th:text="${paciente.nombre}"></td>
                             <td th:text="${paciente.apellido}"></td>
                             <td th:text="${paciente.obraSocialPaciente}"></td>
-                            <td > <img th:src="@{/imagen/perfil/__${session.usuariosession.id}__}"  class="card-img-top"></td>
+                            <td > <img th:src="@{/imagen/pacientes/__${paciente.id}__}"  class="card-img-top" width="70" height="70"></td>
                             <td class="d-flex flex-column justify-content-center m-auto">
                                 <button class="mb-2 btn btn-primary" sec:authorize="hasRole('ADMIN')">
                                     <a th:href="@{#}" class="text-white">Modificar</a>
