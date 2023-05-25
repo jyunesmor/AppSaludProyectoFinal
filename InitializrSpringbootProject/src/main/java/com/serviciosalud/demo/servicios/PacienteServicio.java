@@ -7,6 +7,8 @@ import com.serviciosalud.demo.entidades.Usuario;
 import com.serviciosalud.demo.enumeraciones.Roles;
 import com.serviciosalud.demo.repositorios.PacienteRepositorio;
 import com.serviciosalud.demo.repositorios.UsuarioRepositorio;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,8 +46,8 @@ public class PacienteServicio implements UserDetailsService {
 
     /*metodo para registrar usuario*/
     @Transactional
-    public void registrar(MultipartFile archivo, String nombre, String apellido, Integer dni, String email, Integer telefono, String sexo,
-            String password, String password2, String obraSocialPaciente, Integer numeroDeAfiliado, String motivoConsulta) throws MiExcepcion {
+    public void registrar(MultipartFile archivo, Date fecha, String nombre, String apellido, Integer dni, String email, Integer telefono, String sexo,
+            String password, String password2, String obraSocialPaciente, Integer numeroDeAfiliado, String motivoConsulta) throws MiExcepcion , ParseException {
 
         validar(nombre, apellido, dni, email, telefono,
                 sexo, password, password2, obraSocialPaciente, numeroDeAfiliado, motivoConsulta);
@@ -67,8 +69,7 @@ public class PacienteServicio implements UserDetailsService {
 
         paciente.setRol(Roles.PACIENTE);
 
-        /*  Date fecha = new Date();
-        paciente.setFechaDeNacimiento(fecha);*/
+        paciente.setFechaDeNacimiento(fecha);
         Imagen imagen = imagenServicio.guardar(archivo);
         paciente.setImg(imagen);
         usuarioRepositorio.save(paciente);
@@ -77,7 +78,7 @@ public class PacienteServicio implements UserDetailsService {
 
     /*metodo para actualizar usuario*/
     @Transactional
-    public void actualizar(MultipartFile archivo, String idPaciente, String nombre, String apellido, Integer dni, String email, Integer telefono,
+    public void actualizar(MultipartFile archivo, Date fecha, String idPaciente, String nombre, String apellido, Integer dni, String email, Integer telefono,
             String sexo, String password, String password2, String obraSocialPaciente, Integer numeroDeAfiliado, String motivoConsulta) throws MiExcepcion {
 
         validar(nombre, apellido, dni, email, telefono,
@@ -95,7 +96,7 @@ public class PacienteServicio implements UserDetailsService {
             paciente.setEmail(email);
             paciente.setTelefono(telefono);
             paciente.setSexo(sexo);
-
+            paciente.setFechaDeNacimiento(fecha);
             /* usuario.setPassword(new BCryptPasswordEncoder().encode(password));*/
             paciente.setPassword(password);
 

@@ -9,6 +9,7 @@ import com.serviciosalud.demo.enumeraciones.Roles;
 import com.serviciosalud.demo.repositorios.ProfesionalRepositorio;
 import com.serviciosalud.demo.repositorios.UsuarioRepositorio;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpSession;
@@ -40,7 +41,7 @@ public class ProfesionalServicio implements UserDetailsService {
 
     /*metodo para registrar profesional*/
     @Transactional
-    public void registrar(MultipartFile archivo, String nombre, String apellido, Integer dni, String email, Integer telefono, String sexo,
+    public void registrar(MultipartFile archivo, Date fecha, String nombre, String apellido, Integer dni, String email, Integer telefono, String sexo,
             String password, String password2, Long matricula, String especialidad, Double precio, Double calificacion, String localidad,
             String obraSocial, Long telefonoLaboral, String descripcion, String nombreEstablecimiento) throws MiExcepcion {
 
@@ -75,8 +76,7 @@ public class ProfesionalServicio implements UserDetailsService {
         profesional.setDescripcion(descripcion);
         profesional.setNombreEstablecimiento(nombreEstablecimiento);
 
-        /*  Date fecha = new Date();
-        profesional.setFechaDeNacimiento(fecha);*/
+        profesional.setFechaDeNacimiento(fecha);
         Imagen imagen = imagenServicio.guardar(archivo);
         profesional.setImg(imagen);
         profesionalRepositorio.save(profesional);
@@ -84,7 +84,7 @@ public class ProfesionalServicio implements UserDetailsService {
     }
 
     @Transactional
-    public void actualizarProfesional(MultipartFile archivo, String idProfesional, String nombre, String apellido, Integer dni, String email, Integer telefono,
+    public void actualizarProfesional(MultipartFile archivo, Date fecha, String idProfesional, String nombre, String apellido, Integer dni, String email, Integer telefono,
             String sexo, String password, String password2, Long matricula, String especialidad, Double precio, Double calificacion, String localidad,
             String obraSocial, Long telefonoLaboral, String descripcion, String nombreEstablecimiento, Boolean activo) throws MiExcepcion {
 
@@ -111,7 +111,7 @@ public class ProfesionalServicio implements UserDetailsService {
 
             profesional.setActivo(activo);
             profesional.setMatricula(matricula);
-
+            profesional.setFechaDeNacimiento(fecha);
             for (Especialidad x : Especialidad.values()) {
                 if (especialidad.equals(x.toString())) {
                     profesional.setEspecialidad(x);
@@ -131,7 +131,7 @@ public class ProfesionalServicio implements UserDetailsService {
             }
             Imagen imagen = imagenServicio.actualizar(archivo, idImagen);
             profesional.setImg(imagen);
-             
+
             profesionalRepositorio.save(profesional);
 
         }

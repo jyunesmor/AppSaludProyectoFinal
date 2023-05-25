@@ -6,6 +6,7 @@ com\serviciosalud\demo\MiExcepcion\MiExcepcion.class
 com\serviciosalud\demo\enumeraciones\Modalidad.class
 com\serviciosalud\demo\AppSaludProyectoFinalApplication.class
 com\serviciosalud\demo\servicios\ImagenServicio.class
+com\serviciosalud\demo\controladores\ImagenControlador.class
 com\serviciosalud\demo\repositorios\UsuarioRepositorio.class
 com\serviciosalud\demo\enumeraciones\Roles.class
 com\serviciosalud\demo\servicios\PacienteServicio.class

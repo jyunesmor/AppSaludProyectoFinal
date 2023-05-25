@@ -30,7 +30,7 @@
             el input va a enviar datos a travez de una variable, esa variable va a viajar con un nombre 
             que se lo damos a travez del atributo name, tiene que coincider con el nombre que llega como parametro
             en nuestro controlador -->
-            <form class="formulario" th:action="@{/profesional/modificado/__${profesional.id}__}" method="POST">
+            <form class="formulario" th:action="@{/profesional/modificado/__${profesional.id}__}" method="POST" enctype="multipart/form-data">
 
                 <div class="form-group my-3"> 
                     <label class="mb-2"><strong>ID</strong></label> 
@@ -67,6 +67,25 @@
                     <label class="mb-2">Teléfono</label> 
 
                     <input type="number" class="form-control" name="telefono" th:value="${profesional.telefono}">
+                </div>
+                
+                <div class="form-group my-3"> 
+                    <label class="mb-2">Fecha de Nacimiento</label> 
+                    <input
+                        type="date"
+                        id="start"
+                        name="fecha"
+                        value="fecha"
+                        min="1920-01-01"
+                        max="2005-12-31"
+                        class="form-control"
+                        >
+                </div>
+                
+                 <div class="form-group my-3"> 
+                    <label class="mb-2">Imagen</label> 
+
+                    <input type="file" class="form-control" name="archivo" >
                 </div>
 
                 <div class="form-group my-3"> 

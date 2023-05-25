@@ -57,7 +57,8 @@
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" >Editar</a>
+                    <a class="dropdown-item" th:if="${session.usuariosession != null}" sec:authorize="hasAnyRole('PROFESIONAL')" th:href="@{/profesional/modificar/__${session.usuariosession.id}__}">Editar</a>
+                    <a class="dropdown-item" th:if="${session.usuariosession != null}" sec:authorize="hasAnyRole('PACIENTE')" th:href="@{/paciente/modificar/__${session.usuariosession.id}__}">Editar</a>
                     <a class="dropdown-item" th:href="@{/logout}" >Cerrar Sesión</a>
                 </div>
             </li>
