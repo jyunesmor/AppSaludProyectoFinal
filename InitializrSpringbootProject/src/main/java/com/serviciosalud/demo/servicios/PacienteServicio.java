@@ -97,8 +97,7 @@ public class PacienteServicio implements UserDetailsService {
             paciente.setTelefono(telefono);
             paciente.setSexo(sexo);
             paciente.setFechaDeNacimiento(fecha);
-            /* usuario.setPassword(new BCryptPasswordEncoder().encode(password));*/
-            paciente.setPassword(password);
+            paciente.setPassword(new BCryptPasswordEncoder().encode(password));
 
             paciente.setRol(Roles.PACIENTE);
 
