@@ -3,10 +3,12 @@ package com.serviciosalud.demo.controladores;
 import com.serviciosalud.demo.MiExcepcion.MiExcepcion;
 import com.serviciosalud.demo.entidades.Profesional;
 import com.serviciosalud.demo.servicios.ProfesionalServicio;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/profesional")
@@ -31,7 +34,7 @@ public class ProfesionalControlador {
     }
 
     @PostMapping("/modificado/{idProfesional}")
-    public String modificado(@PathVariable String idProfesional, @RequestParam String nombre, @RequestParam String apellido,
+    public String modificado(MultipartFile archivo,@PathVariable String idProfesional, @RequestParam @DateTimeFormat(pattern= "yyyy-MM-dd")Date fecha, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam(required = false) Integer dni, @RequestParam String email, @RequestParam(required = false) Integer telefono,
             @RequestParam String sexo, @RequestParam String password, @RequestParam String password2, @RequestParam Long matricula,
             @RequestParam String especialidad, @RequestParam Double precio, @RequestParam Double calificacion, @RequestParam String localidad, @RequestParam String obraSocial,
@@ -39,7 +42,7 @@ public class ProfesionalControlador {
 
         
         try {
-            profesionalServicio.actualizarProfesional(null, idProfesional, nombre, apellido, dni, email, telefono, sexo, password, 
+            profesionalServicio.actualizarProfesional(archivo,fecha , idProfesional, nombre, apellido, dni, email, telefono, sexo, password, 
                     password2, matricula, especialidad, precio, calificacion, localidad, obraSocial, telefonoLaboral, descripcion, 
                     nombreEstablecimiento, Boolean.TRUE);
             
