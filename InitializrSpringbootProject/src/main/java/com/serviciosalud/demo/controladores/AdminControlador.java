@@ -36,15 +36,16 @@ public class AdminControlador {
     public String registroProfesional(MultipartFile archivo, @RequestParam @DateTimeFormat(pattern= "yyyy-MM-dd")Date fecha,@RequestParam String nombre, @RequestParam String apellido,
             @RequestParam(required = false) Integer dni, @RequestParam String email, @RequestParam(required = false) Integer telefono,
             @RequestParam String sexo, @RequestParam String password, @RequestParam String password2, @RequestParam Long matricula,
-            @RequestParam String especialidad, @RequestParam Double precio, @RequestParam Double calificacion, @RequestParam String localidad, 
+            @RequestParam String especialidad, @RequestParam Double precio, @RequestParam String inicioDia, @RequestParam String finDia,
+            @RequestParam String inicioHora, @RequestParam String finHora, @RequestParam Double calificacion, @RequestParam String localidad, 
             @RequestParam String obraSocial,@RequestParam Long telefonoLaboral, @RequestParam String descripcion,
             @RequestParam String nombreEstablecimiento, ModelMap modelo) {
 
         
         try {
             profesionalServicio.registrar(archivo,fecha,nombre, apellido, dni, email, telefono, sexo, password, password2,
-                    matricula, especialidad, precio, calificacion, localidad, obraSocial, telefonoLaboral, descripcion,
-                    nombreEstablecimiento);
+                    matricula, especialidad, precio, inicioDia, finDia, inicioHora, finHora, calificacion, localidad, obraSocial, 
+                    telefonoLaboral, descripcion, nombreEstablecimiento);
 
             modelo.put("exito", "Usted se ha registrado correctamete");
 

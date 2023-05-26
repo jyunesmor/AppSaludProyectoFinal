@@ -8,6 +8,7 @@ import com.serviciosalud.demo.enumeraciones.Especialidad;
 import com.serviciosalud.demo.enumeraciones.Roles;
 import com.serviciosalud.demo.repositorios.ProfesionalRepositorio;
 import com.serviciosalud.demo.repositorios.UsuarioRepositorio;
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -42,7 +43,8 @@ public class ProfesionalServicio implements UserDetailsService {
     /*metodo para registrar profesional*/
     @Transactional
     public void registrar(MultipartFile archivo, Date fecha, String nombre, String apellido, Integer dni, String email, Integer telefono, String sexo,
-            String password, String password2, Long matricula, String especialidad, Double precio, Double calificacion, String localidad,
+            String password, String password2, Long matricula, String especialidad, Double precio,
+            String inicioDia, String finDia, String inicioHora, String finHora, Double calificacion, String localidad,
             String obraSocial, Long telefonoLaboral, String descripcion, String nombreEstablecimiento) throws MiExcepcion {
 
         validar(nombre, apellido, dni, email, telefono,
@@ -68,6 +70,12 @@ public class ProfesionalServicio implements UserDetailsService {
                 profesional.setEspecialidad(x);
             }
         }
+
+        //registrarDisponibilidadDias(profesional, inicioDia, finDia);
+        profesional.setDisponibilidadInicioDia(inicioDia);
+        profesional.setDisponibilidadFinDia(finDia);
+        profesional.setDisponibilidadInicioHora(inicioHora);
+        profesional.setDisponibilidadFinHora(finHora);
         profesional.setPrecio(precio);
         profesional.setCalificacion(calificacion);
         profesional.setLocalidad(localidad);
@@ -85,7 +93,8 @@ public class ProfesionalServicio implements UserDetailsService {
 
     @Transactional
     public void actualizarProfesional(MultipartFile archivo, Date fecha, String idProfesional, String nombre, String apellido, Integer dni, String email, Integer telefono,
-            String sexo, String password, String password2, Long matricula, String especialidad, Double precio, Double calificacion, String localidad,
+            String sexo, String password, String password2, Long matricula, String especialidad, Double precio,
+            String inicioDia, String finDia, String inicioHora, String finHora, Double calificacion, String localidad,
             String obraSocial, Long telefonoLaboral, String descripcion, String nombreEstablecimiento, Boolean activo) throws MiExcepcion {
 
         validar(nombre, apellido, dni, email, telefono,
@@ -117,6 +126,10 @@ public class ProfesionalServicio implements UserDetailsService {
                     profesional.setEspecialidad(x);
                 }
             }
+            profesional.setDisponibilidadInicioDia(inicioDia);
+            profesional.setDisponibilidadFinDia(finDia);
+            profesional.setDisponibilidadInicioHora(inicioHora);
+            profesional.setDisponibilidadFinHora(finHora);
             profesional.setPrecio(precio);
             profesional.setCalificacion(calificacion);
             profesional.setLocalidad(localidad);
@@ -135,6 +148,58 @@ public class ProfesionalServicio implements UserDetailsService {
             profesionalRepositorio.save(profesional);
 
         }
+    }
+
+    public void registrarDisponibilidadDias(Profesional profesional, String inicioDia, String finDia) {
+
+        switch (inicioDia) {
+            case "monday":
+                profesional.setDisponibilidadInicioDia("lunes-");
+                break;
+            case "tuesday":
+                profesional.setDisponibilidadInicioDia("martes-");
+                break;
+            case "wednesday":
+                profesional.setDisponibilidadInicioDia("miercoles-");
+                break;
+            case "thursday":
+                profesional.setDisponibilidadInicioDia("jueves-");
+                break;
+            case "friday":
+                profesional.setDisponibilidadInicioDia("viernes-");
+                break;
+            case "saturday":
+                profesional.setDisponibilidadInicioDia("viernes-");
+                break;
+            case "sunday":
+                profesional.setDisponibilidadInicioDia("viernes-");
+                break;
+        }
+
+        switch (finDia) {
+            case "monday":
+                //profesional.setDisponibilidadDias(profesional.getDisponibilidadDias()+"lunes");
+                break;
+            case "tuesday":
+                profesional.setDisponibilidadFinDia("martes");
+                break;
+            case "wednesday":
+                profesional.setDisponibilidadFinDia("miercoles");
+                break;
+            case "thursday":
+                profesional.setDisponibilidadFinDia("jueves");
+                break;
+            case "friday":
+                profesional.setDisponibilidadFinDia("viernes");
+                break;
+            case "saturday":
+                profesional.setDisponibilidadFinDia("sabado");
+                break;
+            case "sunday":
+                profesional.setDisponibilidadFinDia("domindo");
+                break;
+        }
+
     }
 
     @Transactional

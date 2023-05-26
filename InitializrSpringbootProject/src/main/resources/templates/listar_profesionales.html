@@ -50,6 +50,9 @@
                                 <button class="mb-2 btn btn-primary" sec:authorize="hasRole('ADMIN')">
                                     <a th:href="@{/profesional/eliminar/__${profesional.id}__}" class="text-white">Baja</a>
                                 </button>
+                                <button class="mb-2 btn btn-primary" sec:authorize="hasRole('PACIENTE')">
+                                    <a th:href="@{/turno/registrar/__${profesional.id}__}" class="text-white">Sacar Turno</a>
+                                </button>
                             </td>
                         </tr>
                     </tbody>

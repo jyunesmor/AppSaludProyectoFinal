@@ -27,6 +27,11 @@ public class Profesional extends Usuario{
     private String descripcion;
     private String nombreEstablecimiento;
     
+    private String disponibilidadInicioDia;
+    private String disponibilidadFinDia;
+    private String disponibilidadInicioHora;
+    private String disponibilidadFinHora;
+    
     private Boolean activo;
     
     /*falta crear las fecha y turno horarios*/

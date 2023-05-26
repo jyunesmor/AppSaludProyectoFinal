@@ -79,6 +79,7 @@
                         min="1920-01-01"
                         max="2005-12-31"
                         class="form-control"
+                        th:value="${profesional.fechaDeNacimiento}"
                         >
                 </div>
                 
@@ -111,6 +112,50 @@
                         <option value="CLINICA">CLINICA</option>
                         <option value="CARDIOLOGIA">CARDIOLOGIA</option>
                     </select>
+                </div>
+                
+                <div class="form-group my-3"> 
+                    <label class="mb-2">Inicio de disponibilidad:</label> 
+                    <br>
+                    <select class="custom-select mr-sm-2" name="inicioDia">
+                        <option selected >Seleccionar especialidad</option>
+
+                        <option value="sunday">DOMINGO</option>
+                        <option value="monday">LUNES</option>
+                        <option value="tuesday">MARTES</option>
+                        <option value="wednesday">MIERCOLES</option>
+                        <option value="thursday">JUEVES</option>
+                        <option value="friday">VIERNES</option>
+                        <option value="saturday">SABADO</option>
+                    </select>
+                </div>
+                
+                <div class="form-group my-3"> 
+                    <label class="mb-2">Fin de disponibilidad:</label> 
+                    <br>
+                    <select class="custom-select mr-sm-2" name="finDia">
+                        <option selected >Seleccionar especialidad</option>
+
+                        <option value="sunday">DOMINGO</option>
+                        <option value="monday">LUNES</option>
+                        <option value="tuesday">MARTES</option>
+                        <option value="wednesday">MIERCOLES</option>
+                        <option value="thursday">JUEVES</option>
+                        <option value="friday">VIERNES</option>
+                        <option value="saturday">SABADO</option>
+                    </select>
+                </div>
+                
+                <div class="form-group my-3"> 
+                    <label class="mb-2">Indique el inicio de su turno "HH:mm"</label> 
+
+                    <input type="text" class="form-control" name="inicioHora" >
+                </div>
+                
+                <div class="form-group my-3"> 
+                    <label class="mb-2">Indique el inicio de su turno "HH:mm"</label> 
+
+                    <input type="text" class="form-control" name="finHora" >
                 </div>
 
                 <div class="form-group my-3"> 
