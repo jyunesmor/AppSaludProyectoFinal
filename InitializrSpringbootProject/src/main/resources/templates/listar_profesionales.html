@@ -15,6 +15,17 @@
             <section>
                 <nav th:replace= "/fragments/navbar :: nav"></nav>
             </section>
+            
+            <form th:action="@{/profesional/filtrar}" method="get" class="form-inline">
+                <div class="form-group mb-2">
+                    <label>Filtrar :</label>
+                </div>
+                <div class="input-filtr">
+                    <input type="text" name="palabraClave" class="form-groupmx-sm-3 mb-2" placeholder="Ej: GINECOLOGIA" required>
+                </div>
+                
+                <input type="submit" value="Buscar" class="btn btn-primary mb-2" >
+            </form>
 
             <div class="d-flex justify-content-center align-items-end">
                 <h3 class="text">Listado de Profesionales</h3>

@@ -218,7 +218,7 @@ public class ProfesionalServicio implements UserDetailsService {
     }
 
     @Transactional(readOnly = true)
-    public List<Profesional> buscarPorEspecialidad(String especialidad) {
+    public List<Profesional> buscarPorEspecialidad(Especialidad especialidad) {
         return usuarioRepositorio.buscarPorEspecialidad(especialidad);
     }
 
