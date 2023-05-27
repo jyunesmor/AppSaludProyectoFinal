@@ -2,7 +2,9 @@ package com.serviciosalud.demo.controladores;
 
 import com.serviciosalud.demo.MiExcepcion.MiExcepcion;
 import com.serviciosalud.demo.entidades.Paciente;
+import com.serviciosalud.demo.entidades.Turno;
 import com.serviciosalud.demo.entidades.Usuario;
+import com.serviciosalud.demo.repositorios.TurnoRepositorio;
 import com.serviciosalud.demo.servicios.PacienteServicio;
 import java.text.ParseException;
 import java.util.Date;
@@ -30,6 +32,9 @@ public class PacienteResControler {
 
     @Autowired
     PacienteServicio pacienteServicio;
+
+    @Autowired
+    TurnoRepositorio turnoRepositorio;
 
     @GetMapping("/registro")
     public String registrar() {
@@ -100,6 +105,14 @@ public class PacienteResControler {
             return "modificar_paciente.html";
 
         }
+    }
+
+    @GetMapping("/turnos/{id}")
+    public String listarMisTurno(@PathVariable String id, ModelMap modelo) {
+        List<Turno> misTurnos;
+        misTurnos = turnoRepositorio.buscarPorPaciente(id);
+        modelo.addAttribute("turnos", misTurnos);
+        return "listar_mis_turnos.html";
     }
 
     @GetMapping("/pacientes")

@@ -23,9 +23,9 @@ public class Turno {
     protected String motivoDeConsulta;
     
     @ManyToOne
-    protected Paciente Paciente;
+    protected Paciente paciente;
     
     @ManyToOne
-    protected Profesional Profesional;
+    protected Profesional profesional;
 
 }

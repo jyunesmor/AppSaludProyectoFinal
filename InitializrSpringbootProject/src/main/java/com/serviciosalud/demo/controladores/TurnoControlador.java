@@ -2,7 +2,10 @@ package com.serviciosalud.demo.controladores;
 
 import com.serviciosalud.demo.MiExcepcion.MiExcepcion;
 import com.serviciosalud.demo.entidades.Usuario;
+import com.serviciosalud.demo.entidades.Turno;
 import com.serviciosalud.demo.entidades.Profesional;
+import com.serviciosalud.demo.repositorios.PacienteRepositorio;
+import com.serviciosalud.demo.repositorios.TurnoRepositorio;
 import com.serviciosalud.demo.servicios.PacienteServicio;
 import com.serviciosalud.demo.servicios.ProfesionalServicio;
 import com.serviciosalud.demo.servicios.TurnoServicio;
@@ -13,6 +16,7 @@ import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
@@ -34,6 +38,12 @@ public class TurnoControlador {
 
     @Autowired
     TurnoServicio turnoServicio;
+
+    @Autowired
+    TurnoRepositorio turnoRepositorio;
+
+    @Autowired
+    PacienteRepositorio pacienteRepositorio;
 
     @GetMapping("/registrar/{idProfesional}")
     public String registrarTurno(@PathVariable String idProfesional, ModelMap modelo, HttpSession session) {
@@ -117,8 +127,8 @@ public class TurnoControlador {
 
         try {
             turnoServicio.registrar(idPaciente, idProfesional, mes, dia, hora, motivoConsulta);
-            
-            return "listar_mis_turnos.html";
+
+            return "inicio.html";
         } catch (MiExcepcion ex) {
             Profesional profesional = profesionalServicio.getOne(idProfesional);
 
@@ -134,7 +144,7 @@ public class TurnoControlador {
             modelo.put("meses", meses);
 
             modelo.put("error", "Esa fecha ya está reservada con el mismo profesional a esa misma hora!!!!");
-            
+
             modelo.put("idProfesional", idProfesional);
             modelo.put("idPaciente", idPaciente);
 
@@ -142,4 +152,66 @@ public class TurnoControlador {
         }
     }
 
+    @GetMapping("/modificar/{id}")
+    public String modificar(@PathVariable String id, ModelMap modelo) {
+        Optional<Turno> respuesta = turnoRepositorio.findById(id);
+
+        if (respuesta.isPresent()) {
+            Turno turno = respuesta.get();
+            
+            LocalDate fecha = LocalDate.parse(turno.getFecha());
+
+            modelo.put("turno", turno);
+            
+            
+            modelo.put("mesGuardado", fecha.getMonth().toString());
+            System.out.println("TCONT: mes: " + fecha.getMonth().toString());
+            modelo.put(("diaGuardado"), fecha.getDayOfWeek().toString());
+            System.out.println("TCONT: dia: " + fecha.getDayOfWeek());
+            modelo.put("horaGuardada", turno.getHorario());
+            System.out.println("TCONT: hora: " + turno.getHorario());
+
+            List<String> horas = listaHoras(turno.getProfesional().getDisponibilidadInicioHora(), turno.getProfesional().getDisponibilidadFinHora());
+
+            modelo.put("horas", horas);
+
+            List<String> dias = listaDias(turno.getProfesional());
+            modelo.put("dias", dias);
+
+            Month[] meses = Month.values();
+            modelo.put("meses", meses);
+        }
+
+        return "modificar_turno.html";
+    }
+
+    @PostMapping("/modificado/{id}")
+    public String modificado(@PathVariable String id, @RequestParam String idProfesional, @RequestParam String idPaciente, @RequestParam String mes,
+            @RequestParam String dia, @RequestParam String hora, @RequestParam String motivoConsulta, ModelMap modelo) {
+
+        try {
+            turnoServicio.modificar(id, idPaciente, idProfesional, mes, dia, hora, motivoConsulta);
+
+            return "inicio.html";
+        } catch (MiExcepcion ex) {
+            modelo.put("error", ex.getMessage());
+            return "modificar_turno.html";
+
+        }
+    }
+
+    @GetMapping("/cancelar/{id}")
+    public String eliminar(@PathVariable String id, ModelMap modelo) {
+        
+        modelo.put("turno", turnoRepositorio.getOne(id));
+        
+        return "eliminar_turno.html";
+    }
+    
+    @PostMapping("/cancelado/{id}")
+    public String eliminado(@PathVariable String id){
+        
+        turnoRepositorio.deleteById(id);
+        return "inicio.html";
+    }
 }

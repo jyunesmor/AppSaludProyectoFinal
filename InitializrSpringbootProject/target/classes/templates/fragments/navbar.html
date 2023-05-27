@@ -25,7 +25,11 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link"  th:if="${session.usuariosession != null}"  th:href="@{#}">Turnos</a>
+                <a class="nav-link"  th:if="${session.usuariosession != null}" th:href="@{/turno/listar}" sec:authorize="hasAnyRole('PROFESIONAL', 'ROLE_ADMIN')">Turnos</a>
+            </li>                            
+
+            <li class="nav-item">
+                <a class="nav-link"  th:if="${session.usuariosession != null}" th:href="@{/paciente/turnos/__${session.usuariosession.id}__}" sec:authorize="hasRole('PACIENTE')">Turnos</a>
             </li>
 <!--
             <li class="nav-item dropdown">
