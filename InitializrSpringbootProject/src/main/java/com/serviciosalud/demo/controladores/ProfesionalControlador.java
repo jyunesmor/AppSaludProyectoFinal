@@ -47,13 +47,13 @@ public class ProfesionalControlador {
     public String modificado(MultipartFile archivo, @PathVariable String idProfesional, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam(required = false) Integer dni, @RequestParam String email, @RequestParam(required = false) Integer telefono,
             @RequestParam String sexo, @RequestParam String password, @RequestParam String password2, @RequestParam Long matricula,
-            @RequestParam String especialidad, @RequestParam Double precio, @RequestParam String inicioDia, @RequestParam String finDia,
+            @RequestParam String especialidad, @RequestParam String modalidad, @RequestParam Double precio, @RequestParam String inicioDia, @RequestParam String finDia,
             @RequestParam String inicioHora, @RequestParam String finHora, @RequestParam Double calificacion, @RequestParam String localidad, @RequestParam String obraSocial,
             @RequestParam Long telefonoLaboral, @RequestParam String descripcion, @RequestParam String nombreEstablecimiento, ModelMap modelo) {
 
         try {
             profesionalServicio.actualizarProfesional(archivo, fecha, idProfesional, nombre, apellido, dni, email, telefono, sexo, password,
-                    password2, matricula, especialidad, precio, inicioDia, finDia, inicioHora, finHora, calificacion, localidad, obraSocial, telefonoLaboral, descripcion,
+                    password2, matricula, especialidad, modalidad, precio, inicioDia, finDia, inicioHora, finHora, calificacion, localidad, obraSocial, telefonoLaboral, descripcion,
                     nombreEstablecimiento, Boolean.TRUE);
 
             /*return "redirect:../../inicio";*/
@@ -79,22 +79,25 @@ public class ProfesionalControlador {
     @GetMapping("/filtrar")
     public String filtraPorEspecialidad(ModelMap modelo, @Param("palabraClave") String palabraClave) {
 
-        for (Especialidad aux : Especialidad.values()) {
-            if (aux.toString().equals(palabraClave)) {
-                List<Profesional> profesionales = usuarioRepositorio.buscarPorEspecialidad(aux);
-                modelo.addAttribute("profesionales", profesionales);
+        if (palabraClave.equals("PRECIO")) {
+            List<Profesional> profesionales = profesionalServicio.ordenarPorPrecio();
+            modelo.addAttribute("profesionales", profesionales);
+        } else if(palabraClave.equals("CALIFICACION")) {
+            List<Profesional> profesionales = profesionalServicio.ordenarPorCalificacion();
+            modelo.addAttribute("profesionales", profesionales);
+        } else {
+            for (Especialidad aux : Especialidad.values()) {
+                if (aux.toString().equals(palabraClave)) {
+                    List<Profesional> profesionales = usuarioRepositorio.buscarPorEspecialidad(aux);
+                    modelo.addAttribute("profesionales", profesionales);
+                }
             }
         }
-
         modelo.addAttribute("palabraClave", palabraClave);
 
         return "listar_profesionales.html";
     }
 
-    @GetMapping("/XX")
-    public String xx(){
-        return "filtrar_profesionales.html";
-    }
     @GetMapping("/eliminar/{id}")
     public String eliminar(@PathVariable String id, ModelMap modelo) {
 

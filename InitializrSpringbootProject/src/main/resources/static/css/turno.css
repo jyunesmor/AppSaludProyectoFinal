@@ -1,53 +1,100 @@
-* {
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
 }
 
 :root{
-  --font_Text: 'Montserrat', sans-serif;
+    --font_Text: 'Montserrat', sans-serif;
+}
+
+.header{
+    height: 100px;
+}
+
+.footer{
+    height: 100px;
+}
+
+.main{
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 body {
-  background-color: lightblue;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  font-family: var(--font_Text);
-  font-size: 14px;
+    width: 100vw;
+    font-family: var(--font_Text);
+    font-size: 14px;
+    min-height: calc(100vh - (100px + 100px));
+    background-image: url(../imagen/fondo.svg);
+    background-repeat:no-repeat;
+    background-position-x:center;
 }
 
 .conte_turno {
-  margin: auto;
-  background-color: lightgreen;
-  width: 500px;
-  height: 500px;
-  border: 1px solid black;
-  border-radius: 15px;
+    margin: auto;
+    width: 600px;
+    height: 100%;
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: #dceafc;
+    box-shadow: 10px 10px 15px black;
 }
+
 
 .header_turnero {
-  width: 95%;
-  height: 100px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    width: 95%;
+    height: 100px;
+    margin: auto;
+    display: flex;
 }
 
+.inf-pac{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.inf-pac input{
+    font-size: 35px;
+    background-color: transparent;
+}
+
+.inf-med input{
+    display: flex;
+    flex-direction: row;
+    font-size: 18px;
+}
+
+.inf-med{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.input_inf-os{
+    text-align: center;
+}
+
+.input_inf-na{
+    text-align: center;
+}
+
+
 .titulo_turnero{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 .dtos_paciente{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .dtos_paciente input{
@@ -60,77 +107,88 @@ body {
 .input_Nom{
     text-align: start;
     margin-left: 10px ;
+    background: transparent;
 }
 
 .input_Ape{
-  text-align: end;
+    text-align: end;
+    background: transparent;
 }
 
 .body_turnero {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  width: 100%;
-  height: 400px;
-  padding: 5px;
-  background-color: rgb(31, 69, 112);
+    width: 100%;
+    padding: 5px;
+}
+
+.body_turnero form{
+    display: flex;
+    flex-direction: row;
+
 }
 
 .datos_Prof {
-  width: 100%;
-  background-color: lightseagreen;
-  padding: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.datos_Prof input{
+        background-color: lightskyblue;
 }
 
 .input_Id-Pro{
-  margin-top: 35px;
+    margin-top: 35px;
 }
 
 .input_NomyApe-Pro{
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .input_Ape-Pro{
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 .input_Nom-Pro{
-  margin-top: 5px;
+    margin-top: 5px;
 }
 
 .input_Mes_Con{
-  margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
 }
 
 .input_dia_Con{
-  margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
 }
 
 .input_hor_Con{
-  margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
 }
 
 .datos_Prof div{
-  width: 100%;
-  margin-left: 2px;
+    width: 100%;
+    margin-left: 2px;
 }
 
 .datos_btn {
-  width: 100%;
-  background-color: rgb(34, 139, 43);
-  display: grid;
-  grid-template-rows: 75% 25%;
-  padding: 5px;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 75% 25%;
+    padding: 5px;
 }
 
 .datos_fyh {
-  width: 100%;
-  background-color: rgb(114, 58, 102);
-  display: flex;
-  flex-direction: column;
-  margin-top: 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
 }
 
 .datos_fyh label{
@@ -147,27 +205,30 @@ body {
 }
 
 .btn_buttom {
-  width: 100%;
-  background-color: rgb(245, 118, 124);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn_buttom button {
-  width: 65%;
-  margin-top: 15px;
-  height: 35px;
-  background-color: rgb(87, 87, 236);
-  color: white;
+    width: 65%;
+    margin-top: 15px;
+    height: 35px;
+    background-color: #005187;
+    color: white;
 }
 
 .btn_buttom p {
-  width: 100%;
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
+input: readonly {
+    background-color: black;
+    border: none;
+}
 

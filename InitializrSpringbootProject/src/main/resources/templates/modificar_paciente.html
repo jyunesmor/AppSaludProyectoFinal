@@ -14,126 +14,193 @@
             <nav th:replace= "/fragments/navbar :: nav"></nav>
         </section>
 
-        <div style="align-items: center;">
-            <a th:href="@{/}"><img width="240" height="192"
-                                   th:src="@{/imagen/imagen-registroPaciente.png}"
-                                   alt="Pagina principal"></a>
+        <div class="align-items-center">
+            <a th:href="@{/}">
+                <center> <img width="120" height="96" th:src="@{/imagen/imagen-registroPaciente.png}"
+                              alt="Pagina principal"> </center>
+            </a>
         </div>
-        <p style="align-items: center;" >Actualizar Datos del Paciente</p>
+
+
+        <h4 class=" text-center">Actualizar Datos de Paciente</h4>
 
 
 
         <div class="container-fluid m-5 contenedor">
+            <form th:action="@{/paciente/modificado/__${paciente.id}__}" method="POST" enctype="multipart/form-data">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <section class="h-100 h-custom gradient-custom-2">
 
-            <!-- cuando una persona haga clic en guardar lo que se dispara es una action, se dispara al servidor
-            y se ejecuta atravez de una url /autor/registro y esto sucede atravez de una peticion post,
-            el input va a enviar datos a travez de una variable, esa variable va a viajar con un nombre 
-            que se lo damos a travez del atributo name, tiene que coincider con el nombre que llega como parametro
-            en nuestro controlador -->
-            <form class="formulario" th:action="@{/paciente/modificado/__${paciente.id}__}" method="POST" enctype="multipart/form-data">
+                            <div class="row d-flex justify-content-center align-items-center h-100">
+                                <div class="col-12">
+                                    <div class="card card-registration card-registration-2" style="border-radius: 15px">
 
-                <div class="form-group my-3"> 
-                    <label class="mb-2"><strong>ID</strong></label> 
-                    <!-- input es para ingresar el nombre del autor  -->
-                    <input type="text" readonly class="form-control" name="idPaciente" th:value="${paciente.id}" >
+                                        <div class="card-body p-0">
+                                            <div class="row g-0">
+                                                <div class="col-lg-6">
+                                                    <div class="p-5">
+                                                        <h3 class="fw-normal mb-5">Datos Personales</h3>
+
+                                                        <div class="row">
+                                                            <div class="col-md-6 mb-4 pb-2">
+                                                                <div class="form-outline">
+                                                                    <input type="text" id="form3Examplev2" name="nombre"
+                                                                           class="form-control form-control-lg" 
+                                                                           th:value="${paciente.nombre}"/>
+                                                                    <label class="form-label">Nombre</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 mb-4 pb-2">
+                                                                <div class="form-outline">
+                                                                    <input type="text" id="form3Examplev3"
+                                                                           class="form-control form-control-lg"
+                                                                           name="apellido" 
+                                                                           th:value="${paciente.apellido}"/>
+                                                                    <label class="form-label">Apellido</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-5 mb-4 pb-2">
+                                                                <div class="form-outline form-white">
+                                                                    <input type="text" id="form3Examplea4"
+                                                                           class="form-control form-control-lg" name="dni"
+                                                                           required placeholder="" pattern="[0-9]{8}" 
+                                                                           th:value="${paciente.dni}"/>
+                                                                    <label class="form-label">Dni</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-7 mb-4 pb-2">
+                                                                <div class="form-outline form-white">
+                                                                    <input type="text" id="form3Examplea5"
+                                                                           class="form-control form-control-lg" name="telefono"
+                                                                           pattern="[0-9]{8}"
+                                                                           th:value="${paciente.telefono}"/>
+                                                                    <label class="form-label">Teléfono personal</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-7 mb-4 pb-2">
+                                                                <div class="form-outline form-white">
+                                                                    <input type="email" id="form3Examplea5"
+                                                                           class="form-control form-control-lg" name="email" 
+                                                                           th:value="${paciente.email}"/>
+                                                                    <label class="form-label">Correo Electronico</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div
+                                                            class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+                                                            <h6 class="mb-0 me-4">Sexo:</h6>
+
+                                                            <div class="form-check form-check-inline mb-0 me-4">
+                                                                <input class="form-check-input" type="radio" name="sexo" id="femaleGender" value="femenino"
+                                                                       th:checked="${paciente.sexo == 'femenino'}" />
+                                                                <label class="form-check-label">Femenino</label>
+                                                            </div>
+
+                                                            <div class="form-check form-check-inline mb-0 me-4">
+                                                                <input class="form-check-input" type="radio" name="sexo" id="maleGender" value="masculino"
+                                                                       th:checked="${paciente.sexo == 'masculino'}" />
+                                                                <label class="form-check-label">Masculino</label>
+                                                            </div>
+
+                                                            <div class="form-check form-check-inline mb-0">
+                                                                <input class="form-check-input" type="radio" name="sexo" id="otherGender" value="otro"
+                                                                       th:checked="${paciente.sexo == 'otro'}" />
+                                                                <label class="form-check-label">Otro</label>
+                                                            </div>
+
+
+                                                        </div>
+
+                                                        <div class="mb-4 pb-2">
+                                                            <label class="mb-2">Fecha de Nacimiento</label>
+                                                            <input type="date" id="start" name="fecha" value="fecha"
+                                                                   min="1920-01-01" max="2005-12-31" class="form-control"
+                                                                   th:value="${paciente.fechaDeNacimiento}">
+                                                        </div>
+
+                                                        <div class="mb-4 pb-2">
+                                                            <div class="input-group mb-3">
+                                                                <input type="file" name="archivo"
+                                                                       class="form-control form-control-lg"
+                                                                       id="inputGroupFile02" 
+                                                                       th:attr="value='${paciente.img}'"
+                                                                       th:value="${paciente.img}"/>
+                                                                <label class="input-group-text">Imagen</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="p-5">
+                                                        <h3 class="fw-normal mb-5" style="color: #4835d4">
+                                                            Datos Medicos
+                                                        </h3>
+                                                        <div class="mb-4 pb-2">
+                                                            <div class="form-outline">
+                                                                <input type="text" name="obraSocialPaciente"
+                                                                       id="form3Examplev4"
+                                                                       class="form-control form-control-lg"
+                                                                       th:value="${paciente.obraSocialPaciente}"/>
+                                                                <label class="form-label" for="form3Examplev4">Obra
+                                                                    Social</label>
+                                                            </div>
+                                                            <div class="mb-4 pb-2">
+                                                                <div class="form-outline">
+                                                                    <input type="text" name="numeroDeAfiliado"
+                                                                           id="form3Examplev4"
+                                                                           class="form-control form-control-lg" 
+                                                                           th:value="${paciente.numeroDeAfiliado}"/>
+                                                                    <label class="form-label" for="form3Examplev4">N° de
+                                                                        Afiliado</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-6 mb-4 pb-2">
+                                                                    <div class="form-outline">
+                                                                        <input type="password" id="form3Examplev2"
+                                                                               class="form-control form-control-lg"
+                                                                               name="password" />
+                                                                        <label class="form-label">Contraseña</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 mb-4 pb-2">
+                                                                    <div class="form-outline">
+                                                                        <input type="password" id="form3Examplev3"
+                                                                               class="form-control form-control-lg"
+                                                                               name="password2" />
+                                                                        <div class="invalid-feedback">Las contraseñas no
+                                                                            coinciden.</div>
+                                                                        <label class="form-label">Confirmar
+                                                                            Contraseña</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row text-center mt-4">
+                                                                <div class="col-md-7">
+                                                                    <button type="submit"
+                                                                            class="btn btn-lg btn-primary w-50"
+                                                                            data-mdb-ripple-color="dark">
+                                                                        Registrar
+                                                                    </button>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
                 </div>
-
-                <div class="form-group my-3"> 
-                    <label class="mb-2">Nombre</label> 
-                    <!-- input es para ingresar el nombre del autor  -->
-                    <input type="text" class="form-control" name="nombre" th:value="${paciente.nombre}">
-                </div>
-                <!-- y un boton de tipo submit, que al ser presionado es el que va a enviar la informacion
-                para que nosotros podamos tomarla, guardarla o manipularla segun deseemos-->
-                <div class="form-group my-3"> 
-                    <label class="mb-2">Apellido</label> 
-
-                    <input type="text" class="form-control" name="apellido" th:value="${paciente.apellido}">
-                </div>
-
-                <div class="form-group my-3"> 
-                    <label class="mb-2">Numero Dni</label> 
-
-                    <input type="text" class="form-control" name="dni" pattern="[0-9]{8}" required th:value="${paciente.dni}">
-                </div>
-
-                <div class="form-group my-3"> 
-                    <label class="mb-2">Sexo</label> 
-
-                    <input type="text" class="form-control" name="sexo" th:value="${paciente.sexo}">
-                </div>
-
-                <div class="form-group my-3"> 
-                    <label class="mb-2">Teléfono</label> 
-
-                    <input type="number" class="form-control" name="telefono" th:value="${paciente.telefono}">
-                </div>
-                
-                <div class="form-group my-3"> 
-                    <label class="mb-2">Fecha de Nacimiento</label> 
-                    <input
-                        type="date"
-                        id="start"
-                        name="fecha"
-                        value="fecha"
-                        min="1920-01-01"
-                        max="2005-12-31"
-                        class="form-control"
-                        th:value="${paciente.fechaDeNacimiento}"
-                        >
-                </div>
-
-                <div class="form-group my-3"> 
-                    <label class="mb-2">Imagen</label> 
-
-                    <input type="file" class="form-control" name="archivo" th:value="${paciente.img}">
-                </div>
-
-                <div class="form-group my-3"> 
-                    <label class="mb-2">Obra social a la que pertenece</label> 
-
-                    <input type="text" class="form-control" name="obraSocialPaciente" th:value="${paciente.obraSocialPaciente}">
-                </div>
-
-                <div class="form-group my-3"> 
-                    <label class="mb-2">numero de afiliado</label> 
-
-                    <input type="number" class="form-control" name="numeroDeAfiliado" th:value="${paciente.numeroDeAfiliado}">
-                </div>
-
-                <div class="form-group my-3"> 
-                    <label class="mb-2">Email</label> 
-
-                    <input type="email" class="form-control" name="email"  th:value="${paciente.email}">
-                </div>
-
-                <div class="form-group my-3"> 
-                    <label class="mb-2">Motivo de Consulta</label> 
-
-                    <input type="text" class="form-control" name="motivoConsulta" th:value="${paciente.motivoDeConsulta}">
-
-                </div>
-
-                <div class="form-group my-3"> 
-                    <label class="mb-2">Contraseña</label> 
-
-                    <input type="password" class="form-control" name="password" placeholder="password">
-                </div>
-
-                <div class="form-group my-3"> 
-                    <label class="mb-2">Confirmar Contraseña</label> 
-
-                    <input type="password" class="form-control" name="password2" placeholder="password">
-                    <div class="invalid-feedback">Las contraseñas no coinciden.</div>
-                </div>
-
-
-                <button type="submit" class="btn btn-primary mt-3 botones">Actualizar</button>
-
-                <p class="text-center text-muted mt-5 mb-0">�Ya tienes una cuenta? <a th:href="@{/login}"
-                                                                                      class="fw-bold text-body"><u>Iniciar Sesion</u></a></p>
-
-
             </form>
 
 

@@ -22,33 +22,39 @@
             <div class="table-responsive-sm tb-usuario">
                 <table class="table table-striped table-bordered border-primary">
                     <thead>
-                        <tr>
+                        <tr style="white-space: nowrap;">
                             <th scope="col">N° de Turno</th>
+                            <th scope="col" sec:authorize="hasAnyRole('ADMIN', 'PROFESIONAL')">Paciente</th>
                             <th scope="col">Profesional</th>
                             <th scope="col">Especialidad</th>
+                            <th scope="col">Modalidad</th>
                             <th scope="col">Fecha</th>
                             <th scope="col">Horario</th>
+                            <th scope="col">Precio</th>
                             <th scope="col">Motivo de consulta</th>
-                            <th scope="col" sec:authorize="hasAnyRole('PACIENTE', 'PROFESIONAL')">Acciones</th>
+                            <th scope="col" sec:authorize="hasAnyRole('PACIENTE', 'PROFESIONAL', 'ADMIN')">Acciones</th>
                         </tr>
                     </thead>
                     <tbody
                         class="table-group-divider border-top-color"
                         th:each="turno : ${turnos}"
                         >
-                        <tr>
+                        <tr style="white-space: nowrap;">
                             <td th:text="${turno.id}"></td>
+                            <td sec:authorize="hasAnyRole('ADMIN', 'PROFESIONAL')" th:text="${turno.paciente.nombre}+' '+${turno.paciente.apellido} "></td>
                             <td th:text="${turno.profesional.nombre}+' '+${turno.profesional.apellido} "></td>
                             <td th:text="${turno.profesional.especialidad}"></td>
+                            <td th:text="${turno.profesional.modalidad}"></td>
                             <td th:text="${turno.fecha}"></td>
                             <td th:text="${turno.horario}"></td>
+                            <td th:text="'$ '+${turno.profesional.precio}"></td>
                             <td th:text="${turno.motivoDeConsulta}"></td>
                             <td class="d-flex flex-column justify-content-center m-auto">
                                 <button class="mb-2 btn btn-primary" sec:authorize="hasRole('PACIENTE')">
                                     <a th:href="@{/turno/cancelar/__${turno.id}__}" class="text-white">Cancelar Turno</a>
                                 </button>
-                                <button class="mb-2 btn btn-primary" sec:authorize="hasRole('PACIENTE')">
-                                    <a th:href="@{/turno/modificar/__${turno.id}__}" class="text-white">Editar Turno</a>
+                                <button class="mb-2 btn btn-primary" sec:authorize="hasAnyRole('PACIENTE', 'PROFESIONAL', 'ADMIN')">
+                                    <a th:href="@{/turno/modificar/__${turno.id}__}" class="text-white" style="white-space: nowrap;">Editar Turno</a>
                                 </button>
                             </td>
                         </tr>

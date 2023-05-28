@@ -16,7 +16,6 @@ public class Paciente extends Usuario  {
     
     private String obraSocialPaciente;
     private Integer numeroDeAfiliado;
-    private String motivoDeConsulta;
     
     
 }

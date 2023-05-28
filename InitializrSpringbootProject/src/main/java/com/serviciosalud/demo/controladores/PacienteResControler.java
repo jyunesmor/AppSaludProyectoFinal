@@ -46,12 +46,12 @@ public class PacienteResControler {
     public String registrarUsuario(MultipartFile archivo, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam(required = false) Integer dni, @RequestParam String email, @RequestParam(required = false) Integer telefono,
             @RequestParam String sexo, @RequestParam String password, @RequestParam String password2,
-            @RequestParam String obraSocialPaciente, @RequestParam Integer numeroDeAfiliado, @RequestParam String motivoConsulta,
+            @RequestParam String obraSocialPaciente, @RequestParam Integer numeroDeAfiliado, 
             ModelMap modelo) throws MiExcepcion, ParseException {
 
         try {
             pacienteServicio.registrar(archivo, fecha, nombre, apellido, dni, email, telefono, sexo, password, password2, obraSocialPaciente,
-                    numeroDeAfiliado, motivoConsulta);
+                    numeroDeAfiliado);
 
             modelo.put("exito", "Usted se ha registrado correctamete");
 
@@ -91,12 +91,12 @@ public class PacienteResControler {
     public String modificarUsuario(@PathVariable String idPaciente, MultipartFile archivo, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam(required = false) Integer dni, @RequestParam String email, @RequestParam(required = false) Integer telefono,
             @RequestParam String sexo, @RequestParam String password, @RequestParam String password2,
-            @RequestParam String obraSocialPaciente, @RequestParam Integer numeroDeAfiliado, @RequestParam String motivoConsulta,
+            @RequestParam String obraSocialPaciente, @RequestParam Integer numeroDeAfiliado,
             ModelMap modelo) throws MiExcepcion, ParseException {
 
         try {
 
-            pacienteServicio.actualizar(archivo, fecha, idPaciente, nombre, apellido, dni, email, telefono, sexo, password, password2, obraSocialPaciente, numeroDeAfiliado, motivoConsulta);
+            pacienteServicio.actualizar(archivo, fecha, idPaciente, nombre, apellido, dni, email, telefono, sexo, password, password2, obraSocialPaciente, numeroDeAfiliado);
             modelo.put("exito", "Usted se ha actualizado correctamete");
             return "index.html";
         } catch (MiExcepcion ex) {
@@ -112,7 +112,23 @@ public class PacienteResControler {
         List<Turno> misTurnos;
         misTurnos = turnoRepositorio.buscarPorPaciente(id);
         modelo.addAttribute("turnos", misTurnos);
-        return "listar_mis_turnos.html";
+        return "listar_turnos.html";
+    }
+    
+    
+    @GetMapping("/eliminar/{id}")
+    public String eliminar(@PathVariable String id, ModelMap modelo) {
+
+        modelo.put("paciente", pacienteServicio.getOne(id));
+        return "eliminar_paciente.html";
+    }
+
+    @PostMapping("/eliminado/{id}")
+    public String eliminado(@PathVariable String id, String nombre, ModelMap modelo) {
+
+        pacienteServicio.borrarPorId(id);
+
+        return "inicio.html";
     }
 
     @GetMapping("/pacientes")

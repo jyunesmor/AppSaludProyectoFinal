@@ -35,6 +35,12 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, String> {
     @Query("SELECT u FROM Usuario u WHERE u.especialidad = :especialidad")
     public List<Profesional> buscarPorEspecialidad(@Param("especialidad") Especialidad especialidad);
 
+    @Query("SELECT u FROM Usuario u WHERE u.rol = 'PROFESIONAL' ORDER BY u.precio ASC")
+    public List<Profesional> ordenarPorPrecio();
+
+    @Query("SELECT u FROM Usuario u WHERE u.rol = 'PROFESIONAL' ORDER BY u.calificacion DESC")
+    public List<Profesional> ordenarPorCalificacion();
+
     @Query("SELECT u FROM Usuario u WHERE u.nombreEstablecimiento= :nombreEstablecimiento")
     public Profesional buscarUsuarioPorEstablecimiento(@Param("nombreEstablecimiento") String nombreEstablecimiento);
 

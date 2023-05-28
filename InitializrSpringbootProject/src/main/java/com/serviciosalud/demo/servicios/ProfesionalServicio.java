@@ -5,6 +5,7 @@ import com.serviciosalud.demo.entidades.Imagen;
 import com.serviciosalud.demo.entidades.Profesional;
 import com.serviciosalud.demo.entidades.Usuario;
 import com.serviciosalud.demo.enumeraciones.Especialidad;
+import com.serviciosalud.demo.enumeraciones.Modalidad;
 import com.serviciosalud.demo.enumeraciones.Roles;
 import com.serviciosalud.demo.repositorios.ProfesionalRepositorio;
 import com.serviciosalud.demo.repositorios.UsuarioRepositorio;
@@ -43,7 +44,7 @@ public class ProfesionalServicio implements UserDetailsService {
     /*metodo para registrar profesional*/
     @Transactional
     public void registrar(MultipartFile archivo, Date fecha, String nombre, String apellido, Integer dni, String email, Integer telefono, String sexo,
-            String password, String password2, Long matricula, String especialidad, Double precio,
+            String password, String password2, Long matricula, String especialidad, String modalidad, Double precio,
             String inicioDia, String finDia, String inicioHora, String finHora, Double calificacion, String localidad,
             String obraSocial, Long telefonoLaboral, String descripcion, String nombreEstablecimiento) throws MiExcepcion {
 
@@ -71,6 +72,12 @@ public class ProfesionalServicio implements UserDetailsService {
             }
         }
 
+        for (Modalidad x : Modalidad.values()) {
+            if (modalidad.equals(x.toString())) {
+                profesional.setModalidad(x);
+            }
+        }
+
         //registrarDisponibilidadDias(profesional, inicioDia, finDia);
         profesional.setDisponibilidadInicioDia(inicioDia);
         profesional.setDisponibilidadFinDia(finDia);
@@ -93,7 +100,7 @@ public class ProfesionalServicio implements UserDetailsService {
 
     @Transactional
     public void actualizarProfesional(MultipartFile archivo, Date fecha, String idProfesional, String nombre, String apellido, Integer dni, String email, Integer telefono,
-            String sexo, String password, String password2, Long matricula, String especialidad, Double precio,
+            String sexo, String password, String password2, Long matricula, String especialidad, String modalidad, Double precio,
             String inicioDia, String finDia, String inicioHora, String finHora, Double calificacion, String localidad,
             String obraSocial, Long telefonoLaboral, String descripcion, String nombreEstablecimiento, Boolean activo) throws MiExcepcion {
 
@@ -124,6 +131,11 @@ public class ProfesionalServicio implements UserDetailsService {
             for (Especialidad x : Especialidad.values()) {
                 if (especialidad.equals(x.toString())) {
                     profesional.setEspecialidad(x);
+                }
+            }
+            for (Modalidad x : Modalidad.values()) {
+                if (modalidad.equals(x.toString())) {
+                    profesional.setModalidad(x);
                 }
             }
             profesional.setDisponibilidadInicioDia(inicioDia);
@@ -220,6 +232,16 @@ public class ProfesionalServicio implements UserDetailsService {
     @Transactional(readOnly = true)
     public List<Profesional> buscarPorEspecialidad(Especialidad especialidad) {
         return usuarioRepositorio.buscarPorEspecialidad(especialidad);
+    }
+    
+    @Transactional(readOnly = true)
+    public List<Profesional> ordenarPorPrecio() {
+        return usuarioRepositorio.ordenarPorPrecio();
+    }
+    
+    @Transactional(readOnly = true)
+    public List<Profesional> ordenarPorCalificacion() {
+        return usuarioRepositorio.ordenarPorCalificacion();
     }
 
     @Transactional

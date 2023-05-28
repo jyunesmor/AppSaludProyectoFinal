@@ -164,7 +164,7 @@ public class TurnoControlador {
             modelo.put("turno", turno);
             
             
-            modelo.put("mesGuardado", fecha.getMonth().toString());
+            modelo.put("mesGuardado", fecha.getMonth());
             System.out.println("TCONT: mes: " + fecha.getMonth().toString());
             modelo.put(("diaGuardado"), fecha.getDayOfWeek().toString());
             System.out.println("TCONT: dia: " + fecha.getDayOfWeek());
@@ -187,7 +187,7 @@ public class TurnoControlador {
 
     @PostMapping("/modificado/{id}")
     public String modificado(@PathVariable String id, @RequestParam String idProfesional, @RequestParam String idPaciente, @RequestParam String mes,
-            @RequestParam String dia, @RequestParam String hora, @RequestParam String motivoConsulta, ModelMap modelo) {
+            @RequestParam String dia, @RequestParam String hora, @RequestParam("motivoConsulta") String motivoConsulta, ModelMap modelo) {
 
         try {
             turnoServicio.modificar(id, idPaciente, idProfesional, mes, dia, hora, motivoConsulta);
@@ -199,6 +199,17 @@ public class TurnoControlador {
 
         }
     }
+    
+    @GetMapping("/listar")
+    public String listar(ModelMap modelo){
+        
+        List<Turno> turnos = turnoServicio.listarTurnos();
+        
+        modelo.addAttribute("turnos", turnos);
+        
+        return "listar_turnos.html";
+    }
+    
 
     @GetMapping("/cancelar/{id}")
     public String eliminar(@PathVariable String id, ModelMap modelo) {

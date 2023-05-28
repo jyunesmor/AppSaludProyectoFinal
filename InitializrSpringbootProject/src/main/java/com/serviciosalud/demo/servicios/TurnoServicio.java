@@ -180,4 +180,8 @@ public class TurnoServicio {
         }
         return flag;
     }
+
+    public List<Turno> listarTurnos(){
+        return turnoRepositorio.findAll();
+    }
 }

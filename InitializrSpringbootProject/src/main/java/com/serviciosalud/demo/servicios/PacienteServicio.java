@@ -47,10 +47,10 @@ public class PacienteServicio implements UserDetailsService {
     /*metodo para registrar usuario*/
     @Transactional
     public void registrar(MultipartFile archivo, Date fecha, String nombre, String apellido, Integer dni, String email, Integer telefono, String sexo,
-            String password, String password2, String obraSocialPaciente, Integer numeroDeAfiliado, String motivoConsulta) throws MiExcepcion , ParseException {
+            String password, String password2, String obraSocialPaciente, Integer numeroDeAfiliado) throws MiExcepcion , ParseException {
 
         validar(nombre, apellido, dni, email, telefono,
-                sexo, password, password2, obraSocialPaciente, numeroDeAfiliado, motivoConsulta);
+                sexo, password, password2, obraSocialPaciente, numeroDeAfiliado);
 
         Paciente paciente = new Paciente();
         paciente.setNombre(nombre);
@@ -65,7 +65,6 @@ public class PacienteServicio implements UserDetailsService {
 
         paciente.setObraSocialPaciente(obraSocialPaciente);
         paciente.setNumeroDeAfiliado(numeroDeAfiliado);
-        paciente.setMotivoDeConsulta(motivoConsulta);
 
         paciente.setRol(Roles.PACIENTE);
 
@@ -79,10 +78,10 @@ public class PacienteServicio implements UserDetailsService {
     /*metodo para actualizar usuario*/
     @Transactional
     public void actualizar(MultipartFile archivo, Date fecha, String idPaciente, String nombre, String apellido, Integer dni, String email, Integer telefono,
-            String sexo, String password, String password2, String obraSocialPaciente, Integer numeroDeAfiliado, String motivoConsulta) throws MiExcepcion {
+            String sexo, String password, String password2, String obraSocialPaciente, Integer numeroDeAfiliado) throws MiExcepcion {
 
         validar(nombre, apellido, dni, email, telefono,
-                sexo, password, password2, obraSocialPaciente, numeroDeAfiliado, motivoConsulta);
+                sexo, password, password2, obraSocialPaciente, numeroDeAfiliado);
 
         Optional<Paciente> respuesta = pacienteRepositorio.findById(idPaciente);
 
@@ -103,7 +102,6 @@ public class PacienteServicio implements UserDetailsService {
 
             paciente.setObraSocialPaciente(obraSocialPaciente);
             paciente.setNumeroDeAfiliado(numeroDeAfiliado);
-            paciente.setMotivoDeConsulta(motivoConsulta);
 
             String idImagen = null;
 
@@ -143,7 +141,6 @@ public class PacienteServicio implements UserDetailsService {
 
         paciente.setObraSocialPaciente("Eterno");
         paciente.setNumeroDeAfiliado(10101010);
-        paciente.setMotivoDeConsulta("la mano de Dios");
         /*Date fecha = new Date();
         paciente.setFechaDeNacimiento(fecha);*/
  /*  Imagen imagen = imagenServicio.guardar(archivo);
@@ -177,12 +174,12 @@ public class PacienteServicio implements UserDetailsService {
     @Transactional
     public List<Paciente> listaPacientes() {
 
-        return pacienteRepositorio.findAll();
+        return pacienteRepositorio.buscarPacientePorRol(Roles.PACIENTE);
     }
 
     /*metodo de validacion*/
     private void validar(String nombre, String apellido, Integer dni, String email,
-            Integer telefono, String sexo, String password, String password2, String obraSocialPaciente, Integer numeroDeAfiliado, String motivoConsulta) throws MiExcepcion {
+            Integer telefono, String sexo, String password, String password2, String obraSocialPaciente, Integer numeroDeAfiliado) throws MiExcepcion {
 
         if (nombre == null || nombre.isEmpty()) {
             throw new MiExcepcion("el nombre del usuario no puede ser nulo ni estar vacío");
@@ -198,9 +195,6 @@ public class PacienteServicio implements UserDetailsService {
         }
         if (obraSocialPaciente == null || obraSocialPaciente.isEmpty()) {
             throw new MiExcepcion("la obra social no puede ser nulo ni estar vacío");
-        }
-        if (motivoConsulta == null || motivoConsulta.isEmpty()) {
-            throw new MiExcepcion("el motivo de la consulta no puede ser nulo ni estar vacío");
         }
         if (sexo == null || sexo.isEmpty()) {
             throw new MiExcepcion("el sexo no puede ser nulo ni estar vacío");
