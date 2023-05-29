@@ -28,9 +28,8 @@
                 <div class="col-lg-6 header__content">
                     <h1 class="title">¡Bienvenidos a nuestra plataforma de servicios de salud! <span class="title-style"></span>
                     </h1>
-                    <p>¡Regístrate ahora mismo y comienza a disfrutar de los beneficios de nuestra plataforma
-                        de servicios de salud! Estamos aquí para brindarte una atención médica de calidad y facilitar
-                        tu camino hacia una vida más saludable.</p>
+                    <br>
+                    <p>Desde aquí podrás encontrar a los mejores profesionales,consultar sus datos de atención médica y gestionar tus propios turnos.</p>
 
                     <div class="d-grid gap-2 col-6 mx-auto" th:if="${session.usuariosession == null}">
                         <a type="button" class="header_button btn btn-primary btn-lg" th:href="@{/login}">Ingreso Paciente</a>   
@@ -48,13 +47,13 @@
                     <br>
                     <div class="d-grid gap-2 col-6 mx-auto" th:if="${session.usuariosession != null}"  sec:authorize="hasRole('PACIENTE')">
                         <a type="button" class="header_button btn btn-primary btn-lg" th:href="@{/profesional/listar}" > 
-                            Sacar Turno
+                            Buscar Profesional
                         </a>
                     </div>
                     <br>
                     <div class="d-grid gap-2 col-6 mx-auto" th:if="${session.usuariosession != null}"  sec:authorize="hasRole('PACIENTE')">
                         <a type="button" class="header_button btn btn-primary btn-lg" th:href="@{/paciente/turnos/__${session.usuariosession.id}__}" > 
-                            Listar Turnos
+                            Mis Turnos
                         </a>
                     </div>
                     
