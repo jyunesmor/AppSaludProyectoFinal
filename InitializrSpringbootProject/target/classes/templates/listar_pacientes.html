@@ -47,6 +47,9 @@
                                 <button class="mb-2 btn btn-primary" sec:authorize="hasRole('ADMIN')">
                                     <a th:href="@{#}" class="text-white">Modificar</a>
                                 </button>
+                                <button class="mb-2 btn btn-primary" sec:authorize="hasRole('ADMIN')">
+                                    <a th:href="@{/paciente/eliminar/__${paciente.id}__}" class="text-white">Baja</a>
+                                </button>
                                 <button class="mb-2 btn btn-primary" sec:authorize="hasRole('PROFESIONAL')">
                                     <a th:href="@{#}" class="text-white">Historial Clínico</a>
                                 </button>
