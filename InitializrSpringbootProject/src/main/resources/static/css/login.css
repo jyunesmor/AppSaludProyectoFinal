@@ -14,6 +14,16 @@ and open the template in the editor.
     box-sizing: border-box;
 }
 
+body{
+    background-image: url(../imagen/fondo.svg);
+    background-repeat:no-repeat;
+    background-position-x:center;
+}
+
+.cont-img{
+    margin-top: 100px
+}
+
 .contenedor-login{
     width: 600px;
     height: 450px;

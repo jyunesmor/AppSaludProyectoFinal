@@ -18,5 +18,6 @@ com\serviciosalud\demo\servicios\ImagenServicio.class
 com\serviciosalud\demo\repositorios\UsuarioRepositorio.class
 com\serviciosalud\demo\enumeraciones\Roles.class
 com\serviciosalud\demo\enumeraciones\Especialidad.class
+static\imagen\fondo.svg
 com\serviciosalud\demo\entidades\Imagen.class
 com\serviciosalud\demo\entidades\Usuario.class
