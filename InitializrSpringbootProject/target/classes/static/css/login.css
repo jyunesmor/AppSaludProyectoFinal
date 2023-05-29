@@ -61,4 +61,10 @@ body{
     justify-content: center;
     align-content: center;
     margin: auto;
+    
+    body{
+    background-image: url(../imagen/fondo.svg);
+    background-repeat:no-repeat;
+    background-position-x:center;
+}
 }

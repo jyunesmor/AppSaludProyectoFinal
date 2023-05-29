@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\Juan\Desktop\Proyecto FInal Egg\tania\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\controladores\PortalControlador.java
 C:\Users\Juan\Desktop\Proyecto FInal Egg\tania\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\entidades\Imagen.java
 C:\Users\Juan\Desktop\Proyecto FInal Egg\tania\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\SeguridadWeb.java
@@ -25,3 +26,32 @@ C:\Users\Juan\Desktop\Proyecto FInal Egg\tania\InitializrSpringbootProject\src\m
 C:\Users\Juan\Desktop\Proyecto FInal Egg\tania\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\repositorios\PacienteRepositorio.java
 C:\Users\Juan\Desktop\Proyecto FInal Egg\tania\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\repositorios\ImagenRepositorio.java
 C:\Users\Juan\Desktop\Proyecto FInal Egg\tania\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\enumeraciones\Roles.java
+=======
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\controladores\PacienteResControler.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\servicios\PacienteServicio.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\repositorios\ImagenRepositorio.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\enumeraciones\Especialidad.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\controladores\TurnoControlador.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\controladores\ProfesionalControlador.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\servicios\TurnoServicio.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\enumeraciones\Estado.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\enumeraciones\Roles.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\entidades\Profesional.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\entidades\Imagen.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\AppSaludProyectoFinalApplication.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\entidades\Turno.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\entidades\Usuario.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\repositorios\TurnoRepositorio.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\servicios\ImagenServicio.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\controladores\AdminControlador.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\controladores\PortalControlador.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\repositorios\PacienteRepositorio.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\entidades\Paciente.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\servicios\ProfesionalServicio.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\controladores\ImagenControlador.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\enumeraciones\Modalidad.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\MiExcepcion\MiExcepcion.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\repositorios\ProfesionalRepositorio.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\SeguridadWeb.java
+C:\Users\PC\Documents\CARLA\egg programación\proyecto final\InitializrSpringbootProject\src\main\java\com\serviciosalud\demo\repositorios\UsuarioRepositorio.java
+>>>>>>> 187032702dc33c5f2c428f2fcb6ecec1ee87fede

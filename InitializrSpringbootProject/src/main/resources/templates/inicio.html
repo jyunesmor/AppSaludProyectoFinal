@@ -53,8 +53,18 @@
                             tu camino hacia una vida más saludable.</p>
                     </div>
                 </div>
+<<<<<<< HEAD
                 <div class="inicio-botones">
                     <div class="ing-pac" th:if="${session.usuariosession == null}">
+=======
+                <div class="col-lg-6 header__content">
+                    <h1 class="title">¡Bienvenidos a nuestra plataforma de servicios de salud! <span class="title-style"></span>
+                    </h1>
+                    <br>
+                    <p>Desde aquí podrás encontrar a los mejores profesionales,consultar sus datos de atención médica y gestionar tus propios turnos.</p>
+
+                    <div class="d-grid gap-2 col-6 mx-auto" th:if="${session.usuariosession == null}">
+>>>>>>> 187032702dc33c5f2c428f2fcb6ecec1ee87fede
                         <a type="button" class="header_button btn btn-primary btn-lg" th:href="@{/login}">Ingreso Paciente</a>   
                     </div>
                     <br>
@@ -70,13 +80,17 @@
                     <br>
                     <div class="bus-pro" th:if="${session.usuariosession != null}"  sec:authorize="hasRole('PACIENTE')">
                         <a type="button" class="header_button btn btn-primary btn-lg" th:href="@{/profesional/listar}" > 
+<<<<<<< HEAD
                             Buscar Profesionales
+=======
+                            Buscar Profesional
+>>>>>>> 187032702dc33c5f2c428f2fcb6ecec1ee87fede
                         </a>
                     </div>
                     <br>
                     <div class="lis-tur" th:if="${session.usuariosession != null}"  sec:authorize="hasRole('PACIENTE')">
                         <a type="button" class="header_button btn btn-primary btn-lg" th:href="@{/paciente/turnos/__${session.usuariosession.id}__}" > 
-                            Listar Turnos
+                            Mis Turnos
                         </a>
                     </div>
                 </div>
