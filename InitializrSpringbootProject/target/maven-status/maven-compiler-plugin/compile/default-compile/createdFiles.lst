@@ -4,6 +4,7 @@ com\serviciosalud\demo\MiExcepcion\MiExcepcion.class
 com\serviciosalud\demo\enumeraciones\Modalidad.class
 com\serviciosalud\demo\AppSaludProyectoFinalApplication.class
 com\serviciosalud\demo\controladores\ImagenControlador.class
+com\serviciosalud\demo\controladores\ErroresControlador.class
 com\serviciosalud\demo\servicios\PacienteServicio.class
 com\serviciosalud\demo\repositorios\ProfesionalRepositorio.class
 com\serviciosalud\demo\controladores\ProfesionalControlador.class
