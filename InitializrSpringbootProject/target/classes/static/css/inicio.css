@@ -104,3 +104,13 @@ body{
   justify-content: center;
 }
 
+.tituloServicioSalud{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-brand{
+    
+}
