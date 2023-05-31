@@ -18,14 +18,14 @@ and open the template in the editor.
 */
 
 .contenedor{
-    width: 85%;
+    width: 95%;
     display: flex;
     flex-direction: column;
-    margin: 100px auto;
+    margin: auto;
 }
 
 .contenedor-filtros{
-    width: 100%;
+    width: 95%;
     margin-left: 300px;
     margin-top: 50px;
     display: flex;

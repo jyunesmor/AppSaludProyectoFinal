@@ -7,6 +7,11 @@ and open the template in the editor.
     Created on : 28/05/2023, 20:06:03
     Author     : Juan
 */
+
+*{
+    
+}
+
 .contenedor-inicio{
     width: 80%;
     margin: auto;
@@ -36,7 +41,7 @@ and open the template in the editor.
 }
 
 .inf-pac input{
-    font-size: 50px;
+    font-size: 30px;
     background-color: transparent;
 }
 
