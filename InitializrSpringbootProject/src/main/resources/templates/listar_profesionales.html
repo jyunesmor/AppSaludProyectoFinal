@@ -30,17 +30,25 @@
                         <label>Filtrar :</label>
                     </div> 
 
-                    <select class="custom-select mr-sm-2" name="palabraClave" >
-                    <option selected >Seleccionar filtro</option>
+                    <select class="custom-select mr-sm-2" name="palabraEspecialidad">
 
-                    <option value="PEDIATRIA">PEDIATRIA</option>
-                    <option value="GINECOLOGIA">GINECOLOGIA</option>
-                    <option value="CLINICA">CLINICA</option>
-                    <option value="CARDIOLOGIA">CARDIOLOGIA</option>
-                    <option value="PRECIO">MENOR A MAYOR PRECIO</option>
-                    <option value="CALIFICACION">MAYOR A MENOR CALIFICACION</option>
+                        <option selected value="">Seleccionar especialidad</option>
+
+                        <option value="TODOS" th:selected="${palabraEspecialidad == 'TODOS'}">TODOS</option>
+                        <option value="PEDIATRIA" th:selected="${palabraEspecialidad == 'PEDIATRIA'}">PEDIATRIA</option>
+                        <option value="GINECOLOGIA" th:selected="${palabraEspecialidad == 'GINECOLOGIA'}">GINECOLOGIA</option>
+                        <option value="CLINICA" th:selected="${palabraEspecialidad == 'CLINICA'}">CLINICA</option>
+                        <option value="CARDIOLOGIA" th:selected="${palabraEspecialidad == 'CARDIOLOGIA'}">CARDIOLOGIA</option>
                     </select>
 
+                    <select class="custom-select mr-sm-2" name="palabraFiltro" >
+
+                        <option selected value="">Seleccionar filtro</option>
+
+                        <option value="NINGUNO" th:selected="${palabraFiltro == 'NINGUNO'}">SIN FILTRO</option>
+                        <option value="PRECIO" th:selected="${palabraFiltro == 'PRECIO'}">MENOR A MAYOR PRECIO</option>
+                        <option value="CALIFICACION" th:selected="${palabraFiltro == 'CALIFICACION'}">MAYOR A MENOR CALIFICACION</option>
+                    </select>
 
 
                     <div class="filtro-btn">
@@ -50,8 +58,14 @@
                         </button>
                     </div>
 
+
+
                 </form>
 
+            </div>
+
+            <div class="text-center" th:if="${mensaje}"> <!-- muestra un mensaje si no elige un option o ninguno-->
+                <p th:text="${mensaje}"></p>
             </div>
 
             <section class="contenedor-listado">
@@ -71,6 +85,7 @@
                                 <th scope="col">Calificacion</th>
                                 <th scope="col">Especialidad</th>
                                 <th scope="col">Disponibilidad</th>
+                                <th scope="col">Estableciento</th>
                                 <th scope="col" sec:authorize="hasAnyRole('ADMIN', 'PACIENTE')">Acciones</th>
                             </tr>
                         </thead>
@@ -88,6 +103,7 @@
                                 <td th:text="${profesional.calificacion}"></td>
                                 <td th:text="${profesional.especialidad}"></td>
                                 <td th:utext="${profesional.disponibilidadInicioDia + ' - ' + profesional.disponibilidadFinDia + '<br>(' + profesional.disponibilidadInicioHora + ' a ' + profesional.disponibilidadFinHora + ')' }" style="white-space: nowrap;"></td>
+                                <td th:text="${profesional.nombreEstablecimiento}"></td>
                                 <td class="contenedor-botones">
                                     <button class="mb-2 btn btn-primary" sec:authorize="hasRole('ADMIN')">
                                         <a th:href="@{/profesional/modificar/__${profesional.id}__}" class="text-white">Modificar</a>

@@ -227,7 +227,7 @@ body {
     margin-bottom: 10px;
 }
 
-input: readonly {
+input:readonly {
     background-color: black;
     border: none;
 }

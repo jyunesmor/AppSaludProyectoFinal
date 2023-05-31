@@ -225,22 +225,27 @@ public class ProfesionalServicio implements UserDetailsService {
     }
 
     @Transactional(readOnly = true)
-    public Profesional buscarPorMatricula(Long matricula) {
-        return usuarioRepositorio.buscarUsuarioPorMatricula(matricula);
-    }
-
-    @Transactional(readOnly = true)
     public List<Profesional> buscarPorEspecialidad(Especialidad especialidad) {
         return usuarioRepositorio.buscarPorEspecialidad(especialidad);
     }
     
     @Transactional(readOnly = true)
-    public List<Profesional> ordenarPorPrecio() {
+    public List<Profesional> ordenarPorPrecioFiltro(Especialidad especialidad) {
+        return usuarioRepositorio.ordenarPorPrecioFiltro(especialidad);
+    }
+    
+    @Transactional(readOnly = true)
+    public List<Profesional> ordenarPorCalificacionFiltro(Especialidad especialidad) {
+        return usuarioRepositorio.ordenarPorCalificacionFiltro(especialidad);
+    }
+    
+    @Transactional(readOnly = true)
+    public List<Profesional> ordenarPorPrecio( ) {
         return usuarioRepositorio.ordenarPorPrecio();
     }
     
     @Transactional(readOnly = true)
-    public List<Profesional> ordenarPorCalificacion() {
+    public List<Profesional> ordenarPorCalificacion( ) {
         return usuarioRepositorio.ordenarPorCalificacion();
     }
 
@@ -253,11 +258,6 @@ public class ProfesionalServicio implements UserDetailsService {
     @Transactional(readOnly = true)
     public Profesional buscarPorEmail(String email) {
         return usuarioRepositorio.buscarProfesionalPorEmail(email);
-    }
-
-    @Transactional(readOnly = true)
-    public Profesional buscarPorNombreEstablecimiento(String nombreEstablecimiento) {
-        return usuarioRepositorio.buscarUsuarioPorEstablecimiento(nombreEstablecimiento);
     }
 
 

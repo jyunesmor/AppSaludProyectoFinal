@@ -36,7 +36,7 @@ footer{
 
 body{
     width: 100vw;
-    font-family: var(--font_Text);
+    font-family:var(--font_Text);
     font-size: 14px;
     min-height: calc(100vh - (100px + 100px));
     background-image: url(../imagen/fondo.svg);

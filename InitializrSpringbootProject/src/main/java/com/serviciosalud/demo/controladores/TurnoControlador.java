@@ -21,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -158,12 +159,11 @@ public class TurnoControlador {
 
         if (respuesta.isPresent()) {
             Turno turno = respuesta.get();
-            
+
             LocalDate fecha = LocalDate.parse(turno.getFecha());
 
             modelo.put("turno", turno);
-            
-            
+
             modelo.put("mesGuardado", fecha.getMonth());
             System.out.println("TCONT: mes: " + fecha.getMonth().toString());
             modelo.put(("diaGuardado"), fecha.getDayOfWeek().toString());
@@ -199,29 +199,64 @@ public class TurnoControlador {
 
         }
     }
-    
+
     @GetMapping("/listar")
-    public String listar(ModelMap modelo){
-        
-        List<Turno> turnos = turnoServicio.listarTurnos();
-        
-        modelo.addAttribute("turnos", turnos);
-        
+    public String listar(ModelMap modelo, HttpSession session) {
+
+        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+
+        List<Turno> turnos = new ArrayList<>();
+
+        if (logueado.getRol().toString().equals("PROFESIONAL")) {
+            turnos = turnoServicio.listarTurnosDeUnProfesional(logueado.getId());
+            modelo.addAttribute("turnos", turnos);
+
+        } else {
+            turnos = turnoServicio.listarTurnos();
+            modelo.addAttribute("turnos", turnos);
+        }
+
         return "listar_turnos.html";
     }
-    
+
+    @GetMapping("/filtrar")
+    public String filtraPorEspecialidad(ModelMap modelo, @Param("palabraClave") String palabraClave, @Param("idProfesional") String idProfesional) {
+        List<Turno> turnos = new ArrayList();
+        String mensaje = "...";
+        
+        if (palabraClave.equals("HOY")) {
+            turnos = turnoServicio.buscarTurnosDeHoy(idProfesional);
+            mensaje = "No hay turnos pendientes para el día de hoy";
+
+        } else if (palabraClave.equals("FECHA")) {
+            turnos = turnoServicio.ordenarTurnosPorFecha(idProfesional);
+            mensaje = "No tiene turnos.";
+            
+        } else if (palabraClave.equals("PACIENTE")) {
+            turnos = turnoServicio.ordenarTurnosPorPacientes(idProfesional);
+            mensaje = "No tiene turnos..";
+        }
+
+        if (turnos.isEmpty()) {
+            modelo.addAttribute("mensaje", mensaje);
+        }
+        modelo.addAttribute("turnos", turnos);
+        modelo.addAttribute("palabraClave", palabraClave);
+
+        return "listar_turnos.html";
+    }
 
     @GetMapping("/cancelar/{id}")
     public String eliminar(@PathVariable String id, ModelMap modelo) {
-        
+
         modelo.put("turno", turnoRepositorio.getOne(id));
-        
+
         return "eliminar_turno.html";
     }
-    
+
     @PostMapping("/cancelado/{id}")
-    public String eliminado(@PathVariable String id){
-        
+    public String eliminado(@PathVariable String id) {
+
         turnoRepositorio.deleteById(id);
         return "inicio.html";
     }

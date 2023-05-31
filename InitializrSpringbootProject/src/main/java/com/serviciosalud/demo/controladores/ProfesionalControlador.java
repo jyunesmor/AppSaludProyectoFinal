@@ -6,6 +6,7 @@ import com.serviciosalud.demo.enumeraciones.Especialidad;
 import com.serviciosalud.demo.repositorios.ProfesionalRepositorio;
 import com.serviciosalud.demo.repositorios.UsuarioRepositorio;
 import com.serviciosalud.demo.servicios.ProfesionalServicio;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -77,23 +78,61 @@ public class ProfesionalControlador {
     }
 
     @GetMapping("/filtrar")
-    public String filtraPorEspecialidad(ModelMap modelo, @Param("palabraClave") String palabraClave) {
+    public String filtraPorEspecialidad(ModelMap modelo, @Param("palabraEspecialidad") String palabraEspecialidad, @Param("palabraFiltro") String palabraFiltro) {
 
-        if (palabraClave.equals("PRECIO")) {
-            List<Profesional> profesionales = profesionalServicio.ordenarPorPrecio();
+        List<Profesional> profesionales = new ArrayList<>();
+        Especialidad especialidad = null;
+
+        if (palabraEspecialidad.equals("")|| palabraFiltro.equals("")) {
+            profesionales = profesionalServicio.listaProfesinales();
             modelo.addAttribute("profesionales", profesionales);
-        } else if(palabraClave.equals("CALIFICACION")) {
-            List<Profesional> profesionales = profesionalServicio.ordenarPorCalificacion();
-            modelo.addAttribute("profesionales", profesionales);
+            modelo.addAttribute("mensaje", "  ***Debe elegir una opción en ambos campos si desea filtrar su búsqueda");
+            
+            return "listar_profesionales.html";
+        }
+
+        if (palabraEspecialidad.equals("TODOS")) {
+
+            switch (palabraFiltro) {
+                case "PRECIO":
+                    profesionales = profesionalServicio.ordenarPorPrecio();
+                    break;
+                case "CALIFICACION":
+                    profesionales = profesionalServicio.ordenarPorCalificacion();
+                    break;
+                case "NINGUNO":
+                    profesionales = profesionalServicio.listaProfesinales();
+                    break;
+                default:
+                    break;
+            }
+
         } else {
+
             for (Especialidad aux : Especialidad.values()) {
-                if (aux.toString().equals(palabraClave)) {
-                    List<Profesional> profesionales = usuarioRepositorio.buscarPorEspecialidad(aux);
-                    modelo.addAttribute("profesionales", profesionales);
+                if (aux.toString().equals(palabraEspecialidad)) {
+                    especialidad = aux;
                 }
             }
+
+            switch (palabraFiltro) {
+                case "PRECIO":
+                    profesionales = profesionalServicio.ordenarPorPrecioFiltro(especialidad);
+                    break;
+                case "CALIFICACION":
+                    profesionales = profesionalServicio.ordenarPorCalificacionFiltro(especialidad);
+                    break;
+                case "NINGUNO":
+                    profesionales = usuarioRepositorio.buscarPorEspecialidad(especialidad);
+                    break;
+                default:
+                    break;
+            }
         }
-        modelo.addAttribute("palabraClave", palabraClave);
+
+        modelo.addAttribute("profesionales", profesionales);
+        modelo.addAttribute("palabraFiltro", palabraFiltro);
+        modelo.addAttribute("palabraEspecialidad", palabraEspecialidad);
 
         return "listar_profesionales.html";
     }

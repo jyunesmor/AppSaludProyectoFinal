@@ -181,7 +181,41 @@ public class TurnoServicio {
         return flag;
     }
 
-    public List<Turno> listarTurnos(){
+    public List<Turno> listarTurnos() {
         return turnoRepositorio.findAll();
+    }
+
+    public List<Turno> listarTurnosDeUnProfesional(String id) {
+        return turnoRepositorio.buscarPorProfesional(id);
+    }
+
+    public List<Turno> buscarTurnosDeHoy(String idProfesional) {
+        Optional<List<Turno>> turnos = turnoRepositorio.buscarTurnoDeHoy(LocalDate.now().toString(), idProfesional);
+
+        if (turnos.isPresent()) {
+            return turnos.get();
+        }
+
+        return null;
+    }
+
+    public List<Turno> ordenarTurnosPorFecha(String idProfesional) {
+        Optional<List<Turno>> turnos = turnoRepositorio.ordenarTurnosPorFecha(idProfesional);
+
+        if (turnos.isPresent()) {
+            return turnos.get();
+        }
+
+        return null;
+    }
+
+    public List<Turno> ordenarTurnosPorPacientes(String idProfesional) {
+        Optional<List<Turno>> turnos = turnoRepositorio.ordenarTurnosPorPacientes(idProfesional);
+
+        if (turnos.isPresent()) {
+            return turnos.get();
+        }
+
+        return null;
     }
 }
