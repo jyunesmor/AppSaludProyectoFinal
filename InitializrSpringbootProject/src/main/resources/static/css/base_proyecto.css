@@ -1,0 +1,126 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 30/05/2023, 22:35:20
+    Author     : Juan
+*/
+
+
+
+/*  Reseteo Html  */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100vw;
+    height: 100vh;  
+    font_Text: 'Montserrat', sans-serif;
+    font-size: 16px;
+    background-image: url(../imagen/fondo.svg);
+    background-repeat:no-repeat;
+    background-position-x:center;
+}
+
+
+.main{
+    min-height: calc(100vh - (100px - 100px));
+}
+
+
+/*  Estilo NavBar  */
+
+.header{
+    height: 100px;
+    margin-right: 50px;
+}
+
+.header li{
+    margin-right: 30px;
+    font-size: 18px;
+}
+
+/*  Estilo Footer  */
+
+.footer{
+    height: 100px;
+}
+
+/*  Estilo de Caja Footer */
+
+.cont-footer{
+    gap:30px;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+}
+
+/*  Estilo de Caja Footer */
+
+.text-footer{
+    width: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+.text-footer p{
+    margin:auto;
+}
+
+.footer{
+/*    background-color: lavenderblush;*/
+}
+
+/*  Estilo de Caja de Iconos */
+
+.redes{
+    width: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+/*  Estilo de Iconos del Footer */
+
+.red-social{
+    display: flex;
+    margin: auto;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.red-social a {
+    color: black;
+    text-decoration: none;
+    filter: drop-shadow(3px 3px 3px rgb(11, 6, 78));
+
+}
+
+.fa-facebook:hover {
+    transform: scale(1.75);
+    transition: 0.6s;
+    color: #0044ff;
+}
+
+.fa-twitter:hover {
+    transform: scale(2);
+    transition: 0.6s;
+    color: #0044ff;
+}
+
+.fa-youtube:hover {
+    transform: scale(2);
+    transition: 0.6s;
+    color: #ff0000;
+}
+
+.fa-instagram:hover {
+    transform: scale(2);
+    transition: 0.6s;
+    color: #d8942f;
+}
