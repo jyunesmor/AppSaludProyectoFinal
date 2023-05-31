@@ -13,6 +13,7 @@ import com.serviciosalud.demo.repositorios.UsuarioRepositorio;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -203,7 +204,13 @@ public class TurnoServicio {
         Optional<List<Turno>> turnos = turnoRepositorio.ordenarTurnosPorFecha(idProfesional);
 
         if (turnos.isPresent()) {
-            return turnos.get();
+            List<Turno> tres = new ArrayList<>();
+            tres = turnos.get();
+            for (Turno aux : tres) {
+                System.out.println("porFecha"+aux);
+            }
+            
+            return tres;
         }
 
         return null;

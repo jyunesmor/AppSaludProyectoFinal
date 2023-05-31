@@ -204,6 +204,7 @@ public class TurnoControlador {
     public String listar(ModelMap modelo, HttpSession session) {
 
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+        modelo.addAttribute("idProfesional", logueado.getId());
 
         List<Turno> turnos = new ArrayList<>();
 
@@ -220,7 +221,8 @@ public class TurnoControlador {
     }
 
     @GetMapping("/filtrar")
-    public String filtraPorEspecialidad(ModelMap modelo, @Param("palabraClave") String palabraClave, @Param("idProfesional") String idProfesional) {
+    public String filtraPorEspecialidad(ModelMap modelo, @Param("palabraClave") String palabraClave, 
+            @Param("idProfesional") String idProfesional) {
         List<Turno> turnos = new ArrayList();
         String mensaje = "...";
         
@@ -242,6 +244,7 @@ public class TurnoControlador {
         }
         modelo.addAttribute("turnos", turnos);
         modelo.addAttribute("palabraClave", palabraClave);
+        modelo.addAttribute("idProfesional", idProfesional);
 
         return "listar_turnos.html";
     }

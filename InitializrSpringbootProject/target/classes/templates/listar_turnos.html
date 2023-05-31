@@ -33,12 +33,12 @@
                     <select class="custom-select mr-sm-2" name="palabraClave" >
                         <option selected >Seleccionar</option>
 
-                        <option value="HOY">Turnos de hoy</option>
-                        <option value="FECHA">Fecha más próxima</option>
-                        <option value="PACIENTE">Pacientes alfabeticamente</option>
+                        <option value="HOY" th:selected="${palabraClave == 'HOY'}">Turnos de hoy</option>
+                        <option value="FECHA" th:selected="${palabraClave == 'FECHA'}">Fecha más próxima</option>
+                        <option value="PACIENTE" th:selected="${palabraClave == 'PACIENTE'}">Pacientes alfabeticamente</option>
                     </select>
 
-                    <input type="hidden" name="idProfesional" th:value="turno.profesional">
+                    <input type="hidden" name="idProfesional" th:value="${idProfesional}">
 
                     <div class="filtro-btn">
                         <input type="submit" value="Buscar" class="btn btn-primary mb-2" >
