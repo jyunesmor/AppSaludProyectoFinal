@@ -18,42 +18,10 @@
         <section class="header">
             <nav th:replace= "/fragments/navbar :: nav"></nav>
         </section>
-        <main class="main">
-            <div class="contenedor">
-                <div class="contenedor-filtros">
-                    <form th:action="@{/profesional/filtrar}" method="get" class="form-inline">
-                        <!--
-                        <div class="input-filtr">
-                            <input type="text" name="palabraClave" class="form-groupmx-sm-3 mb-2" placeholder="Ej: GINECOLOGIA" required>
-                        </div>
-                        -->
-                        <div class="form-group mb-2 text-filtro">
-                            <label>Filtrar :</label>
-                        </div> 
 
-                        <select class="custom-select mr-sm-2" name="palabraClave" >
-                            <option selected >Seleccionar filtro</option>
+        <main class="main">    
 
-                            <option value="PEDIATRIA">PEDIATRIA</option>
-                            <option value="GINECOLOGIA">GINECOLOGIA</option>
-                            <option value="CLINICA">CLINICA</option>
-                            <option value="CARDIOLOGIA">CARDIOLOGIA</option>
-                            <option value="PRECIO">MENOR A MAYOR PRECIO</option>
-                            <option value="CALIFICACION">MAYOR A MENOR CALIFICACION</option>
-                        </select>
-
-
-
-                        <div class="filtro-btn">
-                            <input type="submit" value="Buscar" class="btn btn-primary mb-2" >
-                            <button class="mb-2 btn btn-primary float-end">
-                                <a th:href="@{/profesional/listar}" class="text-white">Listar Todos</a>
-                            </button>
-                        </div>
-
-                    </form>
-
-                </div>
+            <div class="Contenedor">
 
                 <section class="contenedor-listado">
                     <div class="titulo-tabla">
@@ -107,11 +75,10 @@
                 </section>
             </div>
         </main>
+
         <div class="container footer">
             <footer th:replace= "/fragments/footer :: footer"></footer>
         </div>
-
-
 
         <script src="https://kit.fontawesome.com/eb496ab1a0.js" crossorigin="anonymous"></script>   
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

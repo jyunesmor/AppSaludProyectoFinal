@@ -21,7 +21,10 @@ and open the template in the editor.
     width: 95%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: auto;
+    margin-bottom: 80px;
 }
 
 .contenedor-filtros{
