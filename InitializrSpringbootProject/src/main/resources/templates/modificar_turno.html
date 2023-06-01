@@ -1,5 +1,5 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
-    <head><title>Sacar Turno</title>
+    <head><title>Modificar Turno</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -114,7 +114,7 @@
                                 <div class="form-group input_NomyApe-Pro">
                                     <div>
                                         <label class="mb-3"
-                                               ><strong>Nombre y Apellido del Profesional</strong></label
+                                               ><strong>Profesional</strong></label
                                         >
                                     </div>
                                     <!-- input es para ingresar el nombre del autor  -->
@@ -125,45 +125,45 @@
                                             style="background-color: #98c0f6; border: none;"
                                             class="form-control input_Ape-Pro"
                                             name="apellidoProfesional"
-                                            th:value="${turno.profesional.apellido}"
+                                            th:value="${turno.profesional.apellido} + ', ' + ${turno.profesional.nombre}"
                                             />
                                     </div>
                                 </div>
+                                <!--
+                                                                <div class="form-group input_Mes_Con">
+                                                                    <label>Elegir el mes de Consulta</label>
+                                                                    <select name="mes" th:value="mesGuardado">
+                                                                        <option th:each="mes : ${meses}" 
+                                                                                th:text="${mes}"
+                                                                                th:selected="${mes == mesGuardado}"
+                                                                                ></option>
+                                <!-- falta ponerle una variable que almacene la info 
+                            </select>
+                        </div>
 
-                                <div class="form-group">
-                                    <!-- input es para ingresar el nombre del autor  -->
-                                    <div>
-                                        <input
-                                            type="text"
-                                            readonly
-                                            style="background-color: #98c0f6; border: none;"
-                                            class="form-control input_Nom-Pro"
-                                            name="nombreProfesional"
-                                            th:value="${turno.profesional.nombre}"
-                                            />
-                                    </div>
-                                </div>
-
-                                <div class="form-group input_Mes_Con">
-                                    <label>Elegir el mes de Consulta</label>
-                                    <select name="mes" th:value="mesGuardado">
-                                        <option th:each="mes : ${meses}" 
-                                                th:text="${mes}"
-                                                th:selected="${mes == mesGuardado}"
-                                                ></option>
-                                        <!-- falta ponerle una variable que almacene la info -->
-                                    </select>
-                                </div>
-
+                        <div class="form-group input_dia_Con">
+                            <label>Elegia el día de Consulta</label>
+                            <select name="dia" th:value="diaGuardado">
+                                <option th:each="dia : ${dias}" 
+                                        th:text="${dia}"
+                                        th:selected="${dia == diaGuardado}"
+                                        ></option>
+                                <!-- falta ponerle una variable que almacene la info 
+                            </select>
+                        </div>
+                                -->
                                 <div class="form-group input_dia_Con">
-                                    <label>Elegia el día de Consulta</label>
-                                    <select name="dia" th:value="diaGuardado">
-                                        <option th:each="dia : ${dias}" 
-                                                th:text="${dia}"
-                                                th:selected="${dia == diaGuardado}"
-                                                ></option>
-                                        <!-- falta ponerle una variable que almacene la info -->
-                                    </select>
+                                    <label><strong>Días que atiende el profesional</strong></label>
+                                    <ul>
+                                        <li th:each="dia : ${dias}" th:text="${dia}"></li>
+                                    </ul>
+                                </div>
+
+                                <div class="form-group input_Hor_Con">
+                                    <label class="mb-2">Fecha del Turno</label>
+                                    <input type="date" id="fecha" name="fecha2" class="form-control" 
+                                           th:min="${today}" th:max="${lastDayOfYear}"
+                                           th:value="${turno.fecha}"/>
                                 </div>
 
                                 <div class="form-group input_Hor_Con">
@@ -201,7 +201,7 @@
                                 </div>
                                 <div class="btn_buttom">
                                     <button type="submit" class="btn btn-primary mt-3 botones">
-                                        Confirmar Turno
+                                        Modificar Turno
                                     </button>
                                 </div>
                             </div>

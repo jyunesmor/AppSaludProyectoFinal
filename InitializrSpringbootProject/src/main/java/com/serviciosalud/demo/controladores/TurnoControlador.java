@@ -9,12 +9,14 @@ import com.serviciosalud.demo.repositorios.TurnoRepositorio;
 import com.serviciosalud.demo.servicios.PacienteServicio;
 import com.serviciosalud.demo.servicios.ProfesionalServicio;
 import com.serviciosalud.demo.servicios.TurnoServicio;
+import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -22,6 +24,7 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,9 +64,11 @@ public class TurnoControlador {
 
         List<String> dias = listaDias(profesional);
         modelo.put("dias", dias);
-
-        Month[] meses = Month.values();
-        modelo.put("meses", meses);
+//
+//        List<String> meses = listaMeses();
+//        modelo.put("meses", meses);
+        modelo.put("today", LocalDate.now());
+        modelo.put("lastDayOfYear", LocalDate.of(LocalDate.now().getYear(), 12, 31));
 
         return "registrar_turno.html";
     }
@@ -94,6 +99,9 @@ public class TurnoControlador {
         DayOfWeek diaInicioComparar = DayOfWeek.valueOf(profesional.getDisponibilidadInicioDia().toUpperCase()); // transformo en inicioDia a DayOfWeek para poder comparar
         DayOfWeek diaFinComparar = DayOfWeek.valueOf(profesional.getDisponibilidadFinDia().toUpperCase()); // transformo en finDia a DayOfWeek para poder comparar
 
+        // Nombres de los días en español
+        String[] nombresDias = {"Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"};
+
         while (dia != diaInicioComparar && contador == false) {
             dia = dia.plus(1);  // mientras dia != de diaInicio dia ira cambiando al siguiente dia
 
@@ -102,11 +110,11 @@ public class TurnoControlador {
                 for (int i = 0; i < 6; i++) { //for 7 veces max
                     if (dia != diaFinComparar) { // mientras dia no llegue a diaFin
 
-                        lista.add(dia.toString()); // va agregando los dias a la lista
+                        lista.add(nombresDias[dia.getValue()]); // Obtener el nombre en español
 
                         dia = dia.plus(1);// dia ira cambiando de uno en uno
                     } else {
-                        lista.add(dia.toString()); // agrega el ultima dia que quedo fuera del primer if()
+                        lista.add(nombresDias[dia.getValue()]);  // agrega el ultima dia que quedo fuera del primer if()
 
                         contador = true;  // condicion linea100 para que frene el while
                         break; //sale del for, aunque no haya llegado a la max de 7 vueltas
@@ -121,14 +129,29 @@ public class TurnoControlador {
         }
         return lista;
     }
-
+//    public List<String> listaMeses() {
+//        List<String> meses = new ArrayList<>();
+//
+//        // Obtener el mes actual
+//        Month mesActual = LocalDate.now().getMonth();
+//
+//        // Recorrer los meses desde el mes actual hasta diciembre
+//        for (Month mes : Month.values()) {
+//            if (mes.getValue() >= mesActual.getValue()) {
+//                meses.add(mes.toString());
+//            }
+//        }
+//        return meses;
+//    }
     @PostMapping("/registro")
-    public String registro(@RequestParam String idProfesional, @RequestParam String idPaciente, @RequestParam String mes,
-            @RequestParam String dia, @RequestParam String hora, @RequestParam String motivoConsulta, ModelMap modelo, @RequestParam(required = false) String error) {
+    public String registro(@RequestParam String idProfesional, @RequestParam String idPaciente, @RequestParam(required = false) String mes,
+            @RequestParam(required = false) String dia, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha2, @RequestParam String hora, @RequestParam String motivoConsulta, ModelMap modelo,
+            @RequestParam(required = false) String error) {
 
         try {
-            turnoServicio.registrar(idPaciente, idProfesional, mes, dia, hora, motivoConsulta);
-
+            turnoServicio.registrar(idPaciente, idProfesional, mes, dia, fecha2, hora, motivoConsulta);
+            SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+            modelo.put("exito", "Su turno se ha registrado para el día " + formato.format(fecha2));
             return "inicio.html";
         } catch (MiExcepcion ex) {
             Profesional profesional = profesionalServicio.getOne(idProfesional);
@@ -138,16 +161,18 @@ public class TurnoControlador {
             List<String> horas = listaHoras(profesional.getDisponibilidadInicioHora(), profesional.getDisponibilidadFinHora());
             modelo.put("horas", horas);
 
-            List<String> dias = listaDias(profesional);
-            modelo.put("dias", dias);
-
-            Month[] meses = Month.values();
-            modelo.put("meses", meses);
-
-            modelo.put("error", "Esa fecha ya está reservada con el mismo profesional a esa misma hora!!!!");
-
+//            List<String> dias = listaDias(profesional);
+//            modelo.put("dias", dias);
+//
+//            List<String> meses = listaMeses();
+//            modelo.put("meses", meses);
             modelo.put("idProfesional", idProfesional);
             modelo.put("idPaciente", idPaciente);
+
+            modelo.put("today", LocalDate.now());
+            modelo.put("lastDayOfYear", LocalDate.of(LocalDate.now().getYear(), 12, 31));
+
+            modelo.put("error", ex.getMessage()); //ex.getMessage() trae el mensaje de validar()
 
             return "registrar_turno.html";
         }
@@ -164,10 +189,10 @@ public class TurnoControlador {
 
             modelo.put("turno", turno);
 
-            modelo.put("mesGuardado", fecha.getMonth());
-            System.out.println("TCONT: mes: " + fecha.getMonth().toString());
-            modelo.put(("diaGuardado"), fecha.getDayOfWeek().toString());
-            System.out.println("TCONT: dia: " + fecha.getDayOfWeek());
+//            modelo.put("mesGuardado", fecha.getMonth());
+//            System.out.println("TCONT: mes: " + fecha.getMonth().toString());
+//            modelo.put(("diaGuardado"), fecha.getDayOfWeek().toString());
+//            System.out.println("TCONT: dia: " + fecha.getDayOfWeek());
             modelo.put("horaGuardada", turno.getHorario());
             System.out.println("TCONT: hora: " + turno.getHorario());
 
@@ -175,28 +200,43 @@ public class TurnoControlador {
 
             modelo.put("horas", horas);
 
-            List<String> dias = listaDias(turno.getProfesional());
-            modelo.put("dias", dias);
+            modelo.put("today", LocalDate.now());
+            modelo.put("lastDayOfYear", LocalDate.of(LocalDate.now().getYear(), 12, 31));
 
-            Month[] meses = Month.values();
-            modelo.put("meses", meses);
+//            List<String> dias = listaDias(turno.getProfesional());
+//            modelo.put("dias", dias);
+//
+//            Month[] meses = Month.values();
+//            modelo.put("meses", meses);
         }
 
         return "modificar_turno.html";
     }
 
     @PostMapping("/modificado/{id}")
-    public String modificado(@PathVariable String id, @RequestParam String idProfesional, @RequestParam String idPaciente, @RequestParam String mes,
-            @RequestParam String dia, @RequestParam String hora, @RequestParam("motivoConsulta") String motivoConsulta, ModelMap modelo) {
+    public String modificado(@PathVariable String id, @RequestParam String idProfesional, @RequestParam String idPaciente, @RequestParam(required = false) String mes,
+            @RequestParam(required = false) String dia, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha, @RequestParam String hora, @RequestParam("motivoConsulta") String motivoConsulta, ModelMap modelo) {
 
         try {
-            turnoServicio.modificar(id, idPaciente, idProfesional, mes, dia, hora, motivoConsulta);
+            turnoServicio.modificar(id, idPaciente, idProfesional, mes, dia, fecha, hora, motivoConsulta);
 
             return "inicio.html";
         } catch (MiExcepcion ex) {
-            modelo.put("error", ex.getMessage());
-            return "modificar_turno.html";
 
+            Optional<Turno> respuesta = turnoRepositorio.findById(id);
+
+            if (respuesta.isPresent()) {
+                Turno turno = respuesta.get();
+
+                modelo.put("turno", turno);
+                List<String> horas = listaHoras(turno.getProfesional().getDisponibilidadInicioHora(), turno.getProfesional().getDisponibilidadFinHora());
+                modelo.put("horas", horas);
+            }
+            modelo.put("today", LocalDate.now());
+            modelo.put("lastDayOfYear", LocalDate.of(LocalDate.now().getYear(), 12, 31));
+            modelo.put("error", ex.getMessage());
+
+            return "modificar_turno.html";
         }
     }
 
@@ -221,11 +261,11 @@ public class TurnoControlador {
     }
 
     @GetMapping("/filtrar")
-    public String filtraPorEspecialidad(ModelMap modelo, @Param("palabraClave") String palabraClave, 
+    public String filtraPorEspecialidad(ModelMap modelo, @Param("palabraClave") String palabraClave,
             @Param("idProfesional") String idProfesional) {
         List<Turno> turnos = new ArrayList();
         String mensaje = "...";
-        
+
         if (palabraClave.equals("HOY")) {
             turnos = turnoServicio.buscarTurnosDeHoy(idProfesional);
             mensaje = "No hay turnos pendientes para el día de hoy";
@@ -233,7 +273,7 @@ public class TurnoControlador {
         } else if (palabraClave.equals("FECHA")) {
             turnos = turnoServicio.ordenarTurnosPorFecha(idProfesional);
             mensaje = "No tiene turnos.";
-            
+
         } else if (palabraClave.equals("PACIENTE")) {
             turnos = turnoServicio.ordenarTurnosPorPacientes(idProfesional);
             mensaje = "No tiene turnos..";

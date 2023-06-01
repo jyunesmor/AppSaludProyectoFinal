@@ -91,7 +91,7 @@
                         </thead>
                         <tbody
                             class="table-group-divider border-top-color"
-                            th:each="profesional : ${profesionales}"
+                            th:each="profesional, iterStat : ${profesionales}"
                             >
                             <tr style="white-space: nowrap;">
                                 <td th:text="${profesional.modalidad}"></td>
@@ -107,7 +107,12 @@
                                 <td th:text="'$ '+${profesional.precio}"></td>
                                 <td th:text="${profesional.calificacion}"></td>
                                 <td th:text="${profesional.especialidad}"></td>
-                                <td th:utext="${profesional.disponibilidadInicioDia + ' - ' + profesional.disponibilidadFinDia + '<br>(' + profesional.disponibilidadInicioHora + ' a ' + profesional.disponibilidadFinHora + ')' }" style="white-space: nowrap;"></td>
+                                <!-- <td th:text="${profesional.disponibilidadInicioDia + ' - ' + profesional.disponibilidadFinDia + '<br>(' + profesional.disponibilidadInicioHora + ' a ' + profesional.disponibilidadFinHora + ')' }" style="white-space: nowrap;"></td>-->
+                                <td>
+                                    <span th:utext="${inicioDiaTraducido[iterStat.index] + ' - ' + finDiaTraducido[iterStat.index]}"></span>
+                                    <br/>
+                                    (<span th:text="${profesional.disponibilidadInicioHora} + ' a ' + ${profesional.disponibilidadFinHora}"></span>)
+                                </td>
                                 <td th:text="${profesional.nombreEstablecimiento}"></td>
                                 <td class="contenedor-botones">
                                     <button class="mb-2 btn btn-primary" sec:authorize="hasRole('ADMIN')">
