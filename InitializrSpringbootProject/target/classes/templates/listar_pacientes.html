@@ -42,19 +42,11 @@
                             <td th:text="${paciente.nombre}"></td>
                             <td th:text="${paciente.apellido}"></td>
                             <td th:text="${paciente.obraSocialPaciente}"></td>
-<<<<<<< HEAD
                             <td > 
-                                <img th:if="${profesional.img.mime.toString() != 'application/octet-stream'}" th:src="@{/imagen/profesional/__${profesional.id}__}"  class="card-img-top" width="70" height="70">
-                                <img th:if="${profesional.img.mime.toString() == 'application/octet-stream' && profesional.sexo.toString() == 'masculino'}" src="https://taringaimagenes.com/image.php?di=ZHKO"  class="card-img-top" width="70" height="70">
-                                <img th:if="${profesional.img.mime.toString() == 'application/octet-stream' && profesional.sexo.toString() == 'femenino'}" src="https://taringaimagenes.com/image.php?dm=H0EK"  class="card-img-top" width="70" height="70">
-                                <img th:if="${profesional.img.mime.toString() == 'application/octet-stream' && profesional.sexo.toString() == 'otro'}" src="https://taringaimagenes.com/image.php?di=2DL4"  class="card-img-top" width="70" height="70">
-=======
-                            <td >  
-                                    <img th:if="${paciente.img.mime.toString() == 'application/octet-stream' && paciente.sexo.toString() == 'masculino'}" src="https://taringaimagenes.com/image.php?di=ZHKO"  class="card-img-top" width="70" height="70">
-                                    <img th:if="${paciente.img.mime.toString() == 'application/octet-stream' && paciente.sexo.toString() == 'femenino'}" src="https://taringaimagenes.com/image.php?dm=H0EK"  class="card-img-top" width="70" height="70">
-                                    <img th:if="${paciente.img.mime.toString() == 'application/octet-stream' && paciente.sexo.toString() == 'otro'}" src="https://taringaimagenes.com/image.php?di=2DL4"  class="card-img-top" width="70" height="70">
-                                    <img th:if="${paciente.img.mime.toString() != 'application/octet-stream' && paciente.img != null}" th:src="@{/imagen/pacientes/__${paciente.id}__}"  class="card-img-top" width="70" height="70">
-
+                                <img th:if="${paciente.img.mime.toString() != 'application/octet-stream'}" th:src="@{/imagen/pacientes/__${paciente.id}__}"  class="card-img-top" width="70" height="70">
+                                <img th:if="${paciente.img.mime.toString() == 'application/octet-stream' && paciente.sexo.toString() == 'masculino'}" src="https://taringaimagenes.com/image.php?di=ZHKO"  class="card-img-top" width="70" height="70">
+                                <img th:if="${paciente.img.mime.toString() == 'application/octet-stream' && paciente.sexo.toString() == 'femenino'}" src="https://taringaimagenes.com/image.php?dm=H0EK"  class="card-img-top" width="70" height="70">
+                                <img th:if="${paciente.img.mime.toString() == 'application/octet-stream' && paciente.sexo.toString() == 'otro'}" src="https://taringaimagenes.com/image.php?di=2DL4"  class="card-img-top" width="70" height="70">
                             </td>
                             <td class="d-flex flex-column justify-content-center m-auto">
                                 <button class="mb-2 btn btn-primary" sec:authorize="hasRole('ADMIN')">
