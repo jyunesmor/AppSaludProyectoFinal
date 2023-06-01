@@ -71,7 +71,15 @@ public class ProfesionalControlador {
     public String listar(ModelMap modelo) {
 
         List<Profesional> profesionales = profesionalServicio.listaProfesinales();
-
+        List<String> inicioDiaTraducido = new ArrayList<>();
+        List<String> finDiaTraducido = new ArrayList<>();
+        
+        for (Profesional aux : profesionales) {
+            inicioDiaTraducido.add(traducirDia(aux.getDisponibilidadInicioDia()));
+            finDiaTraducido.add(traducirDia(aux.getDisponibilidadFinDia()));
+        }
+        modelo.addAttribute("inicioDiaTraducido", inicioDiaTraducido);
+        modelo.addAttribute("finDiaTraducido", finDiaTraducido);
         modelo.addAttribute("profesionales", profesionales);
 
         return "listar_profesionales.html";
@@ -151,5 +159,40 @@ public class ProfesionalControlador {
 
         return "inicio.html";
     }
+
+    
+    public String traducirDia(String dia) {
+        String diaTraducido;
+        
+        switch (dia.toLowerCase()) {
+            case "monday":
+                diaTraducido = "Lunes";
+                break;
+            case "tuesday":
+                diaTraducido = "Martes";
+                break;
+            case "wednesday":
+                diaTraducido = "Miércoles";
+                break;
+            case "thursday":
+                diaTraducido = "Jueves";
+                break;
+            case "friday":
+                diaTraducido = "Viernes";
+                break;
+            case "saturday":
+                diaTraducido = "Sábado";
+                break;
+            case "sunday":
+                diaTraducido = "Domingo";
+                break;
+            default:
+                diaTraducido = dia; // Mantener el mismo valor si no se encuentra la traducción
+                break;
+        }
+        
+        return diaTraducido;
+    }
+    
 
 }

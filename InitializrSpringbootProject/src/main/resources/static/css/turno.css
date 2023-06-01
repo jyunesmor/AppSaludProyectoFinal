@@ -232,3 +232,10 @@ input:readonly {
     border: none;
 }
 
+
+input[type="date"].no-permitido {
+  background-color: red;
+  color: white;
+  border: 2px solid red;
+}
+

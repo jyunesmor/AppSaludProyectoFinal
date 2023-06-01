@@ -162,58 +162,6 @@ public class ProfesionalServicio implements UserDetailsService {
         }
     }
 
-    public void registrarDisponibilidadDias(Profesional profesional, String inicioDia, String finDia) {
-
-        switch (inicioDia) {
-            case "monday":
-                profesional.setDisponibilidadInicioDia("lunes-");
-                break;
-            case "tuesday":
-                profesional.setDisponibilidadInicioDia("martes-");
-                break;
-            case "wednesday":
-                profesional.setDisponibilidadInicioDia("miercoles-");
-                break;
-            case "thursday":
-                profesional.setDisponibilidadInicioDia("jueves-");
-                break;
-            case "friday":
-                profesional.setDisponibilidadInicioDia("viernes-");
-                break;
-            case "saturday":
-                profesional.setDisponibilidadInicioDia("viernes-");
-                break;
-            case "sunday":
-                profesional.setDisponibilidadInicioDia("viernes-");
-                break;
-        }
-
-        switch (finDia) {
-            case "monday":
-                //profesional.setDisponibilidadDias(profesional.getDisponibilidadDias()+"lunes");
-                break;
-            case "tuesday":
-                profesional.setDisponibilidadFinDia("martes");
-                break;
-            case "wednesday":
-                profesional.setDisponibilidadFinDia("miercoles");
-                break;
-            case "thursday":
-                profesional.setDisponibilidadFinDia("jueves");
-                break;
-            case "friday":
-                profesional.setDisponibilidadFinDia("viernes");
-                break;
-            case "saturday":
-                profesional.setDisponibilidadFinDia("sabado");
-                break;
-            case "sunday":
-                profesional.setDisponibilidadFinDia("domindo");
-                break;
-        }
-
-    }
-
     @Transactional
     public void borrarPorId(String id) {
         profesionalRepositorio.deleteById(id);

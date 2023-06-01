@@ -31,6 +31,24 @@
 
             <section>
                 <nav th:replace= "/fragments/navbar :: nav"></nav>
+
+
+
+                <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
+                    <div class="card-body">
+                        <h5 class="card-title">Error </h5>
+                        <p class="card-text" th:text="${error}"></p>
+                    </div>
+                </div>
+                <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+                    <div class="card-body">
+                        <h5 class="card-title">Exito!</h5>
+                        <p class="card-text" th:text="${exito}"></p>
+                    </div>
+                </div>
+
+
+
                 <section class="conte_turno">
                     <div class="header_turnero">
                         <div class="dtos_paciente">
@@ -114,7 +132,7 @@
                                 <div class="form-group input_NomyApe-Pro">
                                     <div>
                                         <label class="mb-3"
-                                               ><strong>Nombre y Apellido del Profesional</strong></label
+                                               ><strong>Profesional</strong></label
                                         >
                                     </div>
                                     <!-- input es para ingresar el nombre del autor  -->
@@ -125,39 +143,40 @@
                                             style="background-color: #98c0f6; border: none;"
                                             class="form-control input_Ape-Pro"
                                             name="apellidoProfesional"
-                                            th:value="${profesional.apellido}"
+                                            th:value="${profesional.apellido} + ', ' + ${profesional.nombre}"
                                             />
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <!-- input es para ingresar el nombre del autor  -->
-                                    <div>
-                                        <input
-                                            type="text"
-                                            readonly
-                                            style="background-color: #98c0f6; border: none;"
-                                            class="form-control input_Nom-Pro"
-                                            name="nombreProfesional"
-                                            th:value="${profesional.nombre}"
-                                            />
-                                    </div>
-                                </div>
+                                <!--
+                                                                <div class="form-group input_Mes_Con">
+                                                                    <label>Elegir el mes de Consulta</label>
+                                                                    <select name="mes">
+                                                                        <option th:each="mes : ${meses}" th:text="${mes}"></option>
+                                <!-- falta ponerle una variable que almacene la info 
+                            </select>
+                        </div>
 
-                                <div class="form-group input_Mes_Con">
-                                    <label>Elegir el mes de Consulta</label>
-                                    <select name="mes">
-                                        <option th:each="mes : ${meses}" th:text="${mes}"></option>
-                                        <!-- falta ponerle una variable que almacene la info -->
-                                    </select>
-                                </div>
-
+                        <div class="form-group input_dia_Con">
+                            <label>Elegia el día de Consulta</label>
+                            <select name="dia">
+                                <option th:each="dia : ${dias}" th:text="${dia}"></option>
+                                <!-- falta ponerle una variable que almacene la info 
+                            </select>
+                        </div>
+                                -->
                                 <div class="form-group input_dia_Con">
-                                    <label>Elegia el día de Consulta</label>
-                                    <select name="dia">
-                                        <option th:each="dia : ${dias}" th:text="${dia}"></option>
-                                        <!-- falta ponerle una variable que almacene la info -->
-                                    </select>
+                                    <label><strong>Días que atiende el profesional</strong></label>
+                                    <ul>
+                                        <li th:each="dia : ${dias}" th:text="${dia}"></li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="form-group input_Hor_Con">
+                                    <label class="mb-2">Fecha del Turno</label>
+                                        <input type="date" id="fecha" name="fecha2" class="form-control" 
+                                               th:min="${today}" th:max="${lastDayOfYear}"
+                                               />
                                 </div>
 
                                 <div class="form-group input_Hor_Con">

@@ -37,6 +37,7 @@
                                 readonly
                                 style="background-color: transparent; border: none;"
                                 class="form-control input_Ape"
+                                th:if="${session.usuariosession != null}"
                                 th:value="${session.usuariosession.apellido}" 
                                 />
                         </div>
@@ -46,6 +47,7 @@
                                 readonly
                                 style="background-color: transparent; border: none;"
                                 class="form-control input_Nom"
+                                th:if="${session.usuariosession != null}"
                                 th:value="${session.usuariosession.nombre}"
                                 />
                         </div>
