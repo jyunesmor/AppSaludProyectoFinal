@@ -43,7 +43,7 @@ public class ProfesionalControlador {
 
         return "modificar_profesional.html";
     }
-
+    
     @PostMapping("/modificado/{idProfesional}")
     public String modificado(MultipartFile archivo, @PathVariable String idProfesional, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam(required = false) Integer dni, @RequestParam String email, @RequestParam(required = false) Integer telefono,
@@ -73,7 +73,7 @@ public class ProfesionalControlador {
         List<Profesional> profesionales = profesionalServicio.listaProfesinales();
         List<String> inicioDiaTraducido = new ArrayList<>();
         List<String> finDiaTraducido = new ArrayList<>();
-        
+
         for (Profesional aux : profesionales) {
             inicioDiaTraducido.add(traducirDia(aux.getDisponibilidadInicioDia()));
             finDiaTraducido.add(traducirDia(aux.getDisponibilidadFinDia()));
@@ -91,11 +91,22 @@ public class ProfesionalControlador {
         List<Profesional> profesionales = new ArrayList<>();
         Especialidad especialidad = null;
 
-        if (palabraEspecialidad.equals("")|| palabraFiltro.equals("")) {
+        if (palabraEspecialidad.equals("") || palabraFiltro.equals("")) {
             profesionales = profesionalServicio.listaProfesinales();
+
+            List<String> inicioDiaTraducido = new ArrayList<>();
+            List<String> finDiaTraducido = new ArrayList<>();
+
+            for (Profesional aux : profesionales) {
+                inicioDiaTraducido.add(traducirDia(aux.getDisponibilidadInicioDia()));
+                finDiaTraducido.add(traducirDia(aux.getDisponibilidadFinDia()));
+            }
+            modelo.addAttribute("inicioDiaTraducido", inicioDiaTraducido);
+            modelo.addAttribute("finDiaTraducido", finDiaTraducido);
             modelo.addAttribute("profesionales", profesionales);
-            modelo.addAttribute("mensaje", "  ***Debe elegir una opción en ambos campos si desea filtrar su búsqueda");
             
+            modelo.addAttribute("mensaje", "  ***Debe elegir una opción en ambos campos si desea filtrar su búsqueda");
+
             return "listar_profesionales.html";
         }
 
@@ -138,6 +149,15 @@ public class ProfesionalControlador {
             }
         }
 
+        List<String> inicioDiaTraducido = new ArrayList<>();
+        List<String> finDiaTraducido = new ArrayList<>();
+
+        for (Profesional aux : profesionales) {
+            inicioDiaTraducido.add(traducirDia(aux.getDisponibilidadInicioDia()));
+            finDiaTraducido.add(traducirDia(aux.getDisponibilidadFinDia()));
+        }
+        modelo.addAttribute("inicioDiaTraducido", inicioDiaTraducido);
+        modelo.addAttribute("finDiaTraducido", finDiaTraducido);
         modelo.addAttribute("profesionales", profesionales);
         modelo.addAttribute("palabraFiltro", palabraFiltro);
         modelo.addAttribute("palabraEspecialidad", palabraEspecialidad);
@@ -160,10 +180,9 @@ public class ProfesionalControlador {
         return "inicio.html";
     }
 
-    
     public String traducirDia(String dia) {
         String diaTraducido;
-        
+
         switch (dia.toLowerCase()) {
             case "monday":
                 diaTraducido = "Lunes";
@@ -190,9 +209,8 @@ public class ProfesionalControlador {
                 diaTraducido = dia; // Mantener el mismo valor si no se encuentra la traducción
                 break;
         }
-        
+
         return diaTraducido;
     }
-    
 
 }
