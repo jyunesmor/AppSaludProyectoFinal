@@ -22,10 +22,6 @@ and open the template in the editor.
     box-sizing: border-box;
 }
 
-:root{
-    --font_Text: 'Montserrat', sans-serif;
-}
-
 header{
     height: 100px;
 }
@@ -36,10 +32,9 @@ footer{
 
 body{
     width: 100vw;
-    font-family: var(--font_Text);
     font-size: 14px;
     min-height: calc(100vh - (100px + 100px));
-    background-image: url(../imagen/fondo.svg);
+/*    background-image: url(../imagen/fondo.svg);*/
     background-repeat:no-repeat;
     background-position-x:center;
     display: flex;
@@ -94,4 +89,9 @@ body{
 
 .filtro-btn input{
     margin-right: 10px;
+}
+body{ /*imagen azul de fondo*/
+    background-image: url(../imagen/fondo.svg);
+    background-repeat:no-repeat;
+    background-position-x:center;
 }

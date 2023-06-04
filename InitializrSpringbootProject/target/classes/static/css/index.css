@@ -1,80 +1,89 @@
-.navBar{
-    background-color: #fff !important;
+body{ /*imagen azul de fondo*/
+    /*background-image: url(../imagen/fondo.svg);*/
+    
+    background-repeat:no-repeat;
+    background-position-x:center;
+    
+}
+.footer{
+    width: 100vw;
+    height: 100px;
+    margin-top: 10px;
+    background-color: #d0e9c6; 
 }
 
-.elementosNav{
+/*  Estilo de Caja Footer */
+
+.cont-footer{
+    gap:30px;
     display: flex;
-    width: 30%;
     justify-content: space-around;
-    color: #37474f;
-    font-weight: 700;
+    align-content: center;
 }
 
-.elementos{
-    margin-right: 50px;
-}
+/*  Estilo de Caja Footer */
 
-.containerImg{
-    width: 20%;
-}
-
-.logo{
-    width: 10%;
-    margin: auto;
-}
-
-.tituloBiblioteca{
-    width: 80%;
-    text-align: center;
-    font-size: 40px;
-    margin-top: 80px;
-    font-weight: 500;
-}
-
-.header{
-    background-image: url(../img/FondoZoom_2.jpg);
-    background-size: cover;
-    height: 550px;
+.text-footer{
+    width: 300px;
     display: flex;
-    justify-content: end;
-}
-
-.contenedorLibros{
-    margin-top: 80px;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
 }
 
-.tituloLibros{
-    font-size: 22px;
-    font-weight: 500;
+.text-footer p{
+    margin:auto;
 }
 
-.contenedorMain{
-    width: 50%;
+.footer{
+    /*    background-color: lavenderblush;*/
+}
+
+/*  Estilo de Caja de Iconos */
+
+.redes{
+    width: 300px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
 }
 
-.containerFooter{
+/*  Estilo de Iconos del Footer */
+
+.red-social{
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    margin: auto;
+    flex-direction: row;
+    gap: 50px;
 }
 
-.boton{
-    background-color: #ffcb00;
-    box-shadow: 0px 2px 16px 4px rgba(0,0,0,0.36);
-    -webkit-box-shadow: 0px 2px 16px 4px rgba(0,0,0,0.36);
-    -moz-box-shadow: 0px 2px 16px 4px rgba(0,0,0,0.36);
+.red-social a {
+    color: black;
+    text-decoration: none;
+    filter: drop-shadow(3px 3px 3px rgb(11, 6, 78));
+
 }
 
-.boton:hover{
-    background-color: #ffcb00;
+.fa-facebook:hover {
+    transform: scale(1.75);
+    transition: 0.6s;
+    color: #0044ff;
 }
-.boton:active{
-    box-shadow: none;
+
+.fa-twitter:hover {
+    transform: scale(2);
+    transition: 0.6s;
+    color: #0044ff;
+}
+
+.fa-youtube:hover {
+    transform: scale(2);
+    transition: 0.6s;
+    color: #ff0000;
+}
+
+.fa-instagram:hover {
+    transform: scale(2);
+    transition: 0.6s;
+    color: #d8942f;
+}
+.row{
+    background-color: #dceafc;
 }
