@@ -1,0 +1,14 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 2 jun 2023, 05:06:49
+    Author     : manue
+*/
+
+body{ /*imagen azul de fondo*/
+/*    background-image: url(../imagen/fondo.svg);*/
+    background-repeat:no-repeat;
+    background-position-x:center;
+}
