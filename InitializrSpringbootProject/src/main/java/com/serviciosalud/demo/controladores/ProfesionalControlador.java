@@ -43,7 +43,7 @@ public class ProfesionalControlador {
 
         return "modificar_profesional.html";
     }
-    
+
     @PostMapping("/modificado/{idProfesional}")
     public String modificado(MultipartFile archivo, @PathVariable String idProfesional, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam(required = false) Integer dni, @RequestParam String email, @RequestParam(required = false) Integer telefono,
@@ -58,7 +58,7 @@ public class ProfesionalControlador {
                     nombreEstablecimiento, Boolean.TRUE);
 
             /*return "redirect:../../inicio";*/
-             modelo.put("exito", "El perfil se ha actualizado correctamente"); // El perfil se ha actualizado correctamente
+            modelo.put("exito", "El perfil se ha actualizado correctamente"); // El perfil se ha actualizado correctamente
             return "inicio.html";
 
         } catch (MiExcepcion ex) {
@@ -74,7 +74,7 @@ public class ProfesionalControlador {
         List<Profesional> profesionales = profesionalServicio.listaProfesinales();
         List<String> inicioDiaTraducido = new ArrayList<>();
         List<String> finDiaTraducido = new ArrayList<>();
-
+   
         for (Profesional aux : profesionales) {
             inicioDiaTraducido.add(traducirDia(aux.getDisponibilidadInicioDia()));
             finDiaTraducido.add(traducirDia(aux.getDisponibilidadFinDia()));
@@ -105,7 +105,7 @@ public class ProfesionalControlador {
             modelo.addAttribute("inicioDiaTraducido", inicioDiaTraducido);
             modelo.addAttribute("finDiaTraducido", finDiaTraducido);
             modelo.addAttribute("profesionales", profesionales);
-            
+
             modelo.addAttribute("mensaje", "  ***Debe elegir una opción en ambos campos si desea filtrar su búsqueda");
 
             return "listar_profesionales.html";

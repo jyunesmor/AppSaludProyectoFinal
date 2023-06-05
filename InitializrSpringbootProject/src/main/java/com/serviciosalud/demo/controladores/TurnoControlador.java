@@ -143,7 +143,7 @@ public class TurnoControlador {
 //        }
 //        return meses;
 //    }
-
+    
     @PostMapping("/registro")
     public String registro(@RequestParam String idProfesional, @RequestParam String idPaciente, @RequestParam(required = false) String mes,
             @RequestParam(required = false) String dia, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha2, @RequestParam String hora, @RequestParam String motivoConsulta, ModelMap modelo,
