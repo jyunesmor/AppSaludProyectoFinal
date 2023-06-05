@@ -10,7 +10,7 @@
 
 
 
-        <ul class="navbar-nav d-flex justify-content-end align-items-center">
+        <ul class="navbar-nav d-flex justify-content-end align-items-center mx-5">
 
             <li class="nav-item">
                 <a class="nav-link"  th:if="${session.usuariosession != null}" aria-current="page" th:href="@{/inicio}">Inicio</a>
@@ -50,8 +50,8 @@
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" th:href="@{/admin/registrar-profesional}">Crear Profesional</a>
-                    <a class="dropdown-item" th:href="@{#}" >Eliminar Profesional</a>
+                    <a class="dropdown-item w-75" th:href="@{/admin/registrar-profesional}" style='font-size: 13px;'>Crear Profesional</a>
+                    <a class="dropdown-item w-75" th:href="@{#}" style='font-size: 13px;'>Eliminar Profesional</a>
                 </div>
             </li>
 
@@ -63,7 +63,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" th:if="${session.usuariosession != null}" sec:authorize="hasAnyRole('PROFESIONAL')" th:href="@{/profesional/modificar/__${session.usuariosession.id}__}">Editar</a>
                     <a class="dropdown-item" th:if="${session.usuariosession != null}" sec:authorize="hasAnyRole('PACIENTE')" th:href="@{/paciente/modificar/__${session.usuariosession.id}__}">Editar</a>
-                    <a class="dropdown-item" th:href="@{/logout}" >Cerrar Sesión</a>
+                    <a class="dropdown-item" th:href="@{/logout}" style='font-size: 13px;' >Cerrar Sesión</a>
                 </div>
             </li>
 

@@ -11,88 +11,115 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
-html,body{
-background-image: url('https://img.freepik.com/foto-gratis/medico-mujeres-hospital-estetoscopio_23-2148827781.jpg?w=740&t=st=1685870303~exp=1685870903~hmac=e3115fe4fb15286cb7d96e1929b0fa1b838f32cd4e5843a771b4d5e74a92bfb1');
-background-size: cover;
-background-repeat: no-repeat;
-height: 100%;
-font-family: 'Numans', sans-serif;
+body{
+    background-image: url('https://img.freepik.com/foto-gratis/medico-mujeres-hospital-estetoscopio_23-2148827781.jpg?w=740&t=st=1685870303~exp=1685870903~hmac=e3115fe4fb15286cb7d96e1929b0fa1b838f32cd4e5843a771b4d5e74a92bfb1');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Numans', sans-serif;
+}
+
+main{
+    width: 100vw;
+    min-height: calc(100vh - 200px);    
 }
 
 .container{
-height: 100%;
-align-content: center;
+    align-content: center;
 }
 
 .card{
-height: 370px;
-margin-top: auto;
-margin-bottom: auto;
-width: 400px;
-background-color: rgba(0,0,0,0.5) !important;
+    height: 370px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgba(0,0,0,0.5) !important;
 }
 
 .social_icon span{
-font-size: 60px;
-margin-left: 10px;
-color: #FFC312;
+    font-size: 60px;
+    margin-left: 10px;
+    color: #98c0f6;
 }
 
 .social_icon span:hover{
-color: white;
-cursor: pointer;
+    color: white;
+    cursor: pointer;
 }
 
 .card-header h3{
-color: white;
+    color: white;
 }
 
 .social_icon{
-position: absolute;
-right: 20px;
-top: -45px;
+    position: absolute;
+    right: 20px;
+    top: -45px;
 }
 
 .input-group-prepend span{
-width: 50px;
-background-color: #FFC312;
-color: black;
-border:0 !important;
+    width: 50px;
+    background-color: #98c0f6;
+    color: black;
+    border:0 !important;
 }
 
 input:focus{
-outline: 0 0 0 0  !important;
-box-shadow: 0 0 0 0 !important;
+    outline: 0 0 0 0  !important;
+    box-shadow: 0 0 0 0 !important;
 
 }
 
 .remember{
-color: white;
+    color: white;
 }
 
 .remember input
 {
-width: 20px;
-height: 20px;
-margin-left: 15px;
-margin-right: 5px;
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    margin-right: 5px;
 }
 
 .login_btn{
-color: black;
-background-color: #FFC312;
-width: 100px;
+    color: black;
+    background-color: #98c0f6;
+    width: 100px;
 }
 
 .login_btn:hover{
-color: black;
-background-color: white;
+    color: black;
+    background-color: white;
 }
 
 .links{
-color: white;
+    color: white;
 }
 
 .links a{
-margin-left: 4px;
+    margin-left: 4px;
+    color: #98c0f6;
+}
+
+
+/*  footer por unica vez  */ 
+
+
+.cont-footer{
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+}
+
+/*  Estilo de Caja Footer */
+
+.text-footer{
+    width: 300px;
+}
+.text-footer-link{
+    color: black;
+    text-shadow: 1px 1px 2px black;
 }
