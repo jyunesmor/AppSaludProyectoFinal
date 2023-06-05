@@ -66,7 +66,7 @@
                                             </div> 
                                         </div> 
                                         <div class="col-md-6 mb-2 pb-1">
-                                            <label class="form-label">Apellido</label>
+                                            <label class="form-label"><strong>Apellido</strong></label>
                                             <div class="form-outline">
                                                 <input 
                                                     type="text"
@@ -81,7 +81,7 @@
 
                                     <div class="row ">
                                         <div class="col-md-6 mb-2 pb-1 ">
-                                            <label class="form-label">DNI</label>
+                                            <label class="form-label"><strong>DNI</strong></label>
                                             <input type="text" 
                                                    id="form3Examplea4"
                                                    class="form-control"
@@ -89,7 +89,7 @@
                                                    th:value="${profesional.dni}"/>
                                         </div>
                                         <div class="col-md-6 mb-2 pb-1 ">
-                                            <label class="form-label">Teléfono Personal</label>
+                                            <label class="form-label"><strong>Teléfono Personal</strong></label>
                                             <input type="text" 
                                                    id="form3Examplea5"
                                                    class="form-control "
@@ -100,7 +100,7 @@
 
                                     <div class="row ">
                                         <div class="col-md-6 mb-2 pb-1 ">
-                                            <label class="form-label">Correo Electrónico</label>
+                                            <label class="form-label"><strong>Correo Electrónico</strong></label>
                                             <input type="email"
                                                    id="form3Examplea5"
                                                    class="form-control"
@@ -108,7 +108,7 @@
                                                    th:value="${profesional.email}"/>
                                         </div>
                                         <div class="col-md-6 mb-2 pb-1 ">
-                                            <label class="form-label">Fecha de Nacimiento</label>
+                                            <label class="form-label"><strong>Fecha de Nacimiento</strong></label>
                                             <input type="date"
                                                    id="start" 
                                                    name="fecha" 
@@ -123,7 +123,7 @@
                                     <div class="row ">
                                         <div class="col-md-12 mb-2 pb-1 ">
                                             <div class="d-md-flex justify-content-start align-items-center mb-2 py-2">
-                                                <h6 class="mb-0 me-4">Sexo:</h6>
+                                                <h6 class="mb-0 me-4"><strong>Sexo:</strong></h6>
 
                                                 <div class="form-check form-check-inline mb-0 me-4">
                                                     <input class="form-check-input" 
@@ -164,7 +164,7 @@
                                     <div class="row ">
                                         <div class="col-md-6 mb-2 pb-1 ">
                                             <div class="form-outline">
-                                                <label class="form-label" for="form3Examplea6">Localidad</label>
+                                                <label class="form-label" for="form3Examplea6"><strong>Localidad</strong></label>
                                                 <input type="text" 
                                                        id="form3Examplea5"
                                                        class="form-control "
@@ -174,7 +174,7 @@
                                         </div>
                                         <div class="col-md-6 mb-2 pb-1 ">
                                             <div class="form-outline">
-                                                <label class="form-label">Imagen</label>   
+                                                <label class="form-label"><strong>Imagen</strong></label>   
                                                 <input type="file" 
                                                        class="form-control"
                                                        id="inputGroupFile02"
@@ -188,7 +188,7 @@
                                     <div class="row ">
                                         <div class="col-md-6 mb-2 pb-1 ">
                                             <div class="form-outline">
-                                                <label class="mb-2">Inicio de disponibilidad:</label> 
+                                                <label class="mb-2"><strong>Inicio de disponibilidad:</strong></label> 
                                                 <select class="custom-select mr-sm-2" name="inicioDia">
                                                     <option >Seleccionar día</option>
                                                     <option value="sunday" th:selected="${profesional.disponibilidadInicioDia == 'sunday'}">DOMINGO</option>
@@ -203,7 +203,7 @@
                                         </div>
                                         <div class="col-md-6 mb-2 pb-1 ">
                                             <div class="form-outline"> 
-                                                <label class="mb-2">Fin de disponibilidad:</label> 
+                                                <label class="mb-2"><strong>Fin de disponibilidad:</strong></label> 
                                                 <select class="custom-select mr-sm-2" name="finDia">
                                                     <option >Seleccionar día</option>
                                                     <option value="sunday" th:selected="${profesional.disponibilidadFinDia == 'sunday'}">DOMINGO</option>
@@ -221,7 +221,7 @@
                                     <div class="row ">
                                         <div class="col-md-6 mb-2 pb-1 ">
                                             <div class="form-outline">
-                                                <label class="mb-2">Indique el inicio de su turno "HH:MM"</label> 
+                                                <label class="mb-2"><strong>Indique el inicio del turno "HH:MM"</strong></label> 
                                                 <input type="text" 
                                                        class="form-control" 
                                                        name="inicioHora"
@@ -230,7 +230,7 @@
                                         </div>
                                         <div class="col-md-6 mb-2 pb-1 ">
                                             <div class="form-outline">
-                                                <label class="mb-2">Indique el fin de su turno "HH:MM"</label> 
+                                                <label class="mb-2"><strong>Indique el fin de su turno "HH:MM"</strong></label> 
                                                 <input type="text" 
                                                        class="form-control" 
                                                        name="finHora"
@@ -253,7 +253,7 @@
                                     <div class="row ">
                                         <div class="col-md-6 mb-2 pb-1 ">
                                             <div class="form-outline">
-                                                <label class="form-label" for="form3Examplev4">Matrícula</label>
+                                                <label class="form-label" for="form3Examplev4"><strong>Matrícula</strong></label>
                                                 <input type="text" 
                                                        name="matricula" 
                                                        id="form3Examplev4"
@@ -263,7 +263,7 @@
                                         </div>
                                         <div class="col-md-6 mb-2 pb-1 ">
                                             <div class="form-outline">
-                                                <label class="form-label" for="form3Examplev4">Nombre del Establecimiento</label>
+                                                <label class="form-label" for="form3Examplev4"><strong>Nombre del Establecimiento</strong></label>
                                                 <input type="text"
                                                        name="nombreEstablecimiento"
                                                        id="form3Examplev4"
@@ -277,7 +277,7 @@
                                     <div class="row ">
                                         <div class="col-md-6 mb-2 pb-1 ">
                                             <div class="form-outline">
-                                                <label class="form-label">Teléfono Laboral</label>
+                                                <label class="form-label"><strong>Teléfono Laboral</strong></label>
                                                 <input type="text" id="form3Examplev2"
                                                        class="form-control "
                                                        name="telefonoLaboral" 
@@ -292,7 +292,7 @@
                                     <div class="row ">
                                         <div class="col-md-6 mb-2 pb-1 ">
                                             <div class="form-outline">
-                                                <label class="mb-2">Especialidad</label>
+                                                <label class="mb-2"><strong>Especialidad</strong></label>
                                                 <select class="custom-select mr-sm-2"
                                                         name="especialidad">
                                                     <option >Seleccionar especialidad</option>
@@ -305,7 +305,7 @@
                                         </div>
                                         <div class="col-md-6 mb-2 pb-1 ">
                                             <div class="form-outline">
-                                                <label class="mb-2">Modalidad de trabajo</label>
+                                                <label class="mb-2"><strong>Modalidad de trabajo</strong></label>
                                                 <select class="custom-select mr-sm-2"
                                                         name="modalidad">
                                                     <option selected>Seleccionar modalidad</option>
@@ -319,7 +319,7 @@
                                     <div class="row ">
                                         <div class="col-md-6 mb-2 pb-1 ">
                                             <div class="form-outline">
-                                                <label class="mb-0">Precio por consulta</label>
+                                                <label class="mb-0"><strong>Precio por consulta</strong></label>
                                                 <input type="text" 
                                                        class="form-control" 
                                                        name="precio"
@@ -328,7 +328,7 @@
                                         </div>
                                         <div class="col-md-6 mb5 pb-1">
                                             <div class="form-outline">
-                                                <label class="form-label">Obra Social</label>
+                                                <label class="form-label"><strong>Obra Social</strong></label>
                                                 <input type="text" id="form3Examplev3"
                                                        class="form-control"
                                                        name="obraSocial" 
@@ -341,7 +341,7 @@
                                     <div class="row ">
                                         <div class="col-md-6 mb-2 pb-1 ">
                                             <div class="form-outline">
-                                                <label class="mb-0">Descripción</label>
+                                                <label class="mb-0"><strong>Descripción</strong></label>
                                                 <input type="text"
                                                        class="form-control"
                                                        name="descripcion"
@@ -350,7 +350,7 @@
                                         </div>
                                         <div class="col-md-6 mb-2 pb-1 ">
                                             <div class="form-outline">
-                                                <label class="mb-0">Calificación</label>
+                                                <label class="mb-0"><strong>Calificación</strong></label>
                                                 <input type="text" 
                                                        class="form-control"
                                                        name="calificacion"
@@ -363,7 +363,7 @@
                                     <div class="row ">
                                         <div class="col-md-6 mb-2 pb-1 ">
                                             <div class="form-outline">
-                                                <label class="mb-0">Contraseña</label>
+                                                <label class="mb-0"><strong>Contraseña</strong></label>
                                                 <input type="password" 
                                                        class="form-control"
                                                        name="password" 
@@ -372,7 +372,7 @@
                                         </div>
                                         <div class="col-md-6 mb-2 pb-1 ">
                                             <div class="form-outline">
-                                                <label class="mb-0">Confirmar Contraseña</label>
+                                                <label class="mb-0"><strong>Confirmar Contraseña</strong></label>
                                                 <input type="password" 
                                                        class="form-control"
                                                        name="password2" 
