@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-md navbar-light">
     <div class="container-fluid">
-       <a class="navbar-brand" href="/">
-        <!--      <img src="../../statics/imagen/logo.png" width="30" height="24" alt="Logo de la pagina">-->
-           <img class="img-responsive" th:src="@{/imagen/logo-sinfondo.png}" width="80" height="70" alt="logo nav">
+        <a class="navbar-brand" href="/">
+            <!-- <img src="../../statics/imagen/logo.png" width="30" height="24" alt="Logo de la pagina">-->
+            <img class="img-responsive" th:src="@{/imagen/logo-sinfondo.png}" width="80" height="70" alt="logo nav">
         </a>
     </div>
 
@@ -10,7 +10,7 @@
 
 
 
-        <ul class="navbar-nav d-flex justify-content-end align-items-center">
+        <ul class="navbar-nav d-flex justify-content-end align-items-center mx-5">
 
             <li class="nav-item">
                 <a class="nav-link"  th:if="${session.usuariosession != null}" aria-current="page" th:href="@{/inicio}">Inicio</a>
@@ -25,33 +25,34 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link"  th:if="${session.usuariosession != null}" th:href="@{/turno/listar}" sec:authorize="hasAnyRole('PROFESIONAL', 'ROLE_ADMIN')">Turnos</a>
+                <a class="nav-link"  th:if="${session.usuariosession != null}" th:href="@{/turno/listar}" sec:authorize="hasAnyRole('PROFESIONAL', 'ADMIN')">Turnos</a>
             </li>                            
 
             <li class="nav-item">
                 <a class="nav-link"  th:if="${session.usuariosession != null}" th:href="@{/paciente/turnos/__${session.usuariosession.id}__}" sec:authorize="hasRole('PACIENTE')">Turnos</a>
             </li>
-<!--
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" th:if="${session.usuariosession != null}" th:href="@{#}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Más
-                </a>
-
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" >Contacto</a>
-                    <a class="dropdown-item" >Nosotros</a>
-                    <a class="dropdown-item" >Preguntas frecuentes</a>
-                </div>
-            </li>
--->
+            <!--
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" th:if="${session.usuariosession != null}" th:href="@{#}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Más
+                            </a>
+            
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" >Contacto</a>
+                                <a class="dropdown-item" >Nosotros</a>
+                                <a class="dropdown-item" >Preguntas frecuentes</a>
+                            </div>
+                        </li>
+            -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" th:if="${session.usuariosession != null}" th:href="@{#}" sec:authorize="hasRole('ADMIN')" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     ADMIN
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" th:href="@{/admin/registrar-profesional}">Crear Profesional</a>
-                    <a class="dropdown-item" th:href="@{/profesional/listar}" >Eliminar Profesional</a>
+                    <a class="dropdown-item w-75" th:href="@{/admin/registrar-profesional}" style='font-size: 13px;'>Crear Profesional</a>
+                    <a class="dropdown-item w-75" th:href="@{/profesional/listar}" style='font-size: 13px;'>Eliminar Profesional</a>
+
                 </div>
             </li>
 
@@ -63,7 +64,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" th:if="${session.usuariosession != null}" sec:authorize="hasAnyRole('PROFESIONAL')" th:href="@{/profesional/modificar/__${session.usuariosession.id}__}">Editar</a>
                     <a class="dropdown-item" th:if="${session.usuariosession != null}" sec:authorize="hasAnyRole('PACIENTE')" th:href="@{/paciente/modificar/__${session.usuariosession.id}__}">Editar</a>
-                    <a class="dropdown-item" th:href="@{/logout}" >Cerrar Sesión</a>
+                    <a class="dropdown-item" th:href="@{/logout}" style='font-size: 13px;' >Cerrar Sesión</a>
                 </div>
             </li>
 
@@ -81,9 +82,6 @@
             </li>
 
         </ul>
-
-
-
 
     </div>
 </nav>

@@ -4,9 +4,6 @@
     box-sizing: border-box;
 }
 
-:root{
-    --font_Text: 'Montserrat', sans-serif;
-}
 
 .header{
     height: 100px;
@@ -16,16 +13,17 @@
     height: 100px;
 }
 
-.main{
-    padding-top: 30px;
-    padding-bottom: 30px;
+main{
+    width: 100vw;
+    min-height: calc(100vh - (100px + 100px));
+    display: flex;
+    flex-direction: column;
+
 }
 
 body {
     width: 100vw;
-    font-family: var(--font_Text);
     font-size: 14px;
-    min-height: calc(100vh - (100px + 100px));
     background-image: url(../imagen/fondo.svg);
     background-repeat:no-repeat;
     background-position-x:center;
@@ -33,14 +31,48 @@ body {
 
 .conte_turno {
     margin: auto;
-    width: 600px;
-    height: 100%;
+    width: 650px;
+    height: auto;
     border: 1px solid black;
     border-radius: 15px;
     background-color: #dceafc;
     box-shadow: 10px 10px 15px black;
 }
 
+
+.conte_dtsTurno{
+    display: flex;
+    flex-direction: column;
+}
+
+.conte_dtsTurno label{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.conte_dtsTurno input{
+    text-align: center;
+    margin: auto;
+}
+
+.cont-eliTurno{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo_eliTurno label{
+    margin-top: 20px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.titulo_eliTurno input{
+    font-size: 14px;
+    text-align: center;
+}
 
 .header_turnero {
     width: 95%;
@@ -51,6 +83,7 @@ body {
 
 .inf-pac{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     margin-top: 15px;
 }
@@ -104,14 +137,21 @@ body {
     font-size: 30px;
 }
 
-.input_Nom{
-    text-align: start;
-    margin-left: 10px ;
-    background: transparent;
+
+.inf-pac input{
+    font-size: 18px;
+    width: 600px;
 }
 
-.input_Ape{
-    text-align: end;
+.input_Ape {
+    text-align: center;
+    background: transparent;
+    width: 600px;
+    font-size: 35px;
+}
+
+.input_obr{
+    text-align: center;
     background: transparent;
 }
 
@@ -135,15 +175,15 @@ body {
 }
 
 .datos_Prof input{
-        background-color: lightskyblue;
+    background-color: lightskyblue;
 }
 
 .input_Id-Pro{
-    margin-top: 35px;
+    margin-top: 10px;
 }
 
 .input_NomyApe-Pro{
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .input_Ape-Pro{
@@ -151,25 +191,25 @@ body {
 }
 
 .input_Nom-Pro{
-    margin-top: 5px;
+    margin-top: 1px;
 }
 
 .input_Mes_Con{
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
+    margin-top: 6px;
 }
 
 .input_dia_Con{
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
+    margin-top: 6px;
 }
 
 .input_hor_Con{
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
+    margin-top: 6px;
 }
 
 .datos_Prof div{
@@ -188,7 +228,7 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
-    margin-top: 5px;
+    margin-top: 0px;
 }
 
 .datos_fyh label{
@@ -227,15 +267,39 @@ body {
     margin-bottom: 10px;
 }
 
-input:readonly {
-    background-color: black;
-    border: none;
-}
-
 
 input[type="date"].no-permitido {
-  background-color: red;
-  color: white;
-  border: 2px solid red;
+    background-color: red;
+    color: white;
+    border: 2px solid red;
 }
 
+.boton{
+    margin-bottom: 10px;
+
+}
+
+.boton button{
+    width: 250px;;
+}
+
+
+.boton-v button{
+    width: 150px;;
+}
+
+.input_dia_Con li{
+    margin-left: 20px;
+}
+
+.tb-usuario{
+    width: 95%;
+    height: auto;
+    margin: auto;
+    background-color: lightblue;
+    box-shadow: 10px 10px 15px black;
+}
+
+tbody td{
+    font-size: 13px;
+} 
