@@ -31,6 +31,8 @@ public interface TurnoRepositorio extends JpaRepository<Turno, String> {
 
     @Query("SELECT t FROM Turno t WHERE t.profesional.id = :idProfesional ORDER BY t.paciente.apellido ASC")
     public Optional<List<Turno>> ordenarTurnosPorPacientes( @Param("idProfesional") String idProfesional);
+    
+    
 
     
 //    @Query("SELECT l FROM Libro l WHERE l.autor.nombre = :nombre")

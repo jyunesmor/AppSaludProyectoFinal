@@ -143,6 +143,7 @@ public class TurnoControlador {
 //        }
 //        return meses;
 //    }
+
     @PostMapping("/registro")
     public String registro(@RequestParam String idProfesional, @RequestParam String idPaciente, @RequestParam(required = false) String mes,
             @RequestParam(required = false) String dia, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha2, @RequestParam String hora, @RequestParam String motivoConsulta, ModelMap modelo,
@@ -256,6 +257,15 @@ public class TurnoControlador {
             turnos = turnoServicio.listarTurnos();
             modelo.addAttribute("turnos", turnos);
         }
+
+        List<Turno> turnosEliminar = new ArrayList<>();
+        for (Turno turno : turnos) {
+            if (turno.getEstado().toString().equals("ATENDIDO")) {
+                turnosEliminar.add(turno); // Agregar el turno a la lista de eliminación
+            }
+        }
+
+        turnos.removeAll(turnosEliminar); // Eliminar los turnos de la lista principal
 
         return "listar_turnos.html";
     }
