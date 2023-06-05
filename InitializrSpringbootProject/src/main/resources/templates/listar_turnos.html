@@ -97,6 +97,9 @@
                                 <button class="mb-2 btn btn-primary" sec:authorize="hasAnyRole('PACIENTE', 'PROFESIONAL', 'ADMIN')">
                                     <a th:href="@{/turno/modificar/__${turno.id}__}" class="text-white" style="white-space: nowrap;">Editar Turno</a>
                                 </button>
+                                <button class="mb-2 btn btn-primary" sec:authorize="hasRole('PROFESIONAL')">
+                                    <a th:href="@{/historia-clinica/registrar/__${turno.id}__}" class="text-white">Agregar observación</a>
+                                </button>
                             </td>
                         </tr>
                     </tbody>

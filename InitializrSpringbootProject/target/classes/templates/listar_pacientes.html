@@ -70,7 +70,7 @@
                                         <a th:href="@{/paciente/eliminar/__${paciente.id}__}" class="text-white">Baja</a>
                                     </button>
                                     <button class="mb-2 btn btn-primary" sec:authorize="hasRole('PROFESIONAL')">
-                                        <a th:href="@{#}" class="text-white">Historial Clínico</a>
+                                        <a th:href="@{/historia-clinica/paciente/__${paciente.id}__}" class="text-white">Historia Clínica</a>
                                     </button>
                                 </td>
                             </tr>
