@@ -33,18 +33,7 @@
                 <p class="card-text" th:text="${exito}"></p>
             </div>
         </div>
-        <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
-                <div class="card-body">
-                    <h5 class="card-title">Error </h5>
-                    <p class="card-text" th:text="${error}"></p>
-                </div>
-            </div>
-            <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
-                <div class="card-body">
-                    <h5 class="card-title">Exito!</h5>
-                    <p class="card-text" th:text="${exito}"></p>
-                </div>
-            </div>
+       
 
         <div class=" contenedor-inicio">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -114,7 +103,7 @@
                     </div>
                     <br>
                     <div class="act-pro" th:if="${session.usuariosession != null}"  sec:authorize="hasRole('PROFESIONAL')">
-                        <a type="button" class="header_button btn btn-primary btn-lg" th:href="@{/profesional/modificar/_${session.usuariosession.id}_}" >
+                        <a type="button" class="header_button btn btn-primary btn-lg" th:href="@{/profesional/modificar/__${session.usuariosession.id}__}" >
                             Actualizar Perfil
                         </a>
                     </div>
@@ -126,7 +115,7 @@
                     </div>
                     <br>
                     <div class="lis-tur" th:if="${session.usuariosession != null}"  sec:authorize="hasRole('PACIENTE')">
-                        <a type="button" class="header_button btn btn-primary btn-lg" th:href="@{/paciente/turnos/_${session.usuariosession.id}_}" > 
+                        <a type="button" class="header_button btn btn-primary btn-lg" th:href="@{/paciente/turnos/__${session.usuariosession.id}__}" > 
                             Mis Turnos
                         </a>
                     </div>

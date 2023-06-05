@@ -143,6 +143,7 @@ public class TurnoControlador {
 //        }
 //        return meses;
 //    }
+
     @PostMapping("/registro")
     public String registro(@RequestParam String idProfesional, @RequestParam String idPaciente, @RequestParam(required = false) String mes,
             @RequestParam(required = false) String dia, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha2, @RequestParam String hora, @RequestParam String motivoConsulta, ModelMap modelo,
@@ -161,8 +162,8 @@ public class TurnoControlador {
             List<String> horas = listaHoras(profesional.getDisponibilidadInicioHora(), profesional.getDisponibilidadFinHora());
             modelo.put("horas", horas);
 
-//            List<String> dias = listaDias(profesional);
-//            modelo.put("dias", dias);
+            List<String> dias = listaDias(profesional);
+            modelo.put("dias", dias);
 //
 //            List<String> meses = listaMeses();
 //            modelo.put("meses", meses);
@@ -203,8 +204,8 @@ public class TurnoControlador {
             modelo.put("today", LocalDate.now());
             modelo.put("lastDayOfYear", LocalDate.of(LocalDate.now().getYear(), 12, 31));
 
-//            List<String> dias = listaDias(turno.getProfesional());
-//            modelo.put("dias", dias);
+            List<String> dias = listaDias(turno.getProfesional());
+            modelo.put("dias", dias);
 //
 //            Month[] meses = Month.values();
 //            modelo.put("meses", meses);
@@ -231,7 +232,10 @@ public class TurnoControlador {
                 modelo.put("turno", turno);
                 List<String> horas = listaHoras(turno.getProfesional().getDisponibilidadInicioHora(), turno.getProfesional().getDisponibilidadFinHora());
                 modelo.put("horas", horas);
+                List<String> dias = listaDias(turno.getProfesional());
+                modelo.put("dias", dias);
             }
+
             modelo.put("today", LocalDate.now());
             modelo.put("lastDayOfYear", LocalDate.of(LocalDate.now().getYear(), 12, 31));
             modelo.put("error", ex.getMessage());

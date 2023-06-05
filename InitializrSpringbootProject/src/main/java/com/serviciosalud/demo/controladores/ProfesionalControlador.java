@@ -58,7 +58,8 @@ public class ProfesionalControlador {
                     nombreEstablecimiento, Boolean.TRUE);
 
             /*return "redirect:../../inicio";*/
-            return "index.html";
+             modelo.put("exito", "El perfil se ha actualizado correctamente"); // El perfil se ha actualizado correctamente
+            return "inicio.html";
 
         } catch (MiExcepcion ex) {
             modelo.put("error", ex.getMessage());

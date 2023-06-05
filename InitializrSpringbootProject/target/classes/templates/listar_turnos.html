@@ -40,7 +40,7 @@
                     </div> 
 
                     <select class="custom-select mr-sm-2" name="palabraClave" >
-                        <option selected >Seleccionar</option>
+                        <option selected value="" >Seleccionar</option>
 
                         <option value="HOY" th:selected="${palabraClave == 'HOY'}">Turnos de hoy</option>
                         <option value="FECHA" th:selected="${palabraClave == 'FECHA'}">Fecha más próxima</option>
@@ -95,10 +95,10 @@
                             <td th:text="${turno.motivoDeConsulta}"></td>
                             <td class="d-flex flex-column justify-content-center m-auto">
                                 <button class="mb-2 btn btn-primary" sec:authorize="hasRole('PACIENTE')">
-                                    <a th:href="@{/turno/cancelar/_${turno.id}_}" class="text-white">Cancelar Turno</a>
+                                    <a th:href="@{/turno/cancelar/__${turno.id}__}" class="text-white">Cancelar Turno</a>
                                 </button>
                                 <button class="mb-2 btn btn-primary" sec:authorize="hasAnyRole('PACIENTE', 'PROFESIONAL', 'ADMIN')">
-                                    <a th:href="@{/turno/modificar/_${turno.id}_}" class="text-white" style="white-space: nowrap;">Editar Turno</a>
+                                    <a th:href="@{/turno/modificar/__${turno.id}__}" class="text-white" style="white-space: nowrap;">Editar Turno</a>
                                 </button>
                             </td>
                         </tr>

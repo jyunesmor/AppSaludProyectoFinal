@@ -58,7 +58,7 @@
                                 <td th:text="${paciente.apellido}"></td>
                                 <td th:text="${paciente.obraSocialPaciente}"></td>
                                 <td > 
-                                    <img th:if="${paciente.img.mime.toString() != 'application/octet-stream'}" th:src="@{/imagen/pacientes/_${paciente.id}_}"  class="card-img-top" width="70" height="70">
+                                    <img th:if="${paciente.img.mime.toString() != 'application/octet-stream'}" th:src="@{/imagen/pacientes/__${paciente.id}__}"  class="card-img-top" width="70" height="70">
                                     <img th:if="${paciente.img.mime.toString() == 'application/octet-stream' && paciente.sexo.toString() == 'masculino'}" src="https://taringaimagenes.com/image.php?di=ZHKO"  class="card-img-top" width="70" height="70">
                                     <img th:if="${paciente.img.mime.toString() == 'application/octet-stream' && paciente.sexo.toString() == 'femenino'}" src="https://taringaimagenes.com/image.php?dm=H0EK"  class="card-img-top" width="70" height="70">
                                     <img th:if="${paciente.img.mime.toString() == 'application/octet-stream' && paciente.sexo.toString() == 'otro'}" src="https://taringaimagenes.com/image.php?di=2DL4"  class="card-img-top" width="70" height="70">
@@ -66,10 +66,10 @@
                                 <td class="d-flex flex-column justify-content-center m-auto">
                                     <button class="mb-2 btn btn-primary" sec:authorize="hasRole('ADMIN')">
 
-                                        <a th:href="@{/paciente/modificar/_${paciente.id}_}" class="text-white">Modificar</a>
+                                        <a th:href="@{/paciente/modificar/__${paciente.id}__}" class="text-white">Modificar</a>
                                     </button>
                                     <button class="mb-2 btn btn-primary" sec:authorize="hasRole('ADMIN')">
-                                        <a th:href="@{/paciente/eliminar/_${paciente.id}_}" class="text-white">Baja</a>
+                                        <a th:href="@{/paciente/eliminar/__${paciente.id}__}" class="text-white">Baja</a>
                                     </button>
                                     <button class="mb-2 btn btn-primary" sec:authorize="hasRole('PROFESIONAL')">
                                         <a th:href="@{#}" class="text-white">Historial Clínico</a>

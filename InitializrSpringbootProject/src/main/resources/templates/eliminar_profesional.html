@@ -19,7 +19,7 @@
             <h3 class="titulo_eliTurno mb-4">Eliminar Profesional</h3>
 
             <div class="conte_turno m-auto">
-                <form class=" conte_turno " th:action="@{/profesional/eliminado/${profesional.id}}" method="POST">
+                <form class=" conte_turno " th:action="@{/profesional/eliminado/__${profesional.id}__}" method="POST">
 
                     <div class="conte_dtsTurno">
                         <label class="justify-content-center "><strong>ID Del Profesional</strong></label>
@@ -57,7 +57,7 @@
                             <div class="form-group m-auto my-3"> 
                                 <label class="">Establecimiento</label> 
                                 <!-- input es para ingresar el nombre del autor  -->
-                                <input type="text" class="form-control" readonly th:value="${profesional.establecimiento}">
+                                <input type="text" class="form-control" readonly th:value="${profesional.nombreEstablecimiento}">
                             </div>
                         </div>
                     </div>

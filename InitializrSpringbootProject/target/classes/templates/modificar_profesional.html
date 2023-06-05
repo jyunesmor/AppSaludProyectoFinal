@@ -45,7 +45,7 @@
             </div>
             <h4 class=" text-center">Modificar Datos del Profesional</h4>
 
-            <form th:action="@{/admin/registro-profesional}" method="POST" enctype="multipart/form-data">
+            <form th:action="@{/profesional/modificado/__${profesional.id}__}" method="POST" enctype="multipart/form-data">
 
                 <div class="card card-registration card-registration-2" id="carta">
                     <div class="card-body p-0">
@@ -56,13 +56,13 @@
 
                                     <div class="row ">
                                         <div class="col-md-6 mb-2 pb-1 ">
-                                            <label class="form-label">Nombre</label>
+                                            <label class="form-label"><strong>Nombre</strong></label>
                                             <div class="form-outline">
                                                 <input 
                                                     type="text"
                                                     name="nombre" 
                                                     class="form-control"
-                                                    th:value="@{profesional.nombre}"/>
+                                                    th:value="${profesional.nombre}"/>
                                             </div> 
                                         </div> 
                                         <div class="col-md-6 mb-2 pb-1">
@@ -72,7 +72,7 @@
                                                     type="text"
                                                     name="apellido"   
                                                     class="form-control"
-                                                    th:value="@{profesional.apellido}"/>
+                                                    th:value="${profesional.apellido}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -85,7 +85,8 @@
                                             <input type="text" 
                                                    id="form3Examplea4"
                                                    class="form-control"
-                                                   name="dni" />
+                                                   name="dni" 
+                                                   th:value="${profesional.dni}"/>
                                         </div>
                                         <div class="col-md-6 mb-2 pb-1 ">
                                             <label class="form-label">Teléfono Personal</label>
@@ -93,7 +94,7 @@
                                                    id="form3Examplea5"
                                                    class="form-control "
                                                    name="telefono" 
-                                                   th:value="@{profesional.telefono}">
+                                                   th:value="${profesional.telefono}">
                                         </div>
                                     </div>
 
@@ -104,7 +105,7 @@
                                                    id="form3Examplea5"
                                                    class="form-control"
                                                    name="email"
-                                                   th:value="@{profesional.email}"/>
+                                                   th:value="${profesional.email}"/>
                                         </div>
                                         <div class="col-md-6 mb-2 pb-1 ">
                                             <label class="form-label">Fecha de Nacimiento</label>
@@ -114,46 +115,49 @@
                                                    min="1920-01-01" 
                                                    max="2005-12-31" 
                                                    class="form-control"
-                                                   th:value="@{profesional.fecha}"/>
+                                                   th:value="${profesional.fechaDeNacimiento}"/>
                                         </div>
                                     </div>
 
 
                                     <div class="row ">
                                         <div class="col-md-12 mb-2 pb-1 ">
-                                     <div class="d-md-flex justify-content-start align-items-center mb-2 py-2">
-                                        <h6 class="mb-0 me-4">Sexo:</h6>
+                                            <div class="d-md-flex justify-content-start align-items-center mb-2 py-2">
+                                                <h6 class="mb-0 me-4">Sexo:</h6>
 
-                                        <div class="form-check form-check-inline mb-0 me-4">
-                                            <input class="form-check-input" 
-                                                   type="radio" 
-                                                   name="sexo" 
-                                                   id="femaleGender" 
-                                                   value="femenino" />
-<!--                                                   th:checked="${profesional.sexo == 'femenino'}"-->
-                                            <label class="form-check-label">Femenino</label>
-                                        </div>
+                                                <div class="form-check form-check-inline mb-0 me-4">
+                                                    <input class="form-check-input" 
+                                                           type="radio" 
+                                                           name="sexo" 
+                                                           id="femaleGender" 
+                                                           th:checked="${profesional.sexo == 'femenino'}" 
+                                                           value="femenino" />
+                                                    <!--                                                   th:checked="${profesional.sexo == 'femenino'}"-->
+                                                    <label class="form-check-label">Femenino</label>
+                                                </div>
 
-                                        <div class="form-check form-check-inline mb-0 me-4">
-                                            <input class="form-check-input" 
-                                                   type="radio" 
-                                                   name="sexo" 
-                                                   id="maleGender"
-                                                   value="masculino"/>
-<!--                                                   th:checked="${profesional.sexo == 'masculino'}" />-->
-                                            <label class="form-check-label">Masculino</label>
-                                        </div>
+                                                <div class="form-check form-check-inline mb-0 me-4">
+                                                    <input class="form-check-input" 
+                                                           type="radio" 
+                                                           name="sexo" 
+                                                           id="maleGender"
+                                                           th:checked="${profesional.sexo == 'masculino'}" 
+                                                           value="masculino"/>
+                                                    <!--                                                   th:checked="${profesional.sexo == 'masculino'}" />-->
+                                                    <label class="form-check-label">Masculino</label>
+                                                </div>
 
-                                        <div class="form-check form-check-inline mb-0">
-                                            <input class="form-check-input" 
-                                                   type="radio"
-                                                   name="sexo" 
-                                                   id="otherGender"
-                                                   value="otro"/>
-<!--                                                   th:checked="${profesional.sexo == 'otro'}" />-->
-                                            <label class="form-check-label">Otro</label>
-                                        </div>
-                                    </div>
+                                                <div class="form-check form-check-inline mb-0">
+                                                    <input class="form-check-input" 
+                                                           type="radio"
+                                                           name="sexo" 
+                                                           id="otherGender"
+                                                           th:checked="${profesional.sexo == 'otro'}" 
+                                                           value="otro"/>
+                                                    <!--                                                   th:checked="${profesional.sexo == 'otro'}" />-->
+                                                    <label class="form-check-label">Otro</label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -165,7 +169,7 @@
                                                        id="form3Examplea5"
                                                        class="form-control "
                                                        name="localidad"
-                                                       th:value="@{profesional.archivo}"/>
+                                                       th:value="${profesional.localidad}"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-2 pb-1 ">
@@ -175,7 +179,7 @@
                                                        class="form-control"
                                                        id="inputGroupFile02"
                                                        name="archivo" 
-                                                       th:value="@{profesional.archivo}"/>
+                                                       th:value="${profesional.img}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -186,29 +190,29 @@
                                             <div class="form-outline">
                                                 <label class="mb-2">Inicio de disponibilidad:</label> 
                                                 <select class="custom-select mr-sm-2" name="inicioDia">
-                                                    <option selected >Seleccionar día</option>
-                                                    <option value="sunday">DOMINGO</option>
-                                                    <option value="monday">LUNES</option>
-                                                    <option value="tuesday">MARTES</option>
-                                                    <option value="wednesday">MIERCOLES</option>
-                                                    <option value="thursday">JUEVES</option>
-                                                    <option value="friday">VIERNES</option>
-                                                    <option value="saturday">SABADO</option>
+                                                    <option >Seleccionar día</option>
+                                                    <option value="sunday" th:selected="${profesional.disponibilidadInicioDia == 'sunday'}">DOMINGO</option>
+                                                    <option value="monday" th:selected="${profesional.disponibilidadInicioDia == 'monday'}">LUNES</option>
+                                                    <option value="tuesday" th:selected="${profesional.disponibilidadInicioDia == 'tuesday'}">MARTES</option>
+                                                    <option value="wednesday" th:selected="${profesional.disponibilidadInicioDia == 'wednesday'}">MIÉRCOLES</option>
+                                                    <option value="thursday" th:selected="${profesional.disponibilidadInicioDia == 'thursday'}">JUEVES</option>
+                                                    <option value="friday" th:selected="${profesional.disponibilidadInicioDia == 'friday'}">VIERNES</option>
+                                                    <option value="saturday" th:selected="${profesional.disponibilidadInicioDia == 'saturday'}">SÁBADO</option>
                                                 </select>
                                             </div>          
                                         </div>
                                         <div class="col-md-6 mb-2 pb-1 ">
                                             <div class="form-outline"> 
-                                                <label class="mb-4">Fin de disponibilidad:</label> 
+                                                <label class="mb-2">Fin de disponibilidad:</label> 
                                                 <select class="custom-select mr-sm-2" name="finDia">
-                                                    <option selected >Seleccionar día</option>
-                                                    <option value="sunday">DOMINGO</option>
-                                                    <option value="monday">LUNES</option>
-                                                    <option value="tuesday">MARTES</option>
-                                                    <option value="wednesday">MIERCOLES</option>
-                                                    <option value="thursday">JUEVES</option>
-                                                    <option value="friday">VIERNES</option>
-                                                    <option value="saturday">SABADO</option>
+                                                    <option >Seleccionar día</option>
+                                                    <option value="sunday" th:selected="${profesional.disponibilidadFinDia == 'sunday'}">DOMINGO</option>
+                                                    <option value="monday" th:selected="${profesional.disponibilidadFinDia == 'monday'}">LUNES</option>
+                                                    <option value="tuesday" th:selected="${profesional.disponibilidadFinDia == 'tuesday'}">MARTES</option>
+                                                    <option value="wednesday" th:selected="${profesional.disponibilidadFinDia == 'wednesday'}">MIÉRCOLES</option>
+                                                    <option value="thursday" th:selected="${profesional.disponibilidadFinDia == 'thursday'}">JUEVES</option>
+                                                    <option value="friday" th:selected="${profesional.disponibilidadFinDia == 'friday'}">VIERNES</option>
+                                                    <option value="saturday" th:selected="${profesional.disponibilidadFinDia == 'saturday'}">SÁBADO</option>
                                                 </select>
                                             </div>
                                         </div>          
@@ -221,16 +225,16 @@
                                                 <input type="text" 
                                                        class="form-control" 
                                                        name="inicioHora"
-                                                       th:value="@{profesional.inicioHora}"/>
+                                                       th:value="${profesional.disponibilidadInicioHora}"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-2 pb-1 ">
                                             <div class="form-outline">
-                                                <label class="mb-2">Indique el inicio de su turno "HH:MM"</label> 
+                                                <label class="mb-2">Indique el fin de su turno "HH:MM"</label> 
                                                 <input type="text" 
                                                        class="form-control" 
                                                        name="finHora"
-                                                       th:value="@{profesional.finHora}"/>
+                                                       th:value="${profesional.disponibilidadFinHora}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -254,7 +258,7 @@
                                                        name="matricula" 
                                                        id="form3Examplev4"
                                                        class="form-control" 
-                                                       th:value="@{profesional.matricula}"/>
+                                                       th:value="${profesional.matricula}"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-2 pb-1 ">
@@ -264,7 +268,7 @@
                                                        name="nombreEstablecimiento"
                                                        id="form3Examplev4"
                                                        class="form-control "
-                                                       th:value="@{profesional.nombreEstablecimiento}"/>
+                                                       th:value="${profesional.nombreEstablecimiento}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -277,7 +281,7 @@
                                                 <input type="text" id="form3Examplev2"
                                                        class="form-control "
                                                        name="telefonoLaboral" 
-                                                       th:value="@{profesional.telefonoLaboral}"/>
+                                                       th:value="${profesional.telefonoLaboral}"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-2 pb-1 ">
@@ -291,11 +295,11 @@
                                                 <label class="mb-2">Especialidad</label>
                                                 <select class="custom-select mr-sm-2"
                                                         name="especialidad">
-                                                    <option selected>Seleccionar especialidad</option>
-                                                    <option value="PEDIATRIA">PEDIATRÍA</option>
-                                                    <option value="GINECOLOGIA">GINECOLOGÍA</option>
-                                                    <option value="CLINICA">CLÍNICA</option>
-                                                    <option value="CARDIOLOGIA">CARDIOLOGÍA</option>
+                                                    <option >Seleccionar especialidad</option>
+                                                    <option value="PEDIATRIA" th:selected="${profesional.especialidad = 'PEDIATRIA'}">PEDIATRÍA</option>
+                                                    <option value="GINECOLOGIA" th:selected="${profesional.especialidad = 'GINECOLOGIA'}">GINECOLOGÍA</option>
+                                                    <option value="CLINICA" th:selected="${profesional.especialidad = 'CLINICA'}">CLÍNICA</option>
+                                                    <option value="CARDIOLOGIA" th:selected="${profesional.especialidad = 'CARDIOLOGIA'}">CARDIOLOGÍA</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -305,8 +309,8 @@
                                                 <select class="custom-select mr-sm-2"
                                                         name="modalidad">
                                                     <option selected>Seleccionar modalidad</option>
-                                                    <option value="PRESENCIAL">PRESENCIAL</option>
-                                                    <option value="TELEMEDICINA">TELEMEDICINA</option>
+                                                    <option value="PRESENCIAL" th:selected="${profesional.modalidad = 'PRESENCIAL'}">PRESENCIAL</option>
+                                                    <option value="TELEMEDICINA" th:selected="${profesional.modalidad = 'TELEMEDICINA'}">TELEMEDICINA</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -319,7 +323,7 @@
                                                 <input type="text" 
                                                        class="form-control" 
                                                        name="precio"
-                                                       th:value="@{profesional.precio}"/>
+                                                       th:value="${profesional.precio}"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb5 pb-1">
@@ -328,7 +332,7 @@
                                                 <input type="text" id="form3Examplev3"
                                                        class="form-control"
                                                        name="obraSocial" 
-                                                       th:value="@{profesional.obraSocial}"/>
+                                                       th:value="${profesional.obraSocial}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -340,7 +344,8 @@
                                                 <label class="mb-0">Descripción</label>
                                                 <input type="text"
                                                        class="form-control"
-                                                       name="descripcion"/>
+                                                       name="descripcion"
+                                                       th:value="${profesional.descripcion}"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-2 pb-1 ">
@@ -348,7 +353,8 @@
                                                 <label class="mb-0">Calificación</label>
                                                 <input type="text" 
                                                        class="form-control"
-                                                       name="calificacion"/>
+                                                       name="calificacion"
+                                                       th:value="${profesional.calificacion}"/>
                                             </div>
                                         </div>
                                     </div>

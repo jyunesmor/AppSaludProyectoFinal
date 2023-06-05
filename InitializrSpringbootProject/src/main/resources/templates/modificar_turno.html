@@ -23,7 +23,7 @@
         <link rel="stylesheet" th:href="@{/css/turno.css}">
         <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="shortcut icon" th:href="@{https://cdn0.iconfinder.com/data/icons/scenarium-vol-10/128/015-512.png}">
-
+        <link th:href="@/css/footer.css}" rel="stylesheet" type="text/css"/>
     </head>
     <body>
 
@@ -31,6 +31,20 @@
             <nav th:replace= "/fragments/navbar :: nav"></nav>
         </section>
         <main>
+            
+            <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
+                <div class="card-body">
+                    <h5 class="card-title">Error </h5>
+                    <p class="card-text" th:text="${error}"></p>
+                </div>
+            </div>
+            <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+                <div class="card-body">
+                    <h5 class="card-title">Exito!</h5>
+                    <p class="card-text" th:text="${exito}"></p>
+                </div>
+            </div>
+            
             <section class="conte_turno">
                 <div class="header_turnero">
                     <div class="dtos_paciente">
@@ -55,7 +69,7 @@
                     </div>
                 </div>
                 <div class="body_turnero">
-                    <form class="formulario" th:action="@{/turno/modificado/_${turno.id}_}" method="POST">
+                    <form class="formulario" th:action="@{/turno/modificado/__${turno.id}__}" method="POST">
 
                         <div>
                             <input
@@ -103,7 +117,7 @@
                                         />
                                 </div>
                             </div>
-
+<!--
                             <div class="form-group input_dia_Con">
                                 <label>Elegia el día de Consulta</label>
                                 <select name="dia" th:value="diaGuardado">
@@ -111,10 +125,9 @@
                                             th:text="${dia}"
                                             th:selected="${dia == diaGuardado}"
                                             ></option>
-                                    <!-- falta ponerle una variable que almacene la info -->
                                 </select>
                             </div>
-
+-->
                             <div class="form-group input_dia_Con">
                                 <label><strong>Días que atiende el profesional</strong></label>
                                 <ul>
@@ -124,7 +137,7 @@
 
                             <div class="form-group input_Hor_Con">
                                 <label class="">Fecha del Turno</label>
-                                <input type="date" id="fecha" name="fecha2" class="form-control" 
+                                <input type="date" id="fecha" name="fecha" class="form-control" 
                                        th:min="${today}" th:max="${lastDayOfYear}"
                                        th:value="${turno.fecha}"/>
                             </div>

@@ -21,7 +21,7 @@
             <h3 class="titulo_eliTurno">Cancelación Turno</h3>
 
             <div class="conte_turno m-auto">
-                <form class=" conte_turno " th:action="@{/turno/cancelado/${turno.id}}" method="POST">
+                <form class=" conte_turno " th:action="@{/turno/cancelado/__${turno.id}__}" method="POST">
 
                     <div class="conte_dtsTurno">
                         <label class="justify-content-center "><strong>ID Del Turno</strong></label>

@@ -97,8 +97,8 @@ public class PacienteResControler {
         try {
 
             pacienteServicio.actualizar(archivo, fecha, idPaciente, nombre, apellido, dni, email, telefono, sexo, password, password2, obraSocialPaciente, numeroDeAfiliado);
-            modelo.put("exito", "Usted se ha actualizado correctamete");
-            return "index.html";
+            modelo.put("exito", "El perfil se ha actualizado correctamente"); // El perfil se ha actualizado correctamente
+            return "inicio.html";
         } catch (MiExcepcion ex) {
 
             modelo.put("error", ex.getMessage());
