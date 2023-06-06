@@ -30,6 +30,7 @@ and open the template in the editor.
 .footer{
     width: 100vw;
     height: 100px;
+    margin-top: 10px
 }
 
 body{
@@ -47,8 +48,6 @@ body{
 main{
     width: 100vw;
     min-height: calc(100vh - 200px);
-    margin-bottom: 30px;
-
 }
 
 
