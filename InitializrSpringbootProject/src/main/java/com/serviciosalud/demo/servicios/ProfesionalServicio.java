@@ -289,7 +289,25 @@ public class ProfesionalServicio implements UserDetailsService {
 
         } else {
             return null;
+      }
+ }  
+   
+    
+    @Transactional
+     public void promedioCalificacionPorProfesional(String id, Integer calificacion) { 
+         Optional<Profesional> respuesta = profesionalRepositorio.findById(id);
+        if (respuesta.isPresent()) {
+            Profesional profesional = respuesta.get();
+            Double cal = profesional.getCalificacion();
+            Double c = (double)calificacion;
+            if (cal == null){
+             profesional.setCalificacion(c);   
+           }
+            else{
+            Double prom = (cal + c) /2;
+            profesional.setCalificacion(prom);
+            }
+         profesionalRepositorio.save(profesional);
         }
-    }
-
+     }
 }

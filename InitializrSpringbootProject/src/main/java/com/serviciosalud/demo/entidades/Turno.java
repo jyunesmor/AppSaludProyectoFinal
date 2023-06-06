@@ -22,6 +22,7 @@ public class Turno {
     protected String horario;
     protected String motivoDeConsulta;
     protected String observaciones;
+    protected Integer calificacion;
     
     @ManyToOne
     protected Paciente paciente;

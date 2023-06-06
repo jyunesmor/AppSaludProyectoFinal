@@ -316,4 +316,26 @@ public class TurnoControlador {
         turnoRepositorio.deleteById(id);
         return "inicio.html";
     }
+    
+    
+    
+    @GetMapping("/calificar/{id}")
+     public String calificar (@PathVariable String id, ModelMap modelo){
+     modelo.put("turno", turnoServicio.buscarTurno(id));
+     
+    
+    
+         return "calificacion.html";
+   
+}
+     
+      @PostMapping("/calificado/{id}")
+     public String guardarCalificacion(@PathVariable String id, @RequestParam int calificacion){
+        turnoServicio.guardarCalificacion(id, calificacion);
+        Turno turno = turnoServicio.buscarTurno(id);
+        String idProfesional = turno.getProfesional().getId();
+        profesionalServicio.promedioCalificacionPorProfesional(idProfesional, calificacion);
+       return "redirect:/turno/listar";
+    }
+
 }
