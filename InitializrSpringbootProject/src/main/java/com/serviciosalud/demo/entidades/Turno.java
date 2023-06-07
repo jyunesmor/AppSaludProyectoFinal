@@ -29,4 +29,5 @@ public class Turno {
     @ManyToOne
     protected Profesional profesional;
 
+    protected Integer calificacion;
 }

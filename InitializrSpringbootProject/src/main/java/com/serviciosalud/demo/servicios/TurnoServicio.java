@@ -295,4 +295,25 @@ public class TurnoServicio {
 
         return null;
     }
+    
+    @Transactional
+    public Turno buscarTurno(String id) {
+        Optional<Turno> resp = turnoRepositorio.findById(id);
+        if (resp.isPresent()) {
+            return resp.get();
+        }
+        return null;
+    }
+
+
+    @Transactional
+    public void guardarCalificacion(String id, Integer calificacion) {
+        Optional<Turno> resp = turnoRepositorio.findById(id);
+        Turno turno = new Turno();
+        if (resp.isPresent()) {
+            turno = resp.get();
+            turno.setCalificacion(calificacion);
+            turnoRepositorio.save(turno);
+        }
+    }
 }
