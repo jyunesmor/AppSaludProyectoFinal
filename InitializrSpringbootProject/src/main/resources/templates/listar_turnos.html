@@ -18,7 +18,7 @@
 
         <main>    
             <section>
-                <div align="center">
+                <div align="center" class="mt-4">
                     <img  src="/imagen/listadoturnos.png" width="20%" >
                 </div>
                 <div class="d-flex justify-content-center align-items-end">
@@ -90,7 +90,7 @@
                                 <td th:text="${turno.horario}"></td>
                                 <td th:text="'$ '+${turno.profesional.precio}"></td>
                                 <td th:text="${turno.motivoDeConsulta}"></td>
-                                <td class="d-flex flex-column justify-content-center m-auto">
+                                <td class="d-flex flex-column justify-content-center m-auto align-items-center">
                                     <button class="mb-2 btn btn-primary" sec:authorize="hasRole('PACIENTE')">
                                         <a th:href="@{/turno/cancelar/__${turno.id}__}" class="text-white">Cancelar Turno</a>
                                     </button>
@@ -98,7 +98,7 @@
                                         <a th:href="@{/turno/modificar/__${turno.id}__}" class="text-white" style="white-space: nowrap;">Editar Turno</a>
                                     </button>
                                        <button th:if="${((#dates.format(#dates.createNow(), 'yyyy-MM-dd') > turno.fecha) or (#dates.format(#dates.createNow(), 'yyyy-MM-dd') == turno.fecha and #dates.format(#dates.createNow(), 'HH') >= turno.horario.toString())) and (turno.calificacion == null)}" class="mb-2 btn btn-primary" sec:authorize="hasAnyRole('PACIENTE')">
-                                    <a  th:href="@{/turno/calificar/__${turno.id}__}" class="text-white" style="white-space: nowrap;">Calificar Profesional</a>
+                                    <a  th:href="@{/turno/calificar/__${turno.id}__}" class="text-white h-auto" style="white-space: nowrap;">Calificar Profesional</a>
                                 </button>
                                     <button class="mb-2 btn btn-primary" sec:authorize="hasRole('PROFESIONAL')">
                                         <a th:href="@{/historia-clinica/registrar/__${turno.id}__}" class="text-white">Agregar observación</a>

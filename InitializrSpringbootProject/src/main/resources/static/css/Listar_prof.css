@@ -21,7 +21,24 @@ and open the template in the editor.
     padding: 0px;
     box-sizing: border-box;
 }
+html{
+    width: 100vw;
+    height: 100vh;
+}
 
+
+.header li{
+    font-size: 18px;
+    text-shadow: 1px 1px 0.5px white;
+    color: white;
+}
+
+
+.footer li{
+    font-size: 13px;
+    text-shadow: 1px 1px 0.5px white;
+    color: white;
+}
 .header{
     width: 100vw;
     height: 100px;
@@ -53,6 +70,7 @@ main{
 
 .contenedor-gral{
     width: 100%;
+    margin-top: 35px;
     display: flex;
     flex-direction: column;
 }

@@ -7,6 +7,23 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Author     : manue
 */
 
+html{
+    width: 100vw;
+    height: 100vh;
+}
+
+.header li{
+    font-size: 18px;
+    text-shadow: 1px 1px 0.5px white;
+    color: white;
+}
+
+.footer li{
+    font-size: 13px;
+    text-shadow: 1px 1px 0.5px white;
+    color: white;
+}
+
 
 html, body{ /*imagen azul de fondo*/
 /*    background-image: url(../imagen/fondo.svg);*/

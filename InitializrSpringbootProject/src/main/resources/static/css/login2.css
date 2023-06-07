@@ -11,6 +11,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
+html{
+    width: 100vw;
+    height: 100vh;
+}
+
 body{
     background-image: url('https://img.freepik.com/foto-gratis/medico-mujeres-hospital-estetoscopio_23-2148827781.jpg?w=740&t=st=1685870303~exp=1685870903~hmac=e3115fe4fb15286cb7d96e1929b0fa1b838f32cd4e5843a771b4d5e74a92bfb1');
     background-size: cover;
@@ -19,6 +24,30 @@ body{
     height: 100vh;
     font-family: 'Numans', sans-serif;
 }
+.footer{
+    width: 100vw;
+    height: 100px;
+    margin-top: 10px
+}
+
+
+header{
+    height: 100px;
+}
+
+.header li{
+    font-size: 18px;
+    text-shadow: 1px 1px 0.5px white;
+    color: white;
+}
+
+.footer li{
+    font-size: 13px;
+    text-shadow: 1px 1px 0.5px white;
+    color: white;
+}
+
+
 
 main{
     width: 100vw;

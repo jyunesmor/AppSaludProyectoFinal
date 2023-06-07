@@ -8,6 +8,33 @@ and open the template in the editor.
     Author     : Juan
 */
 
+
+html{
+    width: 100vw;
+    height: 100vh;
+}
+
+
+.header{
+    height: 100px;
+}
+
+.header li{
+    font-size: 18px;
+    text-shadow: 1px 1px 0.5px white;
+    color: white;
+}
+
+.footer{
+    height: 100px;
+}
+
+.footer li{
+    font-size: 13px;
+    text-shadow: 1px 1px 0.5px white;
+    color: white;
+}
+
 .contenedor{
     display: flex;
     margin: 150px auto;

@@ -14,11 +14,30 @@
         <link th:href="@{/css/login2.css}"  rel="stylesheet" type="text/css"/>
 
     </head>
-   <body>
-        <section>
-            <nav th:replace= "/fragments/navbar :: nav"></nav>
-        </section>
-
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-md navbar-light m-0 p-0 " >
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">
+                        <img class="img-responsive mx-4" th:src="@{/imagen/logo-sinfondo.png}" width="90" height="80" alt="logo nav">
+                    </a>
+                </div>
+                <div>
+                    <ul class="navbar-nav mr-4">
+                        <li class="nav-item px-3">
+                            <a class="nav-link text-footer-link " th:if="${session.usuariosession == null}"  th:href="@{/paciente/registro}" id="navbarDropdown" role="button" aria-expanded="false">
+                                Registrarse
+                            </a>
+                        </li>
+                        <li class="nav-item px-3">
+                            <a class="nav-link text-footer-link" th:if="${session.usuariosession == null}" th:href="@{/login}" id="navbarDropdown" role="button" aria-expanded="false">
+                                Ingresar
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
         <main>
             <div class="container">
                 <div class="d-flex justify-content-center h-100">

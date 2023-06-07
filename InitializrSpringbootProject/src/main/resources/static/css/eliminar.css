@@ -12,3 +12,29 @@ body{ /*imagen azul de fondo*/
     background-repeat:no-repeat;
     background-position-x:center;
 }
+
+html{
+    width: 100vw;
+    height: 100vh;
+}
+
+
+.header{
+    height: 100px;
+}
+
+.header li{
+    font-size: 18px;
+    text-shadow: 1px 1px 0.5px white;
+    color: white;
+}
+
+.footer{
+    height: 100px;
+}
+
+.footer li{
+    font-size: 13px;
+    text-shadow: 1px 1px 0.5px white;
+    color: white;
+}
