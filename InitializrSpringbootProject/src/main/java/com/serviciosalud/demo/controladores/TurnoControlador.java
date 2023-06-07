@@ -320,11 +320,7 @@ public class TurnoControlador {
      @GetMapping("/calificar/{id}")
      public String calificar (@PathVariable String id, ModelMap modelo){
      modelo.put("turno", turnoServicio.buscarTurno(id));
-
-
-
          return "calificacion.html";
-
 }
 
       @PostMapping("/calificado/{id}")
@@ -335,4 +331,5 @@ public class TurnoControlador {
         profesionalServicio.promedioCalificacionPorProfesional(idProfesional, calificacion);
        return "redirect:/turno/listar";
     }
+     /*prueba*/
 }
