@@ -32,7 +32,7 @@
                             <input type="text" name="palabraClave" class="form-groupmx-sm-3 mb-2" placeholder="Ej: GINECOLOGIA" required>
                         </div>
                         -->
-                        <div class="form-group mb-2 text-filtro">
+                        <div class="form-group mb-2 mx-5 text-filtro">
                             <label>Ordenar :</label>
                         </div> 
 
@@ -64,7 +64,7 @@
                     <table class="table table-striped table-bordered border-primary">
                         <thead>
                             <tr>
-                                <th scope="col">N° de Turno</th>
+                                <th scope="col" id="columna-turno">N° de Turno</th>
                                 <th scope="col" sec:authorize="hasAnyRole('ADMIN', 'PROFESIONAL')">Paciente</th>
                                 <th scope="col">Profesional</th>
                                 <th scope="col">Especialidad</th>
@@ -97,8 +97,8 @@
                                     <button class="mb-2 btn btn-primary" sec:authorize="hasAnyRole('PACIENTE', 'PROFESIONAL', 'ADMIN')">
                                         <a th:href="@{/turno/modificar/__${turno.id}__}" class="text-white" style="white-space: nowrap;">Editar Turno</a>
                                     </button>
-                                       <button class="mb-2 btn btn-primary" sec:authorize="hasAnyRole('PACIENTE', 'PROFESIONAL', 'ADMIN')">
-                                    <a th:href="@{/turno/calificar/__${turno.id}__}" class="text-white" style="white-space: nowrap;">Calificar Profesional</a>
+                                       <button th:if="${((#dates.format(#dates.createNow(), 'yyyy-MM-dd') > turno.fecha) or (#dates.format(#dates.createNow(), 'yyyy-MM-dd') == turno.fecha and #dates.format(#dates.createNow(), 'HH') >= turno.horario.toString())) and (turno.calificacion == null)}" class="mb-2 btn btn-primary" sec:authorize="hasAnyRole('PACIENTE')">
+                                    <a  th:href="@{/turno/calificar/__${turno.id}__}" class="text-white" style="white-space: nowrap;">Calificar Profesional</a>
                                 </button>
                                     <button class="mb-2 btn btn-primary" sec:authorize="hasRole('PROFESIONAL')">
                                         <a th:href="@{/historia-clinica/registrar/__${turno.id}__}" class="text-white">Agregar observación</a>
