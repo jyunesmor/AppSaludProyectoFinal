@@ -46,6 +46,14 @@ form{
   
 }
 
+body{
+   background-image: url(../imagen/fondo.svg);
+    background-repeat:no-repeat;
+    background-position-x:center;
+    font-size: 14px;
+}
+
+
 .bt_registrar{
     margin-top: 60px;
     

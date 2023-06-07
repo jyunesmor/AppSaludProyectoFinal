@@ -20,13 +20,18 @@ html{
 
 
 .header{
-    height: 100px;
+    height: 50px;
+    margin-bottom:  10px;
 }
 
 .header li{
     font-size: 18px;
     text-shadow: 1px 1px 0.5px white;
     color: white;
+}
+
+.header img{
+    visibility: hidden;
 }
 
 .footer{
